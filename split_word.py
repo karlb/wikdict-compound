@@ -95,7 +95,16 @@ def split_word(word, ignore_word=None, first_part=True):
         FROM (
             SELECT DISTINCT other_written, rel_score, affix_type
             FROM compound_splitter
-            WHERE other_written <= :compound AND :compound LIKE other_written || '%'
+            WHERE (
+                (
+                    other_written <= :compound
+                    AND other_written >= substr(:compound, 1, 2)
+                    AND :compound LIKE other_written || '%'
+                ) OR (
+                    other_written = substr(:compound, 1, 1)
+                )
+            )
+            --WHERE other_written <= :compound AND :compound LIKE other_written || '%'
             --WHERE other_written <= :compound AND other_written || 'z' > :compound
               AND other_written IS NOT lower(:ignore_word)
               AND (affix_type IS NULL OR :first_part = (affix_type = "prefix"))
