@@ -152,7 +152,7 @@ for test_row in conn.execute(
     normalized_test_parts = set(normalize(p) for p in parts)
     try:
         split = split_word(compound, ignore_word=compound)
-        normalized_split_parts = set(normalize(p) for p, score in split)
+        normalized_split_parts = set(normalize(p) for p, score in split) - {'s'}
         if split:
             counts['found'].append(split)
             match = normalized_test_parts == normalized_split_parts
