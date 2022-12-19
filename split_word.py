@@ -136,7 +136,14 @@ def to_base_form(row):
 # exit()
 
 counts: dict[str, list] = dict(total=[], found=[], passed=[], failed=[])
-for test_row in conn.execute("SELECT * FROM test_data WHERE lexemeLabel NOT LIKE '%bo' LIMIT 200"):
+for test_row in conn.execute(
+        """
+        SELECT * FROM test_data
+        WHERE lexemeLabel NOT LIKE '%bo'
+          AND parts LIKE '% || %'  -- single-part compounds are probably bad test data
+        LIMIT 200
+        """
+    ):
     compound = test_row['lexemeLabel']
     counts['total'].append(compound)
     parts = test_row['parts'].split(' || ')
