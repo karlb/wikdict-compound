@@ -6,36 +6,6 @@ import math
 conn = sqlite3.connect("sv.sqlite3")
 conn.row_factory = sqlite3.Row
 
-# conn.executescript("""
-#     DROP TABLE IF EXISTS compound_splitter;
-#     CREATE VIRTUAL TABLE IF NOT EXISTS compound_splitter USING fts5(
-#         other_written, rel_score UNINDEXED, affix_type UNINDEXED, other_written_orig UNINDEXED,
-#         tokenize = "unicode61 remove_diacritics 0",
-#         prefix = "1 2 3 4 5 6 7 8 9"
-#     );
-
-#     INSERT INTO compound_splitter
-#     SELECT trim(other_written, '-') AS other_written,
-#         max(rel_score) AS rel_score,
-#         CASE
-#             WHEN substr(other_written, 1, 1) = '-' AND substr(other_written, -1, 1) = '-' THEN 'infix'
-#             WHEN substr(other_written, 1, 1) = '-' THEN 'suffix'
-#             WHEN substr(other_written, -1, 1) = '-' THEN 'prefix'
-#         END AS affix_type,
-#         other_written AS other_written_orig
-#     FROM (
-#             SELECT other_written
-#             FROM form
-#             UNION ALL
-#             SELECT written_rep
-#             FROM entry
-#         )
-#         JOIN rel_importance ON (other_written = written_rep_guess)
-#     WHERE other_written != '' -- Why are there forms without text?
-#     GROUP BY other_written
-#     ;
-# """)
-
 conn.executescript("""
     --DROP TABLE IF EXISTS compound_splitter;
     CREATE TABLE IF NOT EXISTS compound_splitter AS
@@ -65,14 +35,11 @@ conn.executescript("""
         )
         JOIN rel_importance ON (other_written = written_rep_guess)
     WHERE other_written != '' -- Why are there forms without text?
+      AND NOT (length(other_written) = 1 AND affix_type IS NULL)
     GROUP BY 1, 2
     ;
     
-    DELETE FROM compound_splitter WHERE length(other_written) = 1 AND affix_type IS NULL;
-
     CREATE INDEX IF NOT EXISTS compound_splitter_idx ON compound_splitter(other_written);
-    --CREATE INDEX IF NOT EXISTS form_other_written_idx ON form(other_written);
-    --CREATE INDEX IF NOT EXISTS importance_written_rep_idx ON rel_importance(written_rep_guess);
 """)
 
 query_count = 0
@@ -96,7 +63,6 @@ def print_query_plan(query, bindings={}):
 # - case
 def split_word(word, ignore_word=None, first_part=True):
     word = word.lower()
-    # print('==', word)
     global query_count
     query = """
         SELECT *
@@ -128,8 +94,6 @@ def split_word(word, ignore_word=None, first_part=True):
     result = conn.execute(query, bindings).fetchall()
     if not result:
         raise NoMatch()
-    # for r in result:
-    #     print('\t', r['other_written'], r['rel_score'])
 
     solutions = []
     best_score = max(r['rel_score'] for r in result)
@@ -137,7 +101,6 @@ def split_word(word, ignore_word=None, first_part=True):
         # if r['rel_score'] < best_score / 4:
         #     break
         rest = word.replace(r['other_written'].lower(), '')
-        # print('===', word, written, rest)
         if not rest:
             if r['affix_type'] in [None, 'suffix']:
                 solutions.append([(to_base_form(r), r['rel_score'])])
@@ -146,7 +109,6 @@ def split_word(word, ignore_word=None, first_part=True):
             splitted_rest = split_word(rest, first_part=False)
         except NoMatch:
             continue
-        # print(f'{written=}, {rest=}')
         solutions.append([(to_base_form(r), r['rel_score'])] + splitted_rest)
 
     if not solutions:
@@ -189,14 +151,8 @@ for test_row in conn.execute("SELECT * FROM test_data WHERE lexemeLabel NOT LIKE
             counts['passed' if match else 'failed'].append([compound, parts, split])
         else:
             pass
-            # print(compound, 'no solution')
     except NoMatch:
-        # print(compound, 'failed')
         continue
-# for word in ['pastellfärgade', 'aktiebolag']:
-#     print('--->', split_word(word))
-# for r in split_word('aktiebolag'):
-#     print(dict(r))
 
 print(query_count, 'queries executed (', query_count / len(counts['total']),'per compound).')
 print('Counts:')
