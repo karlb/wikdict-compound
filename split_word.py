@@ -140,6 +140,8 @@ for test_row in conn.execute("SELECT * FROM test_data WHERE lexemeLabel NOT LIKE
     compound = test_row['lexemeLabel']
     counts['total'].append(compound)
     parts = test_row['parts'].split(' || ')
+    if '-s-' in parts:
+        parts.remove('-s-')  # ignore genetiv-s
     normalized_test_parts = set(normalize(p) for p in parts)
     try:
         split = split_word(compound, ignore_word=compound)
