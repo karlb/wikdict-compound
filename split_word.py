@@ -93,7 +93,7 @@ def split_word(word, ignore_word=None, first_part=True):
     query = """
         SELECT *
         FROM (
-            SELECT DISTINCT other_written, rel_score, affix_type
+            SELECT DISTINCT other_written, rel_score, affix_type, lexentries
             FROM compound_splitter
             WHERE (
                 (
@@ -128,19 +128,18 @@ def split_word(word, ignore_word=None, first_part=True):
     for r in result:
         # if r['rel_score'] < best_score / 4:
         #     break
-        written = r['other_written']
-        rest = word.replace(written.lower(), '')
+        rest = word.replace(r['other_written'].lower(), '')
         # print('===', word, written, rest)
         if not rest:
             if r['affix_type'] in [None, 'suffix']:
-                solutions.append([(written, r['rel_score'])])
+                solutions.append([(to_base_form(r), r['rel_score'])])
             continue
         try:
             splitted_rest = split_word(rest, first_part=False)
         except NoMatch:
             continue
         # print(f'{written=}, {rest=}')
-        solutions.append([(written, r['rel_score'])] + splitted_rest)
+        solutions.append([(to_base_form(r), r['rel_score'])] + splitted_rest)
 
     if not solutions:
         raise NoMatch()
@@ -154,6 +153,10 @@ def split_word(word, ignore_word=None, first_part=True):
 
 def normalize(part):
     return part.replace('-', '')
+
+def to_base_form(row):
+    lexentry = row['lexentries'].split(',')[0]  # TODO: handle case with multiple lexentries
+    return conn.execute("SELECT written_rep FROM entry WHERE lexentry=:lexentry", dict(lexentry=lexentry)).fetchone()['written_rep']
 
 
 # +anläggningsingenjör
