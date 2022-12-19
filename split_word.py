@@ -51,6 +51,14 @@ conn.executescript("""
     FROM (
             SELECT other_written, lexentry
             FROM form
+            WHERE
+                -- Multi-word entries oftentimes don't have all words included
+                -- in the form, resulting in misleading forms, so let's exclude
+                -- those.
+                lexentry NOT IN (
+                    SELECT lexentry FROM entry
+                    WHERE written_rep LIKE '% %'
+                )
             UNION ALL
             SELECT written_rep, lexentry
             FROM entry
