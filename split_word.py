@@ -6,7 +6,7 @@ import math
 conn = sqlite3.connect("sv.sqlite3")
 conn.row_factory = sqlite3.Row
 
-conn.executescript("""
+conn.executescript(r"""
     --DROP TABLE IF EXISTS compound_splitter;
     CREATE TABLE IF NOT EXISTS compound_splitter AS
     SELECT lower(trim(other_written, '-')) AS other_written,
@@ -36,6 +36,7 @@ conn.executescript("""
         JOIN rel_importance ON (other_written = written_rep_guess)
     WHERE other_written != '' -- Why are there forms without text?
       AND NOT (length(other_written) = 1 AND affix_type IS NULL)
+      AND lexentry NOT LIKE '%\_\_Pronomen\_\_%' ESCAPE '\'
     GROUP BY 1, 2
     ;
     
