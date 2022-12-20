@@ -3,10 +3,11 @@ import sqlite3
 import math
 
 #conn = sqlite3.connect("/home/karl/code/github/wikdict-gen/dictionaries/processed/sv.sqlite3")
-conn = sqlite3.connect("sv.sqlite3")
+conn = sqlite3.connect("sv-compound.sqlite3")
 conn.row_factory = sqlite3.Row
 
 conn.executescript(r"""
+    ATTACH DATABASE 'sv.sqlite3' AS generic;
     --DROP TABLE IF EXISTS compound_splitter;
     CREATE TABLE IF NOT EXISTS compound_splitter AS
     SELECT lower(trim(other_written, '-')) AS other_written,
