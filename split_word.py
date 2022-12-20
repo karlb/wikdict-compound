@@ -8,36 +8,46 @@ conn.row_factory = sqlite3.Row
 
 conn.executescript(r"""
     ATTACH DATABASE 'sv.sqlite3' AS generic;
+
     --DROP TABLE IF EXISTS compound_splitter;
     CREATE TABLE IF NOT EXISTS compound_splitter AS
-    SELECT lower(trim(other_written, '-')) AS other_written,
-        CASE
-            WHEN substr(other_written, 1, 1) = '-' AND substr(other_written, -1, 1) = '-' THEN 'infix'
-            WHEN substr(other_written, 1, 1) = '-' THEN 'suffix'
-            WHEN substr(other_written, -1, 1) = '-' THEN 'prefix'
-        END AS affix_type,
+    SELECT 
+        other_written,
+        affix_type,
         max(rel_score) AS rel_score,
-        group_concat(DISTINCT other_written) AS other_written_orig,
-        group_concat(DISTINCT lexentry) AS lexentries
+        first_value(written_rep) OVER (PARTITION BY other_written, affix_type ORDER BY rel_score DESC) AS written_rep
     FROM (
-            SELECT other_written, lexentry
-            FROM form
-            WHERE
-                -- Multi-word entries oftentimes don't have all words included
-                -- in the form, resulting in misleading forms, so let's exclude
-                -- those.
-                lexentry NOT IN (
-                    SELECT lexentry FROM entry
-                    WHERE written_rep LIKE '% %'
-                )
-            UNION ALL
-            SELECT written_rep, lexentry
-            FROM entry
-        )
-        JOIN rel_importance ON (other_written = written_rep_guess)
-    WHERE other_written != '' -- Why are there forms without text?
-      AND NOT (length(other_written) = 1 AND affix_type IS NULL)
-      AND lexentry NOT LIKE '%\_\_Pronomen\_\_%' ESCAPE '\'
+        SELECT
+            lower(trim(other_written, '-')) AS other_written,
+            CASE
+                WHEN substr(other_written, 1, 1) = '-' AND substr(other_written, -1, 1) = '-' THEN 'infix'
+                WHEN substr(other_written, 1, 1) = '-' THEN 'suffix'
+                WHEN substr(other_written, -1, 1) = '-' THEN 'prefix'
+            END AS affix_type,
+            rel_score * score_factor AS rel_score,
+            written_rep
+        FROM (
+                SELECT other_written, written_rep,
+                    CASE "case"
+                        WHEN 'GenitiveCase' THEN 1
+                        ELSE 0.5
+                    END AS score_factor
+                FROM generic.form
+                    JOIN entry USING (lexentry)
+                WHERE
+                    lexentry NOT LIKE '%\_\_Pronomen\_\_%' ESCAPE '\'
+                    -- Multi-word entries oftentimes don't have all words included
+                    -- in the form, resulting in misleading forms, so let's exclude
+                    -- those.
+                    AND written_rep NOT LIKE '% %'
+                UNION ALL
+                SELECT written_rep, written_rep, 1 AS score_factor
+                FROM generic.entry
+            )
+            JOIN rel_importance ON (written_rep = written_rep_guess)
+        WHERE other_written != '' -- Why are there forms without text?
+          AND NOT (length(other_written) = 1 AND affix_type IS NULL)
+    )
     GROUP BY 1, 2
     ;
     
@@ -69,7 +79,7 @@ def split_word(word, ignore_word=None, first_part=True):
     query = """
         SELECT *
         FROM (
-            SELECT DISTINCT other_written, rel_score, affix_type, lexentries
+            SELECT DISTINCT other_written, rel_score, affix_type, written_rep
             FROM compound_splitter
             WHERE (
                 (
@@ -127,9 +137,7 @@ def normalize(part):
     return part.replace('-', '')
 
 def to_base_form(row):
-    lexentry = row['lexentries'].split(',')[0]  # TODO: handle case with multiple lexentries
-    return conn.execute("SELECT written_rep FROM entry WHERE lexentry=:lexentry", dict(lexentry=lexentry)).fetchone()['written_rep']
-
+    return row['written_rep']
 
 # +anläggningsingenjör
 # +anmana
