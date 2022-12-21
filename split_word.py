@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import itertools
 import sqlite3
 import math
 
@@ -146,32 +147,35 @@ def to_base_form(row):
 # exit()
 
 counts: dict[str, list] = dict(total=[], found=[], passed=[], failed=[])
-for test_row in conn.execute(
-        """
-        SELECT * FROM test_data
-        WHERE lexemeLabel NOT LIKE '%bo'
-          AND parts LIKE '% || %'  -- single-part compounds are probably bad test data
-        LIMIT 200
-        """
-    ):
-    compound = test_row['lexemeLabel']
-    counts['total'].append(compound)
-    parts = test_row['parts'].split(' || ')
-    if '-s-' in parts:
-        parts.remove('-s-')  # ignore genetiv-s
-    normalized_test_parts = set(normalize(p) for p in parts)
-    try:
-        split = split_word(compound, ignore_word=compound)
-        normalized_split_parts = set(normalize(p) for p, score in split) - {'s'}
-        if split:
-            counts['found'].append(split)
-            match = normalized_test_parts == normalized_split_parts
-            print(compound, parts, split, match)
-            counts['passed' if match else 'failed'].append([compound, parts, split])
-        else:
-            pass
-    except NoMatch:
-        continue
+with open('tests/wikidata/wikidata_sv.tsv') as f:
+    grouped_by_compound = itertools.groupby(
+            (line.rstrip('\n').split('\t') for line in f.readlines()),
+            key=lambda line: line[0]
+    )
+    for compound, (lines_for_compound) in grouped_by_compound:
+        if len(counts['total']) == 200:
+            break
+        if compound.endswith('bo'):
+            continue
+        parts = [part for comp, part in lines_for_compound]
+        if len(parts) == 1:
+            continue
+        counts['total'].append(compound)
+        if '-s-' in parts:
+            parts.remove('-s-')  # ignore genetiv-s
+        normalized_test_parts = set(normalize(p) for p in parts)
+        try:
+            split = split_word(compound, ignore_word=compound)
+            normalized_split_parts = set(normalize(p) for p, score in split) - {'s'}
+            if split:
+                counts['found'].append(split)
+                match = normalized_test_parts == normalized_split_parts
+                print(compound, parts, split, match)
+                counts['passed' if match else 'failed'].append([compound, parts, split])
+            else:
+                pass
+        except NoMatch:
+            continue
 
 print(query_count, 'queries executed (', query_count / len(counts['total']),'per compound).')
 print('Counts:')
