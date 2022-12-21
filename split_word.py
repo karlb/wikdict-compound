@@ -139,3 +139,8 @@ print(query_count, 'queries executed (', query_count / len(counts['total']),'per
 print('Counts:')
 for key, val in counts.items():
     print('\t', key, len(val))
+min_success = len(counts["passed"]) / len(counts["total"])
+max_success = len(counts["found"]) / len(counts["total"])
+print(
+    f"{lang}: {min_success:.1%}-{max_success:.1%} success, tested over {len(counts['total'])} cases"
+)
