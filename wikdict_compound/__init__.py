@@ -1,10 +1,10 @@
 import sqlite3
-import os
+from pathlib import Path
 
 
 def make_db(lang):
-    outfile = lang + "-compound.sqlite3"
-    os.remove(outfile)
+    outfile = Path(lang + "-compound.sqlite3")
+    outfile.unlink(missing_ok=True)
     conn = sqlite3.connect(outfile)
     conn.executescript(rf"""
         ATTACH DATABASE '{lang}.sqlite3' AS generic;
