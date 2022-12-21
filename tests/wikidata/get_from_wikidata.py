@@ -39,4 +39,6 @@ with urllib.request.urlopen(req) as response:
         f.write(response.readline().decode('utf-8').replace('?', ''))  # header
         for line in response.readlines():
             fields = string_with_lang_re.findall(line.decode("utf-8"))
+            if len(fields) != 2:
+                continue
             f.write("\t".join(fields) + "\n")
