@@ -1,13 +1,18 @@
 #!/usr/bin/env python3
+import sys
 import itertools
 import sqlite3
 import math
 from wikdict_compound import make_db
 
-# make_db('sv')
+if len(sys.argv) != 2 or len(sys.argv[1]) != 2:
+    print(f'Usage: {sys.argv[0]} 2_LETTER_COUNTRY_CODE')
+    sys.exit(1)
+lang = sys.argv[1]
 
-#conn = sqlite3.connect("/home/karl/code/github/wikdict-gen/dictionaries/processed/sv.sqlite3")
-conn = sqlite3.connect("sv-compound.sqlite3")
+make_db(lang)
+
+conn = sqlite3.connect(lang + "-compound.sqlite3")
 conn.row_factory = sqlite3.Row
 query_count = 0
 
@@ -100,7 +105,7 @@ def to_base_form(row):
 # exit()
 
 counts: dict[str, list] = dict(total=[], found=[], passed=[], failed=[])
-with open('tests/wikidata/wikidata_sv.tsv') as f:
+with open(f'tests/wikidata/wikidata_{lang}.tsv') as f:
     grouped_by_compound = itertools.groupby(
             (line.rstrip('\n').split('\t') for line in f.readlines()),
             key=lambda line: line[0]
