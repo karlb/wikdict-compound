@@ -5,10 +5,11 @@ import sqlite3
 import math
 from wikdict_compound import make_db
 
-if len(sys.argv) != 2 or len(sys.argv[1]) != 2:
-    print(f"Usage: {sys.argv[0]} 2_LETTER_COUNTRY_CODE")
+if len(sys.argv) not in [2, 3] or len(sys.argv[1]) != 2:
+    print(f"Usage: {sys.argv[0]} 2_LETTER_COUNTRY_CODE [LIMIT]")
     sys.exit(1)
 lang = sys.argv[1]
+limit = int(sys.argv[2]) if len(sys.argv) > 2 else None
 
 make_db(lang)
 
@@ -117,7 +118,7 @@ with open(f"tests/wikidata/wikidata_{lang}.tsv") as f:
         key=lambda line: line[0],
     )
     for compound, (lines_for_compound) in grouped_by_compound:
-        if len(counts["total"]) == 200:
+        if limit and len(counts["total"]) == limit:
             break
         if compound.endswith("bo"):
             continue
