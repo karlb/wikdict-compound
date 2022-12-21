@@ -2,11 +2,12 @@ import sqlite3
 from pathlib import Path
 
 
-def make_db(lang, input_path='wikdict'):
+def make_db(lang, input_path="wikdict"):
     outfile = Path(lang + "-compound.sqlite3")
     outfile.unlink(missing_ok=True)
     conn = sqlite3.connect(outfile)
-    conn.executescript(rf"""
+    conn.executescript(
+        rf"""
         ATTACH DATABASE '{input_path}/{lang}.sqlite3' AS generic;
 
         CREATE TABLE compound_splitter AS
@@ -53,5 +54,5 @@ def make_db(lang, input_path='wikdict'):
         GROUP BY 1, 2;
         
         CREATE INDEX compound_splitter_idx ON compound_splitter(other_written);
-    """)
-
+    """
+    )
