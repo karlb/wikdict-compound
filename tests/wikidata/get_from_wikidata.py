@@ -22,6 +22,8 @@ WHERE {
   ?lexeme wdt:P5238 ?compound .
   ?lexeme wikibase:lemma ?lexemeLabel .
   ?compound wikibase:lemma ?compoundLabel .
+  # multi-word lexemes are not useful for testing compound splitting
+  FILTER (!contains(?lexemeLabel, ' '))
 }    
 ORDER BY ?lexemeLabel
 """
