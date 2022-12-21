@@ -2,12 +2,12 @@ import sqlite3
 from pathlib import Path
 
 
-def make_db(lang):
+def make_db(lang, input_path='wikdict'):
     outfile = Path(lang + "-compound.sqlite3")
     outfile.unlink(missing_ok=True)
     conn = sqlite3.connect(outfile)
     conn.executescript(rf"""
-        ATTACH DATABASE '{lang}.sqlite3' AS generic;
+        ATTACH DATABASE '{input_path}/{lang}.sqlite3' AS generic;
 
         CREATE TABLE compound_splitter AS
         SELECT 
