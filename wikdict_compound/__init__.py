@@ -1,5 +1,8 @@
 import sqlite3
 from pathlib import Path
+import math
+
+query_count = 0
 
 
 def make_db(lang, input_path="wikdict"):
@@ -56,3 +59,82 @@ def make_db(lang, input_path="wikdict"):
         CREATE INDEX compound_splitter_idx ON compound_splitter(other_written);
     """
     )
+
+
+class NoMatch(Exception):
+    pass
+
+
+def sol_score(solution):
+    return math.prod(score for part, score in solution) / len(solution) ** 2
+
+
+def split_compound(lang, word, ignore_word=None, first_part=True):
+    conn = sqlite3.connect(lang + "-compound.sqlite3")
+    conn.row_factory = sqlite3.Row
+    word = word.lower()
+    global query_count
+    query = """
+        SELECT *
+        FROM (
+            SELECT DISTINCT other_written, rel_score, affix_type, written_rep
+            FROM compound_splitter
+            WHERE (
+                (
+                    other_written <= :compound
+                    AND other_written >= substr(:compound, 1, 2)
+                    AND :compound LIKE other_written || '%'
+                ) OR (
+                    other_written = substr(:compound, 1, 1)
+                )
+            )
+            --WHERE other_written <= :compound AND :compound LIKE other_written || '%'
+            --WHERE other_written <= :compound AND other_written || 'z' > :compound
+              AND other_written IS NOT lower(:ignore_word)
+              AND (affix_type IS NULL OR :first_part = (affix_type = "prefix"))
+            --LIMIT 20
+        )
+        ORDER BY length(other_written) * rel_score DESC
+        LIMIT 2
+    """
+    bindings = dict(compound=word, ignore_word=ignore_word, first_part=first_part)
+    # if query_count == 0:
+    #     print_query_plan(conn, query, bindings)
+    query_count += 1
+    result = conn.execute(query, bindings).fetchall()
+    if not result:
+        raise NoMatch()
+
+    solutions = []
+    best_score = max(r["rel_score"] for r in result)
+    for r in result:
+        # if r['rel_score'] < best_score / 4:
+        #     break
+        rest = word.replace(r["other_written"].lower(), "")
+        if not rest:
+            if r["affix_type"] in [None, "suffix"]:
+                solutions.append([(r["written_rep"], r["rel_score"])])
+            continue
+        try:
+            splitted_rest = split_compound(lang, rest, first_part=False)
+        except NoMatch:
+            continue
+        solutions.append([(r["written_rep"], r["rel_score"])] + splitted_rest)
+
+    if not solutions:
+        raise NoMatch()
+
+    solutions.sort(key=sol_score, reverse=True)
+    # for s in solutions:
+    #     print(s)
+    # print('\t', word, solutions[0])
+    return solutions[0]
+
+
+def print_query_plan(conn, query, bindings={}):
+    depth_of = {0: -1}
+    result = conn.execute("EXPLAIN QUERY PLAN " + query, bindings).fetchall()
+    for r in result:
+        depth = depth_of[r["parent"]] + 1
+        depth_of[r["id"]] = depth
+        print("|  " * depth + r["detail"])

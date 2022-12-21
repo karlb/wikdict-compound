@@ -2,8 +2,8 @@
 import sys
 import itertools
 import sqlite3
-import math
-from wikdict_compound import make_db
+import wikdict_compound
+from wikdict_compound import make_db, split_compound, NoMatch
 
 if len(sys.argv) not in [2, 3] or len(sys.argv[1]) != 2:
     print(f"Usage: {sys.argv[0]} 2_LETTER_COUNTRY_CODE [LIMIT]")
@@ -13,103 +13,10 @@ limit = int(sys.argv[2]) if len(sys.argv) > 2 else None
 
 make_db(lang)
 
-conn = sqlite3.connect(lang + "-compound.sqlite3")
-conn.row_factory = sqlite3.Row
-query_count = 0
-
-
-class NoMatch(Exception):
-    pass
-
-
-def sol_score(solution):
-    return math.prod(score for part, score in solution) / len(solution) ** 2
-
-
-def print_query_plan(query, bindings={}):
-    depth_of = {0: -1}
-    result = conn.execute("EXPLAIN QUERY PLAN " + query, bindings).fetchall()
-    for r in result:
-        depth = depth_of[r["parent"]] + 1
-        depth_of[r["id"]] = depth
-        print("|  " * depth + r["detail"])
-
-
-# TODO:
-# - case
-def split_word(word, ignore_word=None, first_part=True):
-    word = word.lower()
-    global query_count
-    query = """
-        SELECT *
-        FROM (
-            SELECT DISTINCT other_written, rel_score, affix_type, written_rep
-            FROM compound_splitter
-            WHERE (
-                (
-                    other_written <= :compound
-                    AND other_written >= substr(:compound, 1, 2)
-                    AND :compound LIKE other_written || '%'
-                ) OR (
-                    other_written = substr(:compound, 1, 1)
-                )
-            )
-            --WHERE other_written <= :compound AND :compound LIKE other_written || '%'
-            --WHERE other_written <= :compound AND other_written || 'z' > :compound
-              AND other_written IS NOT lower(:ignore_word)
-              AND (affix_type IS NULL OR :first_part = (affix_type = "prefix"))
-            --LIMIT 20
-        )
-        ORDER BY length(other_written) * rel_score DESC
-        LIMIT 2
-    """
-    bindings = dict(compound=word, ignore_word=ignore_word, first_part=first_part)
-    # if query_count == 0:
-    #     print_query_plan(query, bindings)
-    query_count += 1
-    result = conn.execute(query, bindings).fetchall()
-    if not result:
-        raise NoMatch()
-
-    solutions = []
-    best_score = max(r["rel_score"] for r in result)
-    for r in result:
-        # if r['rel_score'] < best_score / 4:
-        #     break
-        rest = word.replace(r["other_written"].lower(), "")
-        if not rest:
-            if r["affix_type"] in [None, "suffix"]:
-                solutions.append([(to_base_form(r), r["rel_score"])])
-            continue
-        try:
-            splitted_rest = split_word(rest, first_part=False)
-        except NoMatch:
-            continue
-        solutions.append([(to_base_form(r), r["rel_score"])] + splitted_rest)
-
-    if not solutions:
-        raise NoMatch()
-
-    solutions.sort(key=sol_score, reverse=True)
-    # for s in solutions:
-    #     print(s)
-    # print('\t', word, solutions[0])
-    return solutions[0]
-
 
 def normalize(part):
     return part.replace("-", "")
 
-
-def to_base_form(row):
-    return row["written_rep"]
-
-
-# +anläggningsingenjör
-# +anmana
-# print(split_word("ambassadörspost"))
-# print(query_count, 'queries executed')
-# exit()
 
 counts: dict[str, list] = dict(total=[], found=[], passed=[], failed=[])
 with open(f"tests/wikidata/wikidata_{lang}.tsv") as f:
@@ -130,7 +37,7 @@ with open(f"tests/wikidata/wikidata_{lang}.tsv") as f:
             parts.remove("-s-")  # ignore genetiv-s
         normalized_test_parts = set(normalize(p) for p in parts)
         try:
-            split = split_word(compound, ignore_word=compound)
+            split = split_compound(lang, compound, ignore_word=compound)
             normalized_split_parts = set(normalize(p) for p, score in split) - {"s"}
             if split:
                 counts["found"].append(split)
@@ -143,9 +50,8 @@ with open(f"tests/wikidata/wikidata_{lang}.tsv") as f:
             continue
 
 print(
-    query_count,
-    "queries executed (",
-    query_count / len(counts["total"]),
+    wikdict_compound.query_count,
+    "queries executed (" + str(wikdict_compound.query_count / len(counts["total"])),
     "per compound).",
 )
 print("Counts:")
