@@ -1,2 +1,14 @@
-compouds-se-grouped.json
-*.sqlite3
+/wikdict
+/compound_dbs
+
+.venv
+__pycache__/
+*.py[cod]
+*$py.class
+venv
+.eggs
+.pytest_cache
+*.egg-info
+.DS_Store
+dist
+build
