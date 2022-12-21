@@ -27,7 +27,7 @@ ORDER BY ?lexemeLabel
 """
 )
 
-string_with_lang_re = re.compile(r'"(.*?)"@..[\t\n]')
+string_with_lang_re = re.compile(r'"(.*?)"@[\w-]+[\t\n]')
 
 url_args = {"query": query}
 req = urllib.request.Request(
