@@ -71,10 +71,10 @@ def sol_score(solution):
     return math.prod(score for part, score in solution) / len(solution) ** 2
 
 
-def split_compound(db_path, lang, word, ignore_word=None, first_part=True):
+def split_compound(db_path, lang, compound, ignore_word=None, first_part=True):
     conn = sqlite3.connect(Path(db_path) / f"{lang}-compound.sqlite3")
     conn.row_factory = sqlite3.Row
-    word = word.lower()
+    compound = compound.lower()
     global query_count
     query = """
         SELECT *
@@ -99,7 +99,7 @@ def split_compound(db_path, lang, word, ignore_word=None, first_part=True):
         ORDER BY length(other_written) * rel_score DESC
         LIMIT 2
     """
-    bindings = dict(compound=word, ignore_word=ignore_word, first_part=first_part)
+    bindings = dict(compound=compound, ignore_word=ignore_word, first_part=first_part)
     # if query_count == 0:
     #     print_query_plan(conn, query, bindings)
     query_count += 1
@@ -112,7 +112,7 @@ def split_compound(db_path, lang, word, ignore_word=None, first_part=True):
     for r in result:
         # if r['rel_score'] < best_score / 4:
         #     break
-        rest = word.replace(r["other_written"].lower(), "")
+        rest = compound.replace(r["other_written"].lower(), "")
         if not rest:
             if r["affix_type"] in [None, "suffix"]:
                 solutions.append([(r["written_rep"], r["rel_score"])])
@@ -129,7 +129,7 @@ def split_compound(db_path, lang, word, ignore_word=None, first_part=True):
     solutions.sort(key=sol_score, reverse=True)
     # for s in solutions:
     #     print(s)
-    # print('\t', word, solutions[0])
+    # print('\t', compound, solutions[0])
     return solutions[0]
 
 
