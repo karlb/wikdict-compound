@@ -11,7 +11,8 @@ if len(sys.argv) not in [2, 3] or len(sys.argv[1]) != 2:
 lang = sys.argv[1]
 limit = int(sys.argv[2]) if len(sys.argv) > 2 else None
 
-make_db(lang)
+db_path = "compound_dbs"
+make_db(lang, input_path="wikdict", output_path=db_path)
 
 
 def normalize(part):
@@ -37,7 +38,7 @@ with open(f"tests/wikidata/wikidata_{lang}.tsv") as f:
             parts.remove("-s-")  # ignore genetiv-s
         normalized_test_parts = set(normalize(p) for p in parts)
         try:
-            split = split_compound(lang, compound, ignore_word=compound)
+            split = split_compound(db_path, lang, compound, ignore_word=compound)
             normalized_split_parts = set(normalize(p) for p, score in split) - {"s"}
             if split:
                 counts["found"].append(split)

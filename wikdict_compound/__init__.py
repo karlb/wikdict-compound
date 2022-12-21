@@ -5,8 +5,10 @@ import math
 query_count = 0
 
 
-def make_db(lang, input_path="wikdict"):
-    outfile = Path(lang + "-compound.sqlite3")
+def make_db(lang, input_path, output_path):
+    output_path = Path(output_path)
+    output_path.mkdir(exist_ok=True)
+    outfile = output_path / f"{lang}-compound.sqlite3"
     outfile.unlink(missing_ok=True)
     conn = sqlite3.connect(outfile)
     conn.executescript(
@@ -69,8 +71,8 @@ def sol_score(solution):
     return math.prod(score for part, score in solution) / len(solution) ** 2
 
 
-def split_compound(lang, word, ignore_word=None, first_part=True):
-    conn = sqlite3.connect(lang + "-compound.sqlite3")
+def split_compound(db_path, lang, word, ignore_word=None, first_part=True):
+    conn = sqlite3.connect(Path(db_path) / f"{lang}-compound.sqlite3")
     conn.row_factory = sqlite3.Row
     word = word.lower()
     global query_count
@@ -116,7 +118,7 @@ def split_compound(lang, word, ignore_word=None, first_part=True):
                 solutions.append([(r["written_rep"], r["rel_score"])])
             continue
         try:
-            splitted_rest = split_compound(lang, rest, first_part=False)
+            splitted_rest = split_compound(db_path, lang, rest, first_part=False)
         except NoMatch:
             continue
         solutions.append([(r["written_rep"], r["rel_score"])] + splitted_rest)
