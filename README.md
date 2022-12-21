@@ -28,6 +28,8 @@ from wikdict_compound import split_compound
 parts = split_compound(db_path='compound_dbs', lang='de', compound='Gartenschere')
 ```
 
+This returns the list of words which form the compound in the correct order, along with a rating of the word importance, in this case `[('Garten', 1.4645167634735892), ('Schere', 1.1692122623775094)]`.
+
 ## Supported Languages and Splitting Quality
 
 The results for each language are compared against compound word information from Wikidata.
@@ -61,13 +63,15 @@ for lang in 'de en es fi fr it nl pl sv'.split():
 To contribute to this library, first checkout the code. Then create a new virtual environment:
 
     cd wikdict-compound
-    python -m venv venv
-    source venv/bin/activate
+    python -m venv .venv
+    source .venv/bin/activate
 
 Now install the dependencies and test dependencies:
 
     pip install -e '.[test]'
 
+<!--
 To run the tests:
 
     pytest
+-->
