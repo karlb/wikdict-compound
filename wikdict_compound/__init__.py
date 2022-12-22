@@ -20,6 +20,7 @@ def make_db(lang, input_path, output_path):
         SELECT 
             other_written,
             affix_type,
+            group_concat(part_of_speech, ' || ') AS part_of_speech_list,
             max(rel_score) AS rel_score,
             first_value(written_rep) OVER (
                 PARTITION BY other_written, affix_type
@@ -34,7 +35,8 @@ def make_db(lang, input_path, output_path):
                     WHEN substr(other_written, -1, 1) = '-' THEN 'prefix'
                 END AS affix_type,
                 rel_score * score_factor AS rel_score,
-                written_rep
+                written_rep,
+                part_of_speech
             FROM (
                     SELECT other_written, written_rep, part_of_speech,
                         CASE "case"
