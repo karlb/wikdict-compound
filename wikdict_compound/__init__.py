@@ -81,6 +81,17 @@ def sol_score(solution):
     )
 
 
+def get_potential_matches(compound, r, lang):
+    match = r["other_written"].lower()
+    yield match
+    pos_list = r["part_of_speech_list"].split(" || ")
+
+    if lang == "sv":
+        if "verb" in pos_list:
+            if match.endswith("a"):
+                yield match[:-1]
+
+
 def split_compound(
     db_path, lang, compound, ignore_word=None, first_part=True, all_results=False
 ):
@@ -91,7 +102,7 @@ def split_compound(
     query = """
         SELECT *
         FROM (
-            SELECT DISTINCT other_written, rel_score, affix_type, written_rep
+            SELECT DISTINCT other_written, rel_score, affix_type, written_rep, part_of_speech_list
             FROM compound_splitter
             WHERE (
                 (
@@ -124,17 +135,19 @@ def split_compound(
     for r in result:
         # if r['rel_score'] < best_score / 4:
         #     break
-        match = r["other_written"].lower()
-        rest = compound.replace(match, "", 1)
-        if not rest:
-            if r["affix_type"] in [None, "suffix"]:
-                solutions.append([(r["written_rep"], r["rel_score"], match)])
-            continue
-        try:
-            splitted_rest = split_compound(db_path, lang, rest, first_part=False)
-        except NoMatch:
-            continue
-        solutions.append([(r["written_rep"], r["rel_score"], match)] + splitted_rest)
+        for match in get_potential_matches(compound, r, lang):
+            rest = compound.replace(match, "", 1)
+            if not rest:
+                if r["affix_type"] in [None, "suffix"]:
+                    solutions.append([(r["written_rep"], r["rel_score"], match)])
+                continue
+            try:
+                splitted_rest = split_compound(db_path, lang, rest, first_part=False)
+            except NoMatch:
+                continue
+            solutions.append(
+                [(r["written_rep"], r["rel_score"], match)] + splitted_rest
+            )
 
     if not solutions:
         raise NoMatch()
