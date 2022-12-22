@@ -108,7 +108,7 @@ def split_compound(
             --LIMIT 20
         )
         ORDER BY length(other_written) * rel_score DESC
-        LIMIT 2
+        LIMIT 3
     """
     bindings = dict(compound=compound, ignore_word=ignore_word, first_part=first_part)
     # if query_count == 0:
