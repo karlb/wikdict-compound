@@ -36,7 +36,7 @@ def make_db(lang, input_path, output_path):
                 rel_score * score_factor AS rel_score,
                 written_rep
             FROM (
-                    SELECT other_written, written_rep,
+                    SELECT other_written, written_rep, part_of_speech,
                         CASE "case"
                             WHEN 'GenitiveCase' THEN 1
                             ELSE 0.5
@@ -44,18 +44,23 @@ def make_db(lang, input_path, output_path):
                     FROM generic.form
                         JOIN entry USING (lexentry)
                     WHERE
-                        lexentry NOT LIKE '%\_\_Pronomen\_\_%' ESCAPE '\'
                         -- Multi-word entries oftentimes don't have all words included
                         -- in the form, resulting in misleading forms, so let's exclude
                         -- those.
-                        AND written_rep NOT LIKE '% %'
+                        written_rep NOT LIKE '% %'
                     UNION ALL
-                    SELECT written_rep, written_rep, 1 AS score_factor
+                    SELECT written_rep, written_rep, part_of_speech, 1 AS score_factor
                     FROM generic.entry
                 )
                 JOIN rel_importance ON (written_rep = written_rep_guess)
             WHERE other_written != '' -- Why are there forms without text?
               AND NOT (length(other_written) = 1 AND affix_type IS NULL)
+              AND (
+                part_of_speech IS NULL
+                OR part_of_speech NOT IN (
+                    'interjection', 'pronoun', 'proverb', 'phraseologicalUnit', 'symbol',
+                    'article', 'idiom', '')
+                )
         )
         GROUP BY 1, 2;
         
