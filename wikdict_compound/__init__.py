@@ -122,7 +122,7 @@ def split_compound(db_path, lang, compound, ignore_word=None, first_part=True):
         # if r['rel_score'] < best_score / 4:
         #     break
         match = r["other_written"].lower()
-        rest = compound.replace(match, "")
+        rest = compound.replace(match, "", 1)
         if not rest:
             if r["affix_type"] in [None, "suffix"]:
                 solutions.append([(r["written_rep"], r["rel_score"], match)])
