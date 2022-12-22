@@ -80,7 +80,9 @@ def sol_score(solution):
     )
 
 
-def split_compound(db_path, lang, compound, ignore_word=None, first_part=True):
+def split_compound(
+    db_path, lang, compound, ignore_word=None, first_part=True, all_results=False
+):
     conn = sqlite3.connect(Path(db_path) / f"{lang}-compound.sqlite3")
     conn.row_factory = sqlite3.Row
     compound = compound.lower()
@@ -140,7 +142,10 @@ def split_compound(db_path, lang, compound, ignore_word=None, first_part=True):
     # for s in solutions:
     #     print(s)
     # print('\t', compound, solutions[0])
-    return solutions[0]
+    if all_results:
+        return solutions
+    else:
+        return solutions[0]
 
 
 def print_query_plan(conn, query, bindings={}):
