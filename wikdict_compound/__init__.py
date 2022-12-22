@@ -75,7 +75,7 @@ class NoMatch(Exception):
 
 def sol_score(solution):
     return (
-        statistics.geometric_mean(score for part, score in solution)
+        statistics.geometric_mean(score for part, score, match in solution)
         / len(solution) ** 2
     )
 
@@ -121,16 +121,17 @@ def split_compound(db_path, lang, compound, ignore_word=None, first_part=True):
     for r in result:
         # if r['rel_score'] < best_score / 4:
         #     break
-        rest = compound.replace(r["other_written"].lower(), "")
+        match = r["other_written"].lower()
+        rest = compound.replace(match, "")
         if not rest:
             if r["affix_type"] in [None, "suffix"]:
-                solutions.append([(r["written_rep"], r["rel_score"])])
+                solutions.append([(r["written_rep"], r["rel_score"], match)])
             continue
         try:
             splitted_rest = split_compound(db_path, lang, rest, first_part=False)
         except NoMatch:
             continue
-        solutions.append([(r["written_rep"], r["rel_score"])] + splitted_rest)
+        solutions.append([(r["written_rep"], r["rel_score"], match)] + splitted_rest)
 
     if not solutions:
         raise NoMatch()

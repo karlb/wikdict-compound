@@ -39,12 +39,19 @@ with open(f"tests/wikidata/wikidata_{lang}.tsv") as f:
         normalized_test_parts = set(normalize(p) for p in parts)
         try:
             split = split_compound(db_path, lang, compound, ignore_word=compound)
-            normalized_split_parts = set(normalize(p) for p, score in split) - {"s"}
+            normalized_split_parts = set(normalize(p) for p, score, _ in split) - {"s"}
             if split:
                 counts["found"].append(split)
-                match = normalized_test_parts == normalized_split_parts
-                print(compound, parts, split, match)
-                counts["passed" if match else "failed"].append([compound, parts, split])
+                correct = normalized_test_parts == normalized_split_parts
+                print(
+                    compound,
+                    parts,
+                    [(part, score) for part, score, _ in split],
+                    correct,
+                )
+                counts["passed" if correct else "failed"].append(
+                    [compound, parts, split]
+                )
             else:
                 pass
         except NoMatch:
