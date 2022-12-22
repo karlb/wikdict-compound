@@ -2,6 +2,7 @@ import sqlite3
 from pathlib import Path
 import statistics
 
+supported_langs = "de en fi nl sv".split()
 query_count = 0
 
 
