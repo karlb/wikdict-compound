@@ -1,6 +1,6 @@
 import sqlite3
 from pathlib import Path
-import math
+import statistics
 
 query_count = 0
 
@@ -68,7 +68,10 @@ class NoMatch(Exception):
 
 
 def sol_score(solution):
-    return math.prod(score for part, score in solution) / len(solution) ** 2
+    return (
+        statistics.geometric_mean(score for part, score in solution)
+        / len(solution) ** 2
+    )
 
 
 def split_compound(db_path, lang, compound, ignore_word=None, first_part=True):
