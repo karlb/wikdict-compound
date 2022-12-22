@@ -16,7 +16,7 @@ make_db(lang, input_path="wikdict", output_path=db_path)
 
 
 def normalize(part):
-    return part.replace("-", "")
+    return part.lower().replace("-", "")
 
 
 counts: dict[str, list] = dict(total=[], found=[], passed=[], failed=[])
@@ -34,12 +34,14 @@ with open(f"tests/wikidata/wikidata_{lang}.tsv") as f:
         if len(parts) == 1:
             continue
         counts["total"].append(compound)
-        if "-s-" in parts:
-            parts.remove("-s-")  # ignore genetiv-s
         normalized_test_parts = set(normalize(p) for p in parts)
+        if lang in ("de", "sv"):
+            normalized_test_parts -= {"s"}
         try:
             split = split_compound(db_path, lang, compound, ignore_word=compound)
-            normalized_split_parts = set(normalize(p) for p, score, _ in split) - {"s"}
+            normalized_split_parts = set(normalize(p) for p, score, _ in split)
+            if lang in ("de", "sv"):
+                normalized_split_parts -= {"s"}
             if split:
                 counts["found"].append(split)
                 correct = normalized_test_parts == normalized_split_parts
