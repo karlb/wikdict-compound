@@ -56,10 +56,9 @@ def make_db(lang, input_path, output_path):
             WHERE other_written != '' -- Why are there forms without text?
               AND NOT (length(other_written) = 1 AND affix_type IS NULL)
               AND (
-                part_of_speech IS NULL
-                OR part_of_speech NOT IN (
+                part_of_speech NOT IN (
                     'interjection', 'pronoun', 'proverb', 'phraseologicalUnit', 'symbol',
-                    'article', 'idiom', '')
+                    'article', 'idiom', 'properNoun')
                 )
         )
         GROUP BY 1, 2;
