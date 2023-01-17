@@ -23,7 +23,7 @@ def make_db(lang, input_path, output_path):
         SELECT 
             other_written,
             affix_type,
-            group_concat(part_of_speech, ' || ') AS part_of_speech_list,
+            group_concat(DISTINCT part_of_speech) AS part_of_speech_list,
             max(rel_score) AS rel_score,
             first_value(written_rep) OVER (
                 PARTITION BY other_written, affix_type
@@ -87,7 +87,7 @@ def sol_score(solution):
 def get_potential_matches(compound, r, lang):
     match = r["other_written"].lower()
     yield match
-    pos_list = r["part_of_speech_list"].split(" || ")
+    pos_list = r["part_of_speech_list"].split(",")
 
     if lang == "sv":
         if "verb" in pos_list:
