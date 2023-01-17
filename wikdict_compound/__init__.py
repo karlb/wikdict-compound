@@ -104,7 +104,12 @@ def find_matches_in_db(db_path, lang, compound: str, ignore_word=None, first_par
     query = """
         SELECT *
         FROM (
-            SELECT DISTINCT other_written, rel_score, affix_type, written_rep, part_of_speech_list
+            SELECT DISTINCT
+                other_written,
+                length(other_written) * rel_score AS rel_score,
+                affix_type,
+                written_rep,
+                part_of_speech_list
             FROM compound_splitter
             WHERE (
                 (
@@ -121,7 +126,7 @@ def find_matches_in_db(db_path, lang, compound: str, ignore_word=None, first_par
               AND (affix_type IS NULL OR :first_part = (affix_type = "prefix"))
             --LIMIT 20
         )
-        ORDER BY length(other_written) * rel_score DESC
+        ORDER BY rel_score DESC
         LIMIT 3
     """
     bindings = dict(compound=compound, ignore_word=ignore_word, first_part=first_part)
@@ -142,8 +147,8 @@ def split_compound(
     solutions = []
     best_score = max(r["rel_score"] for r in result)
     for r in result:
-        # if r['rel_score'] < best_score / 4:
-        #     break
+        if r["rel_score"] < best_score / 4:
+            break
         for match in get_potential_matches(compound, r, lang):
             rest = compound.replace(match, "", 1)
             if not rest:
