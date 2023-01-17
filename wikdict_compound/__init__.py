@@ -37,7 +37,7 @@ def make_db(lang, input_path, output_path):
                     WHEN substr(other_written, 1, 1) = '-' THEN 'suffix'
                     WHEN substr(other_written, -1, 1) = '-' THEN 'prefix'
                 END AS affix_type,
-                rel_score
+                coalesce(rel_score, 0.1)
                     * score_factor
                     -- Affixes are not that important words in a normal
                     -- dictionary, but for in compound words, they are very likely
@@ -67,7 +67,7 @@ def make_db(lang, input_path, output_path):
                     SELECT written_rep, written_rep, part_of_speech, 1 AS score_factor
                     FROM generic.entry
                 )
-                JOIN rel_importance ON (written_rep = written_rep_guess)
+                LEFT JOIN rel_importance ON (written_rep = written_rep_guess)
             WHERE other_written != '' -- Why are there forms without text?
               AND NOT (length(other_written) = 1 AND affix_type IS NULL)
               AND (
