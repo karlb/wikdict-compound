@@ -6,6 +6,9 @@ supported_langs = "de en fi nl sv".split()
 query_count = 0
 
 
+DEBUG_QUERY_LOG = False
+
+
 def make_db(lang, input_path, output_path):
     output_path = Path(output_path)
     output_path.mkdir(exist_ok=True)
@@ -132,8 +135,16 @@ def find_matches_in_db(db_path, lang, compound: str, ignore_word=None, first_par
     bindings = dict(compound=compound, ignore_word=ignore_word, first_part=first_part)
     # if query_count == 0:
     #     print_query_plan(conn, query, bindings)
+    result = conn.execute(query, bindings).fetchall()
+
     query_count += 1
-    return conn.execute(query, bindings).fetchall()
+    if DEBUG_QUERY_LOG:
+        with open("query.log", "a") as f:
+            f.write(compound + "\n")
+            for r in result:
+                f.write(str(dict(r)) + "\n")
+
+    return result
 
 
 def split_compound(
