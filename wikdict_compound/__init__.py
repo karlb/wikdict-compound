@@ -91,6 +91,10 @@ def get_potential_matches(compound, r, lang):
             if match.endswith("a"):
                 yield match[:-1]
 
+    elif lang == "de":
+        if "noun" in pos_list:
+            if not match.endswith("s") and compound.startswith(match + "s"):
+                yield match + "s"
 
 def split_compound(
     db_path, lang, compound, ignore_word=None, first_part=True, all_results=False
