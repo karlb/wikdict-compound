@@ -1,12 +1,20 @@
 import sqlite3
 from pathlib import Path
 import statistics
+from dataclasses import dataclass
 
 supported_langs = "de en fi nl sv".split()
 query_count = 0
 
 
 DEBUG_QUERY_LOG = False
+DEBUG_GRAPH = None
+# DEBUG_GRAPH = open("graph.dot", "w")
+
+
+def add_to_graph(graphviz_dot_str):
+    if DEBUG_GRAPH:
+        DEBUG_GRAPH.write(graphviz_dot_str)
 
 
 def make_db(lang, input_path, output_path):
@@ -166,19 +174,28 @@ def find_matches_in_db(db_path, lang, compound: str, ignore_word=None, first_par
     return result
 
 
+@dataclass
+class SplitContext:
+    compound: str
+    queries: int = 0
+
+
 def split_compound_interal(
     db_path,
     lang: str,
     compound: str,
+    context: SplitContext,
     ignore_word=None,
-    first_part=True,
+    first_part=False,
     all_results=False,
     rec_depth=0,
+    node_name="START",
 ):
     if rec_depth > 10:
         raise Exception(f"Too deep recursion when trying to resolve {compound!r}")
 
     result = find_matches_in_db(db_path, lang, compound, ignore_word, first_part)
+    context.queries += 1
     if not result:
         raise NoMatch()
 
@@ -188,14 +205,23 @@ def split_compound_interal(
         if r["rel_score"] < best_score / 4:
             break
         for match in get_potential_matches(compound, r, lang):
+            new_node_name = f"{context.queries}-{match}"
+            add_to_graph(f'\t "{node_name}" -> "{new_node_name}"\n')
+            add_to_graph(f'\t "{new_node_name}" [label="{match}\\n{r["rel_score"]}"]\n')
             rest = compound.replace(match, "", 1)
             if not rest:
                 if r["affix_type"] in [None, "suffix"]:
                     solutions.append([(r["written_rep"], r["rel_score"], match)])
+                add_to_graph(f'\t "{new_node_name}" [shape=box]\n')
                 continue
             try:
                 splitted_rest = split_compound_interal(
-                    db_path, lang, rest, first_part=False, rec_depth=rec_depth + 1
+                    db_path,
+                    lang,
+                    rest,
+                    context=context,
+                    rec_depth=rec_depth + 1,
+                    node_name=new_node_name,
                 )
             except NoMatch:
                 continue
@@ -223,10 +249,23 @@ def split_compound(
     ignore_word=None,
     all_results=False,
 ):
+    add_to_graph("digraph {\n")
+
     compound = compound.lower()
-    return split_compound_interal(
-        db_path, lang, compound, ignore_word, first_part=True, all_results=all_results
-    )
+    try:
+        result = split_compound_interal(
+            db_path,
+            lang,
+            compound,
+            ignore_word=ignore_word,
+            first_part=True,
+            all_results=all_results,
+            context=SplitContext(compound=compound),
+        )
+    finally:
+        add_to_graph("}\n")
+
+    return result
 
 
 def print_query_plan(conn, query, bindings={}):
