@@ -3,6 +3,7 @@ from pathlib import Path
 import statistics
 from dataclasses import dataclass
 from typing import Optional
+from functools import cached_property
 
 supported_langs = "de en fi nl sv".split()
 query_count = 0
@@ -98,13 +99,6 @@ class NoMatch(Exception):
     pass
 
 
-def sol_score(solution):
-    return (
-        statistics.geometric_mean(score for part, score, match in solution)
-        / len(solution) ** 2
-    )
-
-
 def get_potential_matches(compound, r, lang):
     match = r["other_written"].lower()
     yield match
@@ -181,6 +175,25 @@ class SplitContext:
         return "digraph {\n" + self.graph_str + "}\n"
 
 
+@dataclass(frozen=True)
+class Part:
+    written_rep: str
+    score: float
+    match: str
+
+
+@dataclass(frozen=True)
+class Solution:
+    parts: list[Part]
+
+    @cached_property
+    def score(self):
+        return (
+            statistics.geometric_mean(p.score for p in self.parts)
+            / len(self.parts) ** 2
+        )
+
+
 def split_compound_interal(
     db_path,
     lang: str,
@@ -217,7 +230,9 @@ def split_compound_interal(
             rest = compound.replace(match, "", 1)
             if not rest:
                 if r["affix_type"] in [None, "suffix"]:
-                    solutions.append([(r["written_rep"], r["rel_score"], match)])
+                    solutions.append(
+                        Solution(parts=[Part(r["written_rep"], r["rel_score"], match)])
+                    )
                 context.graph_str += f'\t "{new_node_name}" [shape=box]\n'
                 continue
             try:
@@ -228,17 +243,20 @@ def split_compound_interal(
                     context=context,
                     rec_depth=rec_depth + 1,
                     node_name=new_node_name,
-                )
+                ).parts
             except NoMatch:
                 continue
             solutions.append(
-                [(r["written_rep"], r["rel_score"], match)] + splitted_rest
+                Solution(
+                    parts=[Part(r["written_rep"], r["rel_score"], match)]
+                    + splitted_rest
+                )
             )
 
     if not solutions:
         raise NoMatch()
 
-    solutions.sort(key=sol_score, reverse=True)
+    solutions.sort(key=lambda s: s.score, reverse=True)
     # for s in solutions:
     #     print(s)
     # print('\t', compound, solutions[0])
