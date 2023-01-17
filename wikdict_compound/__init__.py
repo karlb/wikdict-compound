@@ -37,7 +37,17 @@ def make_db(lang, input_path, output_path):
                     WHEN substr(other_written, 1, 1) = '-' THEN 'suffix'
                     WHEN substr(other_written, -1, 1) = '-' THEN 'prefix'
                 END AS affix_type,
-                rel_score * score_factor AS rel_score,
+                rel_score
+                    * score_factor
+                    -- Affixes are not that important words in a normal
+                    -- dictionary, but for in compound words, they are very likely
+                    -- and should be prioritized.
+                    * CASE
+                        WHEN substr(other_written, 1, 1) = '-' OR substr(other_written, -1, 1) = '-'
+                        THEN 2
+                        ELSE 1
+                    END
+                    AS rel_score,
                 written_rep,
                 part_of_speech
             FROM (
