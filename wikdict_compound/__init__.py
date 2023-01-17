@@ -124,7 +124,7 @@ def find_matches_in_db(db_path, lang, compound: str, ignore_word=None, first_par
         FROM (
             SELECT DISTINCT
                 other_written,
-                length(other_written) * rel_score AS rel_score,
+                length(other_written)*length(other_written) * rel_score AS rel_score,
                 affix_type,
                 written_rep,
                 part_of_speech_list
