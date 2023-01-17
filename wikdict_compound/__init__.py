@@ -82,6 +82,15 @@ def make_db(lang, input_path, output_path):
     """
     )
 
+    # Language specific data changes
+    if lang == "de":
+        conn.executescript(
+            """
+            -- "sein" has the form "ist" which would override the "-ist" suffix due to its high importance
+            DELETE FROM compound_splitter WHERE written_rep = 'sein';
+        """
+        )
+
 
 class NoMatch(Exception):
     pass
