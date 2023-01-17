@@ -96,12 +96,10 @@ def get_potential_matches(compound, r, lang):
             if not match.endswith("s") and compound.startswith(match + "s"):
                 yield match + "s"
 
-def split_compound(
-    db_path, lang, compound, ignore_word=None, first_part=True, all_results=False
-):
+
+def find_matches_in_db(db_path, lang, compound: str, ignore_word=None, first_part=True):
     conn = sqlite3.connect(Path(db_path) / f"{lang}-compound.sqlite3")
     conn.row_factory = sqlite3.Row
-    compound = compound.lower()
     global query_count
     query = """
         SELECT *
@@ -130,7 +128,14 @@ def split_compound(
     # if query_count == 0:
     #     print_query_plan(conn, query, bindings)
     query_count += 1
-    result = conn.execute(query, bindings).fetchall()
+    return conn.execute(query, bindings).fetchall()
+
+
+def split_compound(
+    db_path, lang, compound, ignore_word=None, first_part=True, all_results=False
+):
+    compound = compound.lower()
+    result = find_matches_in_db(db_path, lang, compound, ignore_word, first_part)
     if not result:
         raise NoMatch()
 
