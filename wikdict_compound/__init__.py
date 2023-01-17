@@ -191,11 +191,14 @@ def split_compound_interal(
     rec_depth=0,
     node_name="START",
 ):
-    if rec_depth > 10:
-        raise Exception(f"Too deep recursion when trying to resolve {compound!r}")
+    context.queries += 1
+    if context.queries > 100:
+        # We might still find a match, but we give up to avoid a too deep
+        # search. Ideally, we would never run into this because we optimize at
+        # a different place.
+        raise NoMatch()
 
     result = find_matches_in_db(db_path, lang, compound, ignore_word, first_part)
-    context.queries += 1
     if not result:
         raise NoMatch()
 
