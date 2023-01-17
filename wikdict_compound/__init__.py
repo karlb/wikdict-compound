@@ -2,19 +2,13 @@ import sqlite3
 from pathlib import Path
 import statistics
 from dataclasses import dataclass
+from typing import Optional
 
 supported_langs = "de en fi nl sv".split()
 query_count = 0
 
 
 DEBUG_QUERY_LOG = False
-DEBUG_GRAPH = None
-# DEBUG_GRAPH = open("graph.dot", "w")
-
-
-def add_to_graph(graphviz_dot_str):
-    if DEBUG_GRAPH:
-        DEBUG_GRAPH.write(graphviz_dot_str)
 
 
 def make_db(lang, input_path, output_path):
@@ -176,8 +170,15 @@ def find_matches_in_db(db_path, lang, compound: str, ignore_word=None, first_par
 
 @dataclass
 class SplitContext:
+    """Context for the process of splitting a compound into all parts."""
+
     compound: str
     queries: int = 0
+    graph_str: str = ""  # graphviz dot format visualization of splitting graph
+
+    @property
+    def graph(self) -> str:
+        return "digraph {\n" + self.graph_str + "}\n"
 
 
 def split_compound_interal(
@@ -209,13 +210,15 @@ def split_compound_interal(
             break
         for match in get_potential_matches(compound, r, lang):
             new_node_name = f"{context.queries}-{match}"
-            add_to_graph(f'\t "{node_name}" -> "{new_node_name}"\n')
-            add_to_graph(f'\t "{new_node_name}" [label="{match}\\n{r["rel_score"]}"]\n')
+            context.graph_str += f'\t "{node_name}" -> "{new_node_name}"\n'
+            context.graph_str += (
+                f'\t "{new_node_name}" [label="{match}\\n{r["rel_score"]}"]\n'
+            )
             rest = compound.replace(match, "", 1)
             if not rest:
                 if r["affix_type"] in [None, "suffix"]:
                     solutions.append([(r["written_rep"], r["rel_score"], match)])
-                add_to_graph(f'\t "{new_node_name}" [shape=box]\n')
+                context.graph_str += f'\t "{new_node_name}" [shape=box]\n'
                 continue
             try:
                 splitted_rest = split_compound_interal(
@@ -251,22 +254,23 @@ def split_compound(
     compound: str,
     ignore_word=None,
     all_results=False,
+    write_graph_to_file: Optional[str] = None,
 ):
-    add_to_graph("digraph {\n")
-
     compound = compound.lower()
-    try:
-        result = split_compound_interal(
-            db_path,
-            lang,
-            compound,
-            ignore_word=ignore_word,
-            first_part=True,
-            all_results=all_results,
-            context=SplitContext(compound=compound),
-        )
-    finally:
-        add_to_graph("}\n")
+    context = SplitContext(compound=compound)
+    result = split_compound_interal(
+        db_path,
+        lang,
+        compound,
+        ignore_word=ignore_word,
+        first_part=True,
+        all_results=all_results,
+        context=context,
+    )
+
+    if write_graph_to_file:
+        with open(write_graph_to_file, "w") as f:
+            f.write(context.graph)
 
     return result
 
