@@ -166,10 +166,18 @@ def find_matches_in_db(db_path, lang, compound: str, ignore_word=None, first_par
     return result
 
 
-def split_compound(
-    db_path, lang, compound, ignore_word=None, first_part=True, all_results=False
+def split_compound_interal(
+    db_path,
+    lang: str,
+    compound: str,
+    ignore_word=None,
+    first_part=True,
+    all_results=False,
+    rec_depth=0,
 ):
-    compound = compound.lower()
+    if rec_depth > 10:
+        raise Exception(f"Too deep recursion when trying to resolve {compound!r}")
+
     result = find_matches_in_db(db_path, lang, compound, ignore_word, first_part)
     if not result:
         raise NoMatch()
@@ -186,7 +194,9 @@ def split_compound(
                     solutions.append([(r["written_rep"], r["rel_score"], match)])
                 continue
             try:
-                splitted_rest = split_compound(db_path, lang, rest, first_part=False)
+                splitted_rest = split_compound_interal(
+                    db_path, lang, rest, first_part=False, rec_depth=rec_depth + 1
+                )
             except NoMatch:
                 continue
             solutions.append(
@@ -204,6 +214,19 @@ def split_compound(
         return solutions
     else:
         return solutions[0]
+
+
+def split_compound(
+    db_path,
+    lang: str,
+    compound: str,
+    ignore_word=None,
+    all_results=False,
+):
+    compound = compound.lower()
+    return split_compound_interal(
+        db_path, lang, compound, ignore_word, first_part=True, all_results=all_results
+    )
 
 
 def print_query_plan(conn, query, bindings={}):
