@@ -22,6 +22,71 @@ def make_db(lang, input_path, output_path):
         rf"""
         ATTACH DATABASE '{input_path}/{lang}.sqlite3' AS generic;
 
+        CREATE TEMPORARY VIEW form_with_entry AS
+        SELECT *
+        FROM generic.form
+            JOIN entry USING (lexentry)
+        WHERE
+            -- Multi-word entries oftentimes don't have all words included
+            -- in the form, resulting in misleading forms, so let's exclude
+            -- those.
+            written_rep NOT LIKE '% %'
+        ;
+
+        CREATE TEMPORARY VIEW terms_from_forms AS
+        SELECT other_written, written_rep, part_of_speech,
+            CASE "case"
+                WHEN 'GenitiveCase' THEN 1
+                ELSE 0.5
+            END AS score_factor
+        FROM form_with_entry
+        ;
+
+        CREATE TEMPORARY VIEW terms_from_entries AS
+        SELECT written_rep, written_rep, part_of_speech, 1 AS score_factor
+        FROM generic.entry
+        ;
+
+        CREATE TEMPORARY TABLE terms AS
+        SELECT * FROM terms_from_forms
+        UNION ALL
+        SELECT * FROM terms_from_entries
+        ;
+    """
+    )
+
+    # Language specific data changes
+    if lang == "de":
+        conn.executescript(
+            """
+            -- "sein" has the form "ist" which would override the "-ist" suffix due to its high importance
+            -- "in" is easily used instead of the "-in" suffix
+            DELETE FROM terms WHERE written_rep IN ('sein', 'in');
+        """
+        )
+    if lang == "sv":
+        conn.executescript(
+            """
+            -- "-a" is better handled by the -a rule below
+            DELETE FROM terms WHERE written_rep = '-a';
+
+            -- Remove -a from verb infinitives
+            INSERT INTO terms
+            SELECT
+                substr(other_written, 1, length(other_written) - 1) AS other_written,
+                written_rep,
+                part_of_speech,
+                0.5 AS score_factor
+            FROM form_with_entry
+            WHERE pos = 'verb'
+                AND mood = 'Infinitive'
+                AND voice = 'ActiveVoice'
+                AND substr(other_written, -1, 1) = 'a'
+        """
+        )
+
+    conn.executescript(
+        """
         CREATE TABLE compound_splitter AS
         SELECT 
             other_written,
@@ -53,23 +118,7 @@ def make_db(lang, input_path, output_path):
                     AS rel_score,
                 written_rep,
                 part_of_speech
-            FROM (
-                    SELECT other_written, written_rep, part_of_speech,
-                        CASE "case"
-                            WHEN 'GenitiveCase' THEN 1
-                            ELSE 0.5
-                        END AS score_factor
-                    FROM generic.form
-                        JOIN entry USING (lexentry)
-                    WHERE
-                        -- Multi-word entries oftentimes don't have all words included
-                        -- in the form, resulting in misleading forms, so let's exclude
-                        -- those.
-                        written_rep NOT LIKE '% %'
-                    UNION ALL
-                    SELECT written_rep, written_rep, part_of_speech, 1 AS score_factor
-                    FROM generic.entry
-                )
+            FROM terms
                 LEFT JOIN rel_importance ON (written_rep = written_rep_guess)
             WHERE other_written != '' -- Why are there forms without text?
               AND NOT (length(other_written) = 1 AND affix_type IS NULL)
@@ -85,16 +134,6 @@ def make_db(lang, input_path, output_path):
     """
     )
 
-    # Language specific data changes
-    if lang == "de":
-        conn.executescript(
-            """
-            -- "sein" has the form "ist" which would override the "-ist" suffix due to its high importance
-            -- "in" is easily used instead of the "-in" suffix
-            DELETE FROM compound_splitter WHERE written_rep IN ('sein', 'in');
-        """
-        )
-
 
 class NoMatch(Exception):
     pass
@@ -105,12 +144,7 @@ def get_potential_matches(compound, r, lang):
     yield match
     pos_list = r["part_of_speech_list"].split(",")
 
-    if lang == "sv":
-        if "verb" in pos_list:
-            if match.endswith("a"):
-                yield match[:-1]
-
-    elif lang == "de":
+    if lang == "de":
         if "noun" in pos_list:
             if not match.endswith("s") and compound.startswith(match + "s"):
                 yield match + "s"
