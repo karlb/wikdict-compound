@@ -75,3 +75,7 @@ To run the tests:
 
     pytest
 -->
+
+## Related Resources
+
+The approach is similar to the one described in [Simple Compound Splitting for German](https://aclanthology.org/W17-1722) (Weller-Di Marco, MWE 2017). I can also recommend the paper as an overview of the problems and approaches to compound words splitting of German words.
