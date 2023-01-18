@@ -76,7 +76,7 @@ def make_db(lang, input_path, output_path):
                 substr(other_written, 1, length(other_written) - 1) AS other_written,
                 written_rep,
                 part_of_speech,
-                0.5 AS score_factor
+                0.2 AS score_factor
             FROM form_with_entry
             WHERE pos = 'verb'
                 AND mood = 'Infinitive'
