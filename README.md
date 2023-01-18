@@ -23,12 +23,15 @@ To use wikdict-compound, you need a database with the required compound splittin
 ### Split Compound Words
 
 ```
-from wikdict_compound import split_compound
-
-parts = split_compound(db_path='compound_dbs', lang='de', compound='Gartenschere')
+>>> from wikdict_compound import split_compound
+>>> split_compound(db_path='compound_dbs', lang='de', compound='Bücherkiste')
+Solution(parts=[
+    Part(written_rep='Buch', score=63.57055093514545, match='bücher'),
+    Part(written_rep='Kiste', score=33.89508861315521, match='kiste')
+])
 ```
 
-This returns the list of words which form the compound in the correct order, along with a rating of the word importance, in this case `[('Garten', 1.4645167634735892), ('Schere', 1.1692122623775094)]`.
+The returned solution object has a `parts` attribute, which contains the separate word parts in the correct order, along with the matched word part and a matching score (mostly interesting when comparing different splitting possibilites for the same word).
 
 ## Supported Languages and Splitting Quality
 
