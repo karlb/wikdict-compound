@@ -1,7 +1,7 @@
 import sqlite3
 from pathlib import Path
 import statistics
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from typing import Optional
 from functools import cached_property
 
@@ -200,19 +200,6 @@ def find_matches_in_db(db_path, lang, compound: str, ignore_word=None, first_par
     return result
 
 
-@dataclass
-class SplitContext:
-    """Context for the process of splitting a compound into all parts."""
-
-    compound: str
-    queries: int = 0
-    graph_str: str = ""  # graphviz dot format visualization of splitting graph
-
-    @property
-    def graph(self) -> str:
-        return "digraph {\n" + self.graph_str + "}\n"
-
-
 @dataclass(frozen=True)
 class Part:
     written_rep: str
@@ -232,45 +219,79 @@ class Solution:
         )
 
 
+@dataclass(frozen=True)
+class PartialSolution(Solution):
+    compound: str  # full compound which is to be split
+
+    @cached_property
+    def score(self):
+        if not self.parts:
+            return 0
+        return super().score * sum(len(p.match) for p in self.parts)
+
+
+@dataclass
+class SplitContext:
+    """Context for the process of splitting a compound into all parts."""
+
+    compound: str
+    queries: int = 0
+    graph_str: str = ""  # graphviz dot format visualization of splitting graph
+    best_partial_solution: Optional[PartialSolution] = None
+    best_solution: Optional[Solution] = None
+
+    @property
+    def graph(self) -> str:
+        return "digraph {\n" + self.graph_str + "}\n"
+
+
 def split_compound_interal(
     db_path,
     lang: str,
     compound: str,
     context: SplitContext,
+    solution: PartialSolution,
     ignore_word=None,
     first_part=False,
     all_results=False,
     rec_depth=0,
     node_name="START",
 ):
-    context.queries += 1
-    if context.queries > 100:
+    best_score = (
+        context.best_partial_solution.score if context.best_partial_solution else 0
+    )
+    if solution.score > best_score:
+        context.best_partial_solution = solution
+    elif solution.score < 0.1 * best_score:
         # We might still find a match, but we give up to avoid a too deep
-        # search. Ideally, we would never run into this because we optimize at
-        # a different place.
+        # search.
         raise NoMatch()
+
+    # if context.best_solution and len(solution.parts) == len(
+    #     context.best_solution.parts
+    # ):
+    #     # We might still find a match, but we give up to avoid a too deep
+    #     # search.
+    #     raise NoMatch()
+
+    context.queries += 1
 
     result = find_matches_in_db(db_path, lang, compound, ignore_word, first_part)
     if not result:
         raise NoMatch()
 
     solutions = []
-    best_score = max(r["rel_score"] for r in result)
     for r in result:
-        if r["rel_score"] < best_score / 4:
-            break
         for match in get_potential_matches(compound, r, lang):
-            new_node_name = f"{context.queries}-{match}"
+            new_part = Part(r["written_rep"], r["rel_score"], match)
+            new_solution = replace(solution, parts=solution.parts + [new_part])
+            new_node_name = f'{context.queries}-{r["written_rep"]}'
             context.graph_str += f'\t "{node_name}" -> "{new_node_name}"\n'
-            context.graph_str += (
-                f'\t "{new_node_name}" [label="{match}\\n{r["rel_score"]}"]\n'
-            )
+            context.graph_str += f'\t "{new_node_name}" [label="{r["written_rep"]}\\n{r["rel_score"]:.2f}\\n{new_solution.score:.2f}"]\n'
             rest = compound.replace(match, "", 1)
             if not rest:
                 if r["affix_type"] in [None, "suffix"]:
-                    solutions.append(
-                        Solution(parts=[Part(r["written_rep"], r["rel_score"], match)])
-                    )
+                    solutions.append(Solution(parts=[new_part]))
                 context.graph_str += f'\t "{new_node_name}" [shape=box]\n'
                 continue
             try:
@@ -278,26 +299,23 @@ def split_compound_interal(
                     db_path,
                     lang,
                     rest,
+                    solution=new_solution,
                     context=context,
                     rec_depth=rec_depth + 1,
                     node_name=new_node_name,
                 ).parts
             except NoMatch:
                 continue
-            solutions.append(
-                Solution(
-                    parts=[Part(r["written_rep"], r["rel_score"], match)]
-                    + splitted_rest
-                )
-            )
+            solutions.append(Solution(parts=[new_part] + splitted_rest))
 
     if not solutions:
         raise NoMatch()
 
     solutions.sort(key=lambda s: s.score, reverse=True)
-    # for s in solutions:
-    #     print(s)
-    # print('\t', compound, solutions[0])
+
+    if context.best_solution and solutions[0].score > context.best_solution.score:
+        context.best_solution = solutions[0]
+
     if all_results:
         return solutions
     else:
@@ -314,15 +332,19 @@ def split_compound(
 ):
     compound = compound.lower()
     context = SplitContext(compound=compound)
-    result = split_compound_interal(
-        db_path,
-        lang,
-        compound,
-        ignore_word=ignore_word,
-        first_part=True,
-        all_results=all_results,
-        context=context,
-    )
+    try:
+        result = split_compound_interal(
+            db_path,
+            lang,
+            compound,
+            solution=PartialSolution(parts=[], compound=compound),
+            ignore_word=ignore_word,
+            first_part=True,
+            all_results=all_results,
+            context=context,
+        )
+    except NoMatch:
+        result = [] if all_results else None
 
     if write_graph_to_file:
         with open(write_graph_to_file, "w") as f:
