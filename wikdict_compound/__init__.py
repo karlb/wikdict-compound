@@ -90,7 +90,8 @@ def make_db(lang, input_path, output_path):
         conn.executescript(
             """
             -- "sein" has the form "ist" which would override the "-ist" suffix due to its high importance
-            DELETE FROM compound_splitter WHERE written_rep = 'sein';
+            -- "in" is easily used instead of the "-in" suffix
+            DELETE FROM compound_splitter WHERE written_rep IN ('sein', 'in');
         """
         )
 
