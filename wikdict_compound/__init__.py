@@ -175,9 +175,12 @@ def find_matches_in_db(db_path, lang, compound: str, ignore_word=None, first_par
             )
             --WHERE other_written <= :compound AND :compound LIKE other_written || '%'
             --WHERE other_written <= :compound AND other_written || 'z' > :compound
-              AND other_written IS NOT lower(:ignore_word)
               AND (affix_type IS NULL OR :first_part = (affix_type = "prefix"))
-            --LIMIT 20
+
+              -- For test data evaluation only. Without this, we could not
+              -- split compound words which are in the dictionary themselves.
+              AND other_written IS NOT lower(:ignore_word)
+              AND written_rep IS NOT lower(:ignore_word)
         )
         ORDER BY rel_score DESC
         LIMIT 3
