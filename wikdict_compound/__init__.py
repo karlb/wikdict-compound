@@ -2,7 +2,7 @@ import sqlite3
 from pathlib import Path
 import statistics
 from dataclasses import dataclass, replace
-from typing import Optional
+from typing import Optional, Iterable
 from functools import cached_property
 
 from .make_db import make_db
@@ -99,6 +99,8 @@ class PartialSolution(Solution):
 class SplitContext:
     """Context for the process of splitting a compound into all parts."""
 
+    db_path: Path
+    lang: str
     compound: str
     queries: int = 0
     graph_str: str = ""  # graphviz dot format visualization of splitting graph
@@ -139,20 +141,22 @@ def get_potential_matches_for_row(compound, r, lang):
                 yield match + "s"
 
 
-def get_potential_next_parts(db_path, lang, compound, ignore_word, first_part, context):
+def get_potential_next_parts(
+    compound, ignore_word, first_part, context
+) -> Iterable[Part]:
     context.queries += 1
-    result = find_matches_in_db(db_path, lang, compound, ignore_word, first_part)
+    result = find_matches_in_db(
+        context.db_path, context.lang, compound, ignore_word, first_part
+    )
     if not result:
         return
 
     for r in result:
-        for match in get_potential_matches_for_row(compound, r, lang):
+        for match in get_potential_matches_for_row(compound, r, context.lang):
             yield Part(r["written_rep"], r["rel_score"], match, r["affix_type"])
 
 
 def split_compound_interal(
-    db_path,
-    lang: str,
     compound: str,
     context: SplitContext,
     partial_solution: PartialSolution,
@@ -165,7 +169,7 @@ def split_compound_interal(
 
     solutions = []
     for new_part in get_potential_next_parts(
-        db_path, lang, compound, ignore_word, first_part, context
+        compound, ignore_word, first_part, context
     ):
         new_partial_solution = replace(
             partial_solution, parts=partial_solution.parts + [new_part]
@@ -185,8 +189,6 @@ def split_compound_interal(
 
         # Recurse with the rest of the compound
         recursive_results = split_compound_interal(
-            db_path,
-            lang,
             rest,
             partial_solution=new_partial_solution,
             context=context,
@@ -217,10 +219,8 @@ def split_compound(
     write_graph_to_file: Optional[str] = None,
 ):
     compound = compound.lower()
-    context = SplitContext(compound=compound)
+    context = SplitContext(db_path=db_path, lang=lang, compound=compound)
     results = split_compound_interal(
-        db_path,
-        lang,
         compound,
         partial_solution=PartialSolution(parts=[], compound=compound),
         ignore_word=ignore_word,
