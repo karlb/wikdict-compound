@@ -120,14 +120,14 @@ class SplitContext:
         return "digraph {\n" + self.graph_str + "}\n"
 
 
-def prune_branch(solution, context) -> bool:
+def prune_branch(partial_solution, context) -> bool:
     """Is the current splitting branch unlikely to provide a good result?"""
     best_score = (
         context.best_partial_solution.score if context.best_partial_solution else 0
     )
-    if solution.score > best_score:
-        context.best_partial_solution = solution
-    elif solution.score < 0.1 * best_score:
+    if partial_solution.score > best_score:
+        context.best_partial_solution = partial_solution
+    elif partial_solution.score < 0.1 * best_score:
         return True
 
     # if context.best_solution and len(solution.parts) == len(
@@ -143,14 +143,14 @@ def split_compound_interal(
     lang: str,
     compound: str,
     context: SplitContext,
-    solution: PartialSolution,
+    partial_solution: PartialSolution,
     ignore_word=None,
     first_part=False,
     all_results=False,
     rec_depth=0,
     node_name="START",
 ) -> list[Solution]:
-    if prune_branch(solution, context):
+    if prune_branch(partial_solution, context):
         return []
 
     context.queries += 1
@@ -162,10 +162,12 @@ def split_compound_interal(
     for r in result:
         for match in get_potential_matches(compound, r, lang):
             new_part = Part(r["written_rep"], r["rel_score"], match)
-            new_solution = replace(solution, parts=solution.parts + [new_part])
+            new_partial_solution = replace(
+                partial_solution, parts=partial_solution.parts + [new_part]
+            )
             new_node_name = f'{context.queries}-{r["written_rep"]}'
             context.graph_str += f'\t "{node_name}" -> "{new_node_name}"\n'
-            context.graph_str += f'\t "{new_node_name}" [label="{r["written_rep"]}\\n{r["rel_score"]:.2f}\\n{new_solution.score:.2f}"]\n'
+            context.graph_str += f'\t "{new_node_name}" [label="{r["written_rep"]}\\n{r["rel_score"]:.2f}\\n{new_partial_solution.score:.2f}"]\n'
             rest = compound.replace(match, "", 1)
             if not rest:
                 if r["affix_type"] in [None, "suffix"]:
@@ -176,7 +178,7 @@ def split_compound_interal(
                 db_path,
                 lang,
                 rest,
-                solution=new_solution,
+                partial_solution=new_partial_solution,
                 context=context,
                 rec_depth=rec_depth + 1,
                 node_name=new_node_name,
@@ -211,7 +213,7 @@ def split_compound(
         db_path,
         lang,
         compound,
-        solution=PartialSolution(parts=[], compound=compound),
+        partial_solution=PartialSolution(parts=[], compound=compound),
         ignore_word=ignore_word,
         first_part=True,
         context=context,
