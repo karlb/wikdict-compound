@@ -14,17 +14,6 @@ query_count = 0
 DEBUG_QUERY_LOG = False
 
 
-def get_potential_matches(compound, r, lang):
-    match = r["other_written"].lower()
-    yield match
-    pos_list = r["part_of_speech_list"].split(",")
-
-    if lang == "de":
-        if "noun" in pos_list:
-            if not match.endswith("s") and compound.startswith(match + "s"):
-                yield match + "s"
-
-
 def find_matches_in_db(db_path, lang, compound: str, ignore_word=None, first_part=True):
     conn = sqlite3.connect(Path(db_path) / f"{lang}-compound.sqlite3")
     conn.row_factory = sqlite3.Row
@@ -80,6 +69,7 @@ class Part:
     written_rep: str
     score: float
     match: str
+    affix_type: Optional[str]
 
 
 @dataclass(frozen=True)
@@ -138,6 +128,28 @@ def prune_branch(partial_solution, context) -> bool:
     return False
 
 
+def get_potential_matches_for_row(compound, r, lang):
+    match = r["other_written"].lower()
+    yield match
+    pos_list = r["part_of_speech_list"].split(",")
+
+    if lang == "de":
+        if "noun" in pos_list:
+            if not match.endswith("s") and compound.startswith(match + "s"):
+                yield match + "s"
+
+
+def get_potential_next_parts(db_path, lang, compound, ignore_word, first_part, context):
+    context.queries += 1
+    result = find_matches_in_db(db_path, lang, compound, ignore_word, first_part)
+    if not result:
+        return
+
+    for r in result:
+        for match in get_potential_matches_for_row(compound, r, lang):
+            yield Part(r["written_rep"], r["rel_score"], match, r["affix_type"])
+
+
 def split_compound_interal(
     db_path,
     lang: str,
@@ -153,40 +165,35 @@ def split_compound_interal(
     if prune_branch(partial_solution, context):
         return []
 
-    context.queries += 1
-    result = find_matches_in_db(db_path, lang, compound, ignore_word, first_part)
-    if not result:
-        return []
-
     solutions = []
-    for r in result:
-        for match in get_potential_matches(compound, r, lang):
-            new_part = Part(r["written_rep"], r["rel_score"], match)
-            new_partial_solution = replace(
-                partial_solution, parts=partial_solution.parts + [new_part]
-            )
-            new_node_name = f'{context.queries}-{r["written_rep"]}'
-            context.graph_str += f'\t "{node_name}" -> "{new_node_name}"\n'
-            context.graph_str += f'\t "{new_node_name}" [label="{r["written_rep"]}\\n{r["rel_score"]:.2f}\\n{new_partial_solution.score:.2f}"]\n'
-            rest = compound.replace(match, "", 1)
-            if not rest:
-                if r["affix_type"] in [None, "suffix"]:
-                    solutions.append(Solution(parts=[new_part]))
-                context.graph_str += f'\t "{new_node_name}" [shape=box]\n'
-                continue
-            recursive_results = split_compound_interal(
-                db_path,
-                lang,
-                rest,
-                partial_solution=new_partial_solution,
-                context=context,
-                rec_depth=rec_depth + 1,
-                node_name=new_node_name,
-            )
-            if not recursive_results:
-                continue
-            splitted_rest = recursive_results[0].parts
-            solutions.append(Solution(parts=[new_part] + splitted_rest))
+    for new_part in get_potential_next_parts(
+        db_path, lang, compound, ignore_word, first_part, context
+    ):
+        new_partial_solution = replace(
+            partial_solution, parts=partial_solution.parts + [new_part]
+        )
+        new_node_name = f"{context.queries}-{new_part.written_rep}"
+        context.graph_str += f'\t "{node_name}" -> "{new_node_name}"\n'
+        context.graph_str += f'\t "{new_node_name}" [label="{new_part.written_rep}\\n{new_part.score:.2f}\\n{new_partial_solution.score:.2f}"]\n'
+        rest = compound.replace(new_part.match, "", 1)
+        if not rest:
+            if new_part.affix_type in [None, "suffix"]:
+                solutions.append(Solution(parts=[new_part]))
+            context.graph_str += f'\t "{new_node_name}" [shape=box]\n'
+            continue
+        recursive_results = split_compound_interal(
+            db_path,
+            lang,
+            rest,
+            partial_solution=new_partial_solution,
+            context=context,
+            rec_depth=rec_depth + 1,
+            node_name=new_node_name,
+        )
+        if not recursive_results:
+            continue
+        splitted_rest = recursive_results[0].parts
+        solutions.append(Solution(parts=[new_part] + splitted_rest))
 
     if not solutions:
         return []
