@@ -158,8 +158,6 @@ def split_compound_interal(
     partial_solution: PartialSolution,
     ignore_word=None,
     first_part=False,
-    all_results=False,
-    rec_depth=0,
     node_name="START",
 ) -> list[Solution]:
     if prune_branch(partial_solution, context):
@@ -172,22 +170,26 @@ def split_compound_interal(
         new_partial_solution = replace(
             partial_solution, parts=partial_solution.parts + [new_part]
         )
+
         new_node_name = f"{context.queries}-{new_part.written_rep}"
-        context.graph_str += f'\t "{node_name}" -> "{new_node_name}"\n'
-        context.graph_str += f'\t "{new_node_name}" [label="{new_part.written_rep}\\n{new_part.score:.2f}\\n{new_partial_solution.score:.2f}"]\n'
+        context.graph_str += f'\t"{node_name}" -> "{new_node_name}"\n'
+        context.graph_str += f'\t"{new_node_name}" [label="{new_part.written_rep}\\n{new_part.score:.2f}\\n{new_partial_solution.score:.2f}"]\n'
+
+        # Did find the last part and have a complete solution?
         rest = compound.replace(new_part.match, "", 1)
         if not rest:
             if new_part.affix_type in [None, "suffix"]:
                 solutions.append(Solution(parts=[new_part]))
-            context.graph_str += f'\t "{new_node_name}" [shape=box]\n'
+                context.graph_str += f'\t"{new_node_name}" [shape=box]\n'
             continue
+
+        # Recurse with the rest of the compound
         recursive_results = split_compound_interal(
             db_path,
             lang,
             rest,
             partial_solution=new_partial_solution,
             context=context,
-            rec_depth=rec_depth + 1,
             node_name=new_node_name,
         )
         if not recursive_results:
