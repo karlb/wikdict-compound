@@ -50,10 +50,11 @@ def find_matches_in_db(conn, compound: str, ignore_word=None, first_part=True):
     bindings = dict(compound=compound, ignore_word=ignore_word, first_part=first_part)
     # if query_count == 0:
     #     print_query_plan(conn, query, bindings)
-    result = conn.execute(query, bindings).fetchall()
+    result = conn.execute(query, bindings)
 
     query_count += 1
     if DEBUG_QUERY_LOG:
+        result = list(result)
         with open("query.log", "a") as f:
             f.write(compound + "\n")
             for r in result:
