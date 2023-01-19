@@ -29,7 +29,7 @@ def make_db(lang: str, input_path, output_path) -> None:
             conn.close()
             outfile.unlink(missing_ok=True)
 
-    conn = sqlite3.connect(outfile)
+    conn = sqlite3.connect(outfile, isolation_level="IMMEDIATE")
     conn.executescript(
         rf"""
         CREATE TABLE version AS SELECT "{md5sum}" AS md5sum;
