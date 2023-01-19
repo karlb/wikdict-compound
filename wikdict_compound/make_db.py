@@ -66,6 +66,33 @@ def make_db(lang: str, input_path, output_path) -> None:
         UNION ALL
         SELECT * FROM terms_from_entries
         ;
+
+        CREATE TEMPORARY VIEW terms_view AS
+        SELECT
+            written_rep,
+            other_written,
+            part_of_speech,
+            -- Affixes are not that important words in a normal
+            -- dictionary, but for in compound words, they are very likely
+            -- and should be prioritized.
+            score_factor * CASE
+                WHEN affix_type IS NOT NULL THEN 2
+                ELSE 1
+            END AS score_factor,
+            affix_type
+        FROM (
+            SELECT
+                written_rep,
+                lower(trim(other_written, '-')) AS other_written,
+                part_of_speech,
+                score_factor,
+                CASE
+                    WHEN substr(other_written, 1, 1) = '-' AND substr(other_written, -1, 1) = '-' THEN 'infix'
+                    WHEN substr(other_written, 1, 1) = '-' THEN 'suffix'
+                    WHEN substr(other_written, -1, 1) = '-' THEN 'prefix'
+                END AS affix_type
+            FROM terms
+        );
     """
     )
 
@@ -113,26 +140,12 @@ def make_db(lang: str, input_path, output_path) -> None:
             ) AS written_rep
         FROM (
             SELECT
-                lower(trim(other_written, '-')) AS other_written,
-                CASE
-                    WHEN substr(other_written, 1, 1) = '-' AND substr(other_written, -1, 1) = '-' THEN 'infix'
-                    WHEN substr(other_written, 1, 1) = '-' THEN 'suffix'
-                    WHEN substr(other_written, -1, 1) = '-' THEN 'prefix'
-                END AS affix_type,
-                coalesce(rel_score, 0.1)
-                    * score_factor
-                    -- Affixes are not that important words in a normal
-                    -- dictionary, but for in compound words, they are very likely
-                    -- and should be prioritized.
-                    * CASE
-                        WHEN substr(other_written, 1, 1) = '-' OR substr(other_written, -1, 1) = '-'
-                        THEN 2
-                        ELSE 1
-                    END
-                    AS rel_score,
+                other_written,
+                affix_type,
+                coalesce(rel_score, 0.1) * score_factor AS rel_score,
                 written_rep,
                 part_of_speech
-            FROM terms
+            FROM terms_view
                 LEFT JOIN rel_importance ON (written_rep = written_rep_guess)
             WHERE other_written != '' -- Why are there forms without text?
               AND NOT (length(other_written) = 1 AND affix_type IS NULL)
