@@ -76,7 +76,8 @@ def make_db(lang: str, input_path, output_path) -> None:
             -- dictionary, but for in compound words, they are very likely
             -- and should be prioritized.
             score_factor * CASE
-                WHEN affix_type IS NOT NULL THEN 2
+                WHEN affix_type == 'suffix' THEN 3
+                WHEN affix_type IN ('infix', 'prefix') THEN 2
                 ELSE 1
             END AS score_factor,
             affix_type
