@@ -113,6 +113,9 @@ class SplitContext:
 
 def prune_branch(partial_solution, context) -> bool:
     """Is the current splitting branch unlikely to provide a good result?"""
+    if context.queries > 100:
+        return True
+
     best_score = (
         context.best_partial_solution.score if context.best_partial_solution else 0
     )
