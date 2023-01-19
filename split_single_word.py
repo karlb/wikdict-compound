@@ -23,5 +23,8 @@ results = split_compound(
     all_results=True,
     write_graph_to_file="graph.dot",
 )
+print()
 for r in results:
-    print(r)
+    print("·".join(p.written_rep for p in r.parts))
+    for p in r.parts:
+        print("\t", p)
