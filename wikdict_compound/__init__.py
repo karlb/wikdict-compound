@@ -120,6 +120,24 @@ class SplitContext:
         return "digraph {\n" + self.graph_str + "}\n"
 
 
+def prune_branch(solution, context) -> bool:
+    """Is the current splitting branch unlikely to provide a good result?"""
+    best_score = (
+        context.best_partial_solution.score if context.best_partial_solution else 0
+    )
+    if solution.score > best_score:
+        context.best_partial_solution = solution
+    elif solution.score < 0.1 * best_score:
+        return True
+
+    # if context.best_solution and len(solution.parts) == len(
+    #     context.best_solution.parts
+    # ):
+    #     return True
+
+    return False
+
+
 def split_compound_interal(
     db_path,
     lang: str,
@@ -132,25 +150,10 @@ def split_compound_interal(
     rec_depth=0,
     node_name="START",
 ) -> list[Solution]:
-    best_score = (
-        context.best_partial_solution.score if context.best_partial_solution else 0
-    )
-    if solution.score > best_score:
-        context.best_partial_solution = solution
-    elif solution.score < 0.1 * best_score:
-        # We might still find a match, but we give up to avoid a too deep
-        # search.
+    if prune_branch(solution, context):
         return []
 
-    # if context.best_solution and len(solution.parts) == len(
-    #     context.best_solution.parts
-    # ):
-    #     # We might still find a match, but we give up to avoid a too deep
-    #     # search.
-    #     return []
-
     context.queries += 1
-
     result = find_matches_in_db(db_path, lang, compound, ignore_word, first_part)
     if not result:
         return []
