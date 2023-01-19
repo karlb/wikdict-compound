@@ -14,10 +14,6 @@ query_count = 0
 DEBUG_QUERY_LOG = False
 
 
-class NoMatch(Exception):
-    pass
-
-
 def get_potential_matches(compound, r, lang):
     match = r["other_written"].lower()
     yield match
@@ -135,7 +131,7 @@ def split_compound_interal(
     all_results=False,
     rec_depth=0,
     node_name="START",
-):
+) -> list[Solution]:
     best_score = (
         context.best_partial_solution.score if context.best_partial_solution else 0
     )
@@ -144,20 +140,20 @@ def split_compound_interal(
     elif solution.score < 0.1 * best_score:
         # We might still find a match, but we give up to avoid a too deep
         # search.
-        raise NoMatch()
+        return []
 
     # if context.best_solution and len(solution.parts) == len(
     #     context.best_solution.parts
     # ):
     #     # We might still find a match, but we give up to avoid a too deep
     #     # search.
-    #     raise NoMatch()
+    #     return []
 
     context.queries += 1
 
     result = find_matches_in_db(db_path, lang, compound, ignore_word, first_part)
     if not result:
-        raise NoMatch()
+        return []
 
     solutions = []
     for r in result:
@@ -173,32 +169,29 @@ def split_compound_interal(
                     solutions.append(Solution(parts=[new_part]))
                 context.graph_str += f'\t "{new_node_name}" [shape=box]\n'
                 continue
-            try:
-                splitted_rest = split_compound_interal(
-                    db_path,
-                    lang,
-                    rest,
-                    solution=new_solution,
-                    context=context,
-                    rec_depth=rec_depth + 1,
-                    node_name=new_node_name,
-                ).parts
-            except NoMatch:
+            recursive_results = split_compound_interal(
+                db_path,
+                lang,
+                rest,
+                solution=new_solution,
+                context=context,
+                rec_depth=rec_depth + 1,
+                node_name=new_node_name,
+            )
+            if not recursive_results:
                 continue
+            splitted_rest = recursive_results[0].parts
             solutions.append(Solution(parts=[new_part] + splitted_rest))
 
     if not solutions:
-        raise NoMatch()
+        return []
 
     solutions.sort(key=lambda s: s.score, reverse=True)
 
     if context.best_solution and solutions[0].score > context.best_solution.score:
         context.best_solution = solutions[0]
 
-    if all_results:
-        return solutions
-    else:
-        return solutions[0]
+    return solutions
 
 
 def split_compound(
@@ -211,25 +204,24 @@ def split_compound(
 ):
     compound = compound.lower()
     context = SplitContext(compound=compound)
-    try:
-        result = split_compound_interal(
-            db_path,
-            lang,
-            compound,
-            solution=PartialSolution(parts=[], compound=compound),
-            ignore_word=ignore_word,
-            first_part=True,
-            all_results=all_results,
-            context=context,
-        )
-    except NoMatch:
-        result = [] if all_results else None
+    results = split_compound_interal(
+        db_path,
+        lang,
+        compound,
+        solution=PartialSolution(parts=[], compound=compound),
+        ignore_word=ignore_word,
+        first_part=True,
+        context=context,
+    )
 
     if write_graph_to_file:
         with open(write_graph_to_file, "w") as f:
             f.write(context.graph)
 
-    return result
+    if all_results:
+        return results
+    else:
+        return results[0] if results else None
 
 
 def print_query_plan(conn, query, bindings={}):

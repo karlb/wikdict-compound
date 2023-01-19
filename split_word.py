@@ -3,7 +3,7 @@ import sys
 import itertools
 import sqlite3
 import wikdict_compound
-from wikdict_compound import make_db, split_compound, NoMatch
+from wikdict_compound import make_db, split_compound
 
 if len(sys.argv) not in [2, 3] or len(sys.argv[1]) != 2:
     print(f"Usage: {sys.argv[0]} 2_LETTER_COUNTRY_CODE [LIMIT]")
