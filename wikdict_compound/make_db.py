@@ -1,15 +1,39 @@
 import sqlite3
 from pathlib import Path
+import hashlib
+import sys
+
+with open(__file__, "rb") as f:
+    md5sum = hashlib.md5(f.read()).hexdigest()
 
 
 def make_db(lang: str, input_path, output_path) -> None:
     output_path = Path(output_path)
     output_path.mkdir(exist_ok=True)
     outfile = output_path / f"{lang}-compound.sqlite3"
-    outfile.unlink(missing_ok=True)
+
+    # Skip recreation if up to date, otherwise delete existing
+    if outfile.exists():
+        conn = sqlite3.connect(outfile)
+        try:
+            existing_md5sum = conn.execute("SELECT md5sum FROM version").fetchone()[0]
+        except sqlite3.OperationalError:
+            existing_md5sum = None
+        if existing_md5sum == md5sum:
+            print(
+                f"Compound splitting db {outfile} is already up to date.",
+                file=sys.stderr,
+            )
+            return
+        else:
+            conn.close()
+            outfile.unlink(missing_ok=True)
+
     conn = sqlite3.connect(outfile)
     conn.executescript(
         rf"""
+        CREATE TABLE version AS SELECT "{md5sum}" AS md5sum;
+
         ATTACH DATABASE '{input_path}/{lang}.sqlite3' AS generic;
 
         CREATE TEMPORARY VIEW form_with_entry AS

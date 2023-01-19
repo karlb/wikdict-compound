@@ -12,7 +12,7 @@ lang = sys.argv[1]
 compound = sys.argv[2]
 
 db_path = "compound_dbs"
-# make_db(lang, input_path="wikdict", output_path=db_path)
+make_db(lang, input_path="wikdict", output_path=db_path)
 
 
 results = split_compound(
