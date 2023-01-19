@@ -49,8 +49,8 @@ with open(f"tests/wikidata/wikidata_{lang}.tsv") as f:
             correct = normalized_test_parts == normalized_split_parts
             print(
                 compound,
-                parts,
-                [(p.written_rep, p.score) for p in solution.parts],
+                "·".join(parts),
+                "·".join(p.written_rep for p in solution.parts),
                 correct,
             )
             counts["passed" if correct else "failed"].append(
