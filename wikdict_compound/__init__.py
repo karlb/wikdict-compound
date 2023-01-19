@@ -14,9 +14,7 @@ query_count = 0
 DEBUG_QUERY_LOG = False
 
 
-def find_matches_in_db(db_path, lang, compound: str, ignore_word=None, first_part=True):
-    conn = sqlite3.connect(Path(db_path) / f"{lang}-compound.sqlite3")
-    conn.row_factory = sqlite3.Row
+def find_matches_in_db(conn, compound: str, ignore_word=None, first_part=True):
     global query_count
     query = """
         SELECT *
@@ -99,7 +97,7 @@ class PartialSolution(Solution):
 class SplitContext:
     """Context for the process of splitting a compound into all parts."""
 
-    db_path: Path
+    conn: sqlite3.Connection
     lang: str
     compound: str
     queries: int = 0
@@ -145,9 +143,7 @@ def get_potential_next_parts(
     compound, ignore_word, first_part, context
 ) -> Iterable[Part]:
     context.queries += 1
-    result = find_matches_in_db(
-        context.db_path, context.lang, compound, ignore_word, first_part
-    )
+    result = find_matches_in_db(context.conn, compound, ignore_word, first_part)
     if not result:
         return
 
@@ -219,7 +215,9 @@ def split_compound(
     write_graph_to_file: Optional[str] = None,
 ):
     compound = compound.lower()
-    context = SplitContext(db_path=db_path, lang=lang, compound=compound)
+    conn = sqlite3.connect(Path(db_path) / f"{lang}-compound.sqlite3")
+    conn.row_factory = sqlite3.Row
+    context = SplitContext(conn=conn, lang=lang, compound=compound)
     results = split_compound_interal(
         compound,
         partial_solution=PartialSolution(parts=[], compound=compound),
@@ -227,6 +225,7 @@ def split_compound(
         first_part=True,
         context=context,
     )
+    conn.close()
 
     if write_graph_to_file:
         with open(write_graph_to_file, "w") as f:
