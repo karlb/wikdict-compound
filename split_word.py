@@ -20,18 +20,12 @@ def normalize(part):
 
 
 counts: dict[str, list] = dict(total=[], found=[], passed=[], failed=[])
-with open(f"tests/wikidata/wikidata_{lang}.tsv") as f:
-    grouped_by_compound = itertools.groupby(
-        (line.rstrip("\n").split("\t") for line in f.readlines()),
-        key=lambda line: line[0],
-    )
-    for compound, (lines_for_compound) in grouped_by_compound:
+with open(f"tests/wikidata/wikidata_grouped_{lang}.tsv") as f:
+    split_lines = (line.rstrip("\n").split("\t") for line in f.readlines())
+    for compound, *parts in split_lines:
         if limit and len(counts["total"]) == limit:
             break
-        if compound.endswith("bo"):
-            continue
-        parts = [part for comp, part in lines_for_compound]
-        if len(parts) == 1:
+        if compound.endswith("bo") and lang == "sv":
             continue
         counts["total"].append(compound)
         normalized_test_parts = set(normalize(p) for p in parts)
