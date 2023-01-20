@@ -42,7 +42,7 @@ def find_matches_in_db(conn, compound: str, ignore_word=None, first_part=True):
               -- For test data evaluation only. Without this, we could not
               -- split compound words which are in the dictionary themselves.
               AND other_written IS NOT lower(:ignore_word)
-              AND written_rep IS NOT lower(:ignore_word)
+              AND lower(written_rep) IS NOT lower(:ignore_word)
         )
         ORDER BY rel_score DESC
         LIMIT 3
