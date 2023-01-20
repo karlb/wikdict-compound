@@ -152,7 +152,7 @@ def make_db(lang: str, input_path, output_path) -> None:
               AND NOT (length(other_written) = 1 AND affix_type IS NULL)
               AND (
                 part_of_speech NOT IN (
-                    'interjection', 'pronoun', 'proverb', 'phraseologicalUnit', 'symbol',
+                    'interjection', 'pronoun', 'indefinitePronoun', 'proverb', 'phraseologicalUnit', 'symbol',
                     'article', 'idiom', 'properNoun')
                 )
         )
