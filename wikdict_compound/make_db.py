@@ -97,6 +97,25 @@ def make_db(lang: str, input_path, output_path) -> None:
     """
     )
 
+    def remove_end(end, where="true", score_factor=0.2, replacement=""):
+        conn.execute(
+            f"""
+            INSERT INTO terms
+            SELECT
+                substr(other_written, 1, length(other_written) - :l)
+                    || :replacement
+                    AS other_written,
+                written_rep,
+                part_of_speech,
+                :score_factor AS score_factor
+            FROM form_with_entry
+            WHERE substr(other_written, -:l, :l) = :end AND {where}
+        """,
+            dict(
+                l=len(end), end=end, score_factor=score_factor, replacement=replacement
+            ),
+        )
+
     # Language specific data changes
     if lang == "de":
         conn.executescript(
@@ -106,6 +125,9 @@ def make_db(lang: str, input_path, output_path) -> None:
             DELETE FROM terms WHERE written_rep IN ('sein', 'in');
         """
         )
+        remove_end("ogie", replacement="og", where="pos = 'noun'", score_factor=0.5)
+        # Needs more testing
+        # remove_end("e", where="pos IN ('noun', 'suffix')")
     if lang == "sv":
         conn.executescript(
             """
