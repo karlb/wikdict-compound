@@ -125,9 +125,8 @@ def make_db(lang: str, input_path, output_path) -> None:
             DELETE FROM terms WHERE written_rep IN ('sein', 'in');
         """
         )
-        remove_end("ogie", replacement="og", where="pos = 'noun'", score_factor=0.5)
-        # Needs more testing
-        # remove_end("e", where="pos IN ('noun', 'suffix')")
+        remove_end("logie", replacement="log", where="pos = 'noun'", score_factor=0.5)
+        remove_end("e", where="pos IN ('noun', 'suffix')")
     if lang == "sv":
         conn.executescript(
             """
