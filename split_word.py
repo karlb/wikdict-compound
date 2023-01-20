@@ -25,6 +25,8 @@ with open(f"tests/wikidata/wikidata_grouped_{lang}.tsv") as f:
     for compound, *parts in split_lines:
         if limit and len(counts["total"]) == limit:
             break
+        if len(parts) == 1:
+            continue
         if compound.endswith("bo") and lang == "sv":
             continue
         counts["total"].append(compound)
