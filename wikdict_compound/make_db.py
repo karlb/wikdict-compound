@@ -38,6 +38,11 @@ def make_db(lang: str, input_path, output_path) -> None:
     temp_view = "TEMPORARY VIEW" if not DEBUG_DB else "TABLE"
 
     conn = sqlite3.connect(outfile, isolation_level="IMMEDIATE")
+
+    # sqlite's lower can only handle ascii (no Ä->ä)
+    conn.create_function("py_lower", 1, lambda x: x.lower(), deterministic=True)
+    lower = "lower" if lang != "de" else "py_lower"
+
     conn.executescript(
         rf"""
         CREATE TABLE version AS SELECT "{md5sum}" AS md5sum;
@@ -146,7 +151,7 @@ def make_db(lang: str, input_path, output_path) -> None:
         FROM (
             SELECT
                 written_rep,
-                lower(trim(other_written, '-')) AS other_written,
+                {lower}(trim(other_written, '-')) AS other_written,
                 part_of_speech,
                 score_factor,
                 CASE
@@ -176,7 +181,7 @@ def make_db(lang: str, input_path, output_path) -> None:
 
         CREATE TABLE compound_splitter AS
         SELECT 
-            lower(other_written) AS other_written,
+            other_written AS other_written,
             affix_type,
             group_concat(DISTINCT part_of_speech) AS part_of_speech_list,
             max(rel_score) AS rel_score,

@@ -50,7 +50,7 @@ for lang in 'de en es fi fr it nl pl sv'.split():
     )
     cog.out('* ' +output)
 ]]] -->
-* de: 80.3%-96.9% success, tested over 2984 cases
+* de: 81.5%-97.5% success, tested over 2984 cases
 * en: 67.7%-98.2% success, tested over 16061 cases
 * es: 27.5%-75.6% success, tested over 1000 cases
 * fi: 78.5%-96.9% success, tested over 65 cases
