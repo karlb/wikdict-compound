@@ -57,10 +57,9 @@ def make_db(lang: str, input_path, output_path) -> None:
 
         CREATE {temp_view} terms_from_forms AS
         SELECT other_written, written_rep, part_of_speech,
-            CASE "case"
-                WHEN 'GenitiveCase' THEN 1
-                ELSE 0.5
-            END AS score_factor
+            (
+                0.5 -- prefer base entries to inflected forms
+            ) AS score_factor
         FROM form_with_entry
         ;
 
