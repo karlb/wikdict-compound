@@ -177,7 +177,7 @@ def make_db(lang: str, input_path, output_path) -> None:
 
         CREATE TABLE compound_splitter AS
         SELECT 
-            other_written,
+            lower(other_written) AS other_written,
             affix_type,
             group_concat(DISTINCT part_of_speech) AS part_of_speech_list,
             max(rel_score) AS rel_score,
