@@ -29,11 +29,12 @@ def find_matches_in_db(conn, compound: str, ignore_word=None, first_part=True):
             WHERE (
                 (
                     other_written <= :compound
-                    AND other_written >= substr(:compound, 1, 2)
+                    AND other_written >= substr(:compound, 1, 4)
                     AND :compound LIKE other_written || '%'
-                ) OR (
-                    other_written = substr(:compound, 1, 1)
                 )
+                OR other_written = substr(:compound, 1, 1)
+                OR other_written = substr(:compound, 1, 2)
+                OR other_written = substr(:compound, 1, 3)
             )
             --WHERE other_written <= :compound AND :compound LIKE other_written || '%'
             --WHERE other_written <= :compound AND other_written || 'z' > :compound
