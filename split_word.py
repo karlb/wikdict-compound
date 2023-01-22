@@ -41,6 +41,12 @@ with open(f"tests/wikidata/wikidata_grouped_{lang}.tsv") as f:
             )
             if lang in ("de", "sv"):
                 normalized_split_parts -= {"s"}
+            if lang == "en":
+                # English test data usually uses 'ion' as an ending for '-tion'
+                # words. I assume the mean the same thing.
+                if "tion" in normalized_split_parts and "ion" in normalized_test_parts:
+                    normalized_split_parts.remove("tion")
+                    normalized_split_parts.add("ion")
             counts["found"].append(solution)
             correct = normalized_test_parts == normalized_split_parts
             print(
