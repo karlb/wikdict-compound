@@ -28,5 +28,5 @@ setup(
     packages=["wikdict_compound"],
     install_requires=[],
     extras_require={"test": ["pytest"]},
-    python_requires=">=3.7",
+    python_requires=">=3.9",
 )
