@@ -121,7 +121,10 @@ def make_db(lang: str, input_path, output_path) -> None:
         )
         remove_end("logie", replacement="log", score_factor=0.5)
         remove_end("e")
-    if lang == "sv":
+    elif lang == "en":
+        remove_end("te")
+        remove_end("e")
+    elif lang == "sv":
         # "-a" is better handled by the -a rule below
         conn.execute("DELETE FROM terms WHERE written_rep = '-a'")
         remove_end(
