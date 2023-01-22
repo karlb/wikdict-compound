@@ -81,7 +81,11 @@ def make_db(lang: str, input_path, output_path) -> None:
     """
     )
 
-    def remove_end(end, where="true", score_factor=0.2, replacement=""):
+    def remove_end(
+        end, where="true", score_factor=0.2, replacement="", from_table="terms"
+    ):
+        if from_table == "terms":
+            where += " AND rule IS NULL"
         conn.execute(
             f"""
             INSERT INTO terms
@@ -93,9 +97,8 @@ def make_db(lang: str, input_path, output_path) -> None:
                 part_of_speech,
                 :score_factor AS score_factor,
                 'remove-' || :end AS rule
-            FROM terms
+            FROM {from_table}
             WHERE substr(other_written, -:l, :l) = :end
-              AND rule IS NULL
               AND {where}
         """,
             dict(
@@ -115,25 +118,12 @@ def make_db(lang: str, input_path, output_path) -> None:
         remove_end("logie", replacement="log", score_factor=0.5)
         remove_end("e")
     if lang == "sv":
-        conn.executescript(
-            """
-            -- "-a" is better handled by the -a rule below
-            DELETE FROM terms WHERE written_rep = '-a';
-
-            -- Remove -a from verb infinitives
-            INSERT INTO terms
-            SELECT
-                substr(other_written, 1, length(other_written) - 1) AS other_written,
-                written_rep,
-                part_of_speech,
-                0.2 AS score_factor,
-                'remove-a' AS rule
-            FROM form_with_entry
-            WHERE pos = 'verb'
-                AND mood = 'Infinitive'
-                AND voice = 'ActiveVoice'
-                AND substr(other_written, -1, 1) = 'a'
-        """
+        # "-a" is better handled by the -a rule below
+        conn.execute("DELETE FROM terms WHERE written_rep = '-a'")
+        remove_end(
+            "a",
+            where="pos = 'verb' AND mood = 'Infinitive' AND voice = 'ActiveVoice'",
+            from_table="form_with_entry",
         )
 
     conn.executescript(
