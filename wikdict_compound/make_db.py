@@ -74,9 +74,9 @@ def make_db(lang: str, input_path, output_path) -> None:
         ;
 
         CREATE {temp_table} terms AS
-        SELECT * FROM terms_from_forms
+        SELECT *, null AS rule FROM terms_from_forms
         UNION ALL
-        SELECT * FROM terms_from_entries
+        SELECT *, null AS rule FROM terms_from_entries
         ;
     """
     )
@@ -91,9 +91,12 @@ def make_db(lang: str, input_path, output_path) -> None:
                     AS other_written,
                 written_rep,
                 part_of_speech,
-                :score_factor AS score_factor
-            FROM form_with_entry
-            WHERE substr(other_written, -:l, :l) = :end AND {where}
+                :score_factor AS score_factor,
+                'remove-' || :end AS rule
+            FROM terms
+            WHERE substr(other_written, -:l, :l) = :end
+              AND rule IS NULL
+              AND {where}
         """,
             dict(
                 l=len(end), end=end, score_factor=score_factor, replacement=replacement
@@ -109,8 +112,8 @@ def make_db(lang: str, input_path, output_path) -> None:
             DELETE FROM terms WHERE written_rep IN ('sein', 'in');
         """
         )
-        remove_end("logie", replacement="log", where="pos = 'noun'", score_factor=0.5)
-        remove_end("e", where="pos IN ('noun', 'suffix')")
+        remove_end("logie", replacement="log", score_factor=0.5)
+        remove_end("e")
     if lang == "sv":
         conn.executescript(
             """
@@ -123,7 +126,8 @@ def make_db(lang: str, input_path, output_path) -> None:
                 substr(other_written, 1, length(other_written) - 1) AS other_written,
                 written_rep,
                 part_of_speech,
-                0.2 AS score_factor
+                0.2 AS score_factor,
+                'remove-a' AS rule
             FROM form_with_entry
             WHERE pos = 'verb'
                 AND mood = 'Infinitive'
