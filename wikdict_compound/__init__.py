@@ -220,7 +220,12 @@ def split_compound(
     write_graph_to_file: Optional[str] = None,
 ):
     compound = compound.lower()
-    conn = sqlite3.connect(Path(db_path) / f"{lang}-compound.sqlite3")
+    filename = str(Path(db_path) / f"{lang}-compound.sqlite3")
+    try:
+        conn = sqlite3.connect(f"file:{filename}?mode=rw", uri=True)
+    except sqlite3.OperationalError:
+        raise FileNotFoundError(filename)
+
     conn.row_factory = sqlite3.Row
     context = SplitContext(conn=conn, lang=lang, compound=compound)
     results = split_compound_interal(
