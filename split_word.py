@@ -12,7 +12,9 @@ lang = sys.argv[1]
 limit = int(sys.argv[2]) if len(sys.argv) > 2 else None
 
 db_path = "compound_dbs"
-make_db(lang, input_path="wikdict", output_path=db_path)
+make_db(
+    lang, input_path="wikdict", output_path=db_path, update_on_source_db_change=True
+)
 
 
 def normalize(part):

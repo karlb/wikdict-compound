@@ -11,19 +11,28 @@ with open(__file__, "rb") as f:
     md5sum = hashlib.md5(f.read()).hexdigest()
 
 
-def make_db(lang: str, input_path, output_path) -> None:
+def make_db(
+    lang: str, input_path, output_path, update_on_source_db_change=False
+) -> None:
     output_path = Path(output_path)
     output_path.mkdir(exist_ok=True)
     outfile = output_path / f"{lang}-compound.sqlite3"
+    infile = Path(input_path) / f"{lang}.sqlite3"
+    db_timestamp = int(infile.stat().st_mtime)
 
     # Skip recreation if up to date, otherwise delete existing
     if outfile.exists():
         conn = sqlite3.connect(outfile)
         try:
-            existing_md5sum = conn.execute("SELECT md5sum FROM version").fetchone()[0]
-        except sqlite3.OperationalError:
-            existing_md5sum = None
-        if existing_md5sum == md5sum:
+            last_md5sum, last_db_timestamp = conn.execute(
+                "SELECT make_db_md5sum, source_db_timestamp FROM version"
+            ).fetchone()
+        except (sqlite3.OperationalError, ValueError):
+            last_md5sum = None
+            last_db_timestamp = None
+        if last_md5sum == md5sum and (
+            last_db_timestamp == db_timestamp or not update_on_source_db_change
+        ):
             print(
                 f"Compound splitting db {outfile} is already up to date.",
                 file=sys.stderr,
@@ -37,7 +46,7 @@ def make_db(lang: str, input_path, output_path) -> None:
     temp_table = "TEMPORARY TABLE" if not DEBUG_DB else "TABLE"
     temp_view = "TEMPORARY VIEW" if not DEBUG_DB else "TABLE"
 
-    conn = sqlite3.connect(outfile, isolation_level="IMMEDIATE")
+    conn = sqlite3.connect(outfile)
 
     # sqlite's lower can only handle ascii (no Ä->ä)
     conn.create_function("py_lower", 1, lambda x: x.lower(), deterministic=True)
@@ -45,9 +54,11 @@ def make_db(lang: str, input_path, output_path) -> None:
 
     conn.executescript(
         rf"""
-        CREATE TABLE version AS SELECT "{md5sum}" AS md5sum;
+        CREATE TABLE version AS
+        SELECT '{md5sum}' AS make_db_md5sum,
+               {db_timestamp} as source_db_timestamp;
 
-        ATTACH DATABASE '{input_path}/{lang}.sqlite3' AS generic;
+        ATTACH DATABASE '{infile}' AS generic;
 
         CREATE {temp_table} form_with_entry AS
         SELECT *
@@ -196,3 +207,5 @@ def make_db(lang: str, input_path, output_path) -> None:
         CREATE INDEX compound_splitter_idx ON compound_splitter(other_written);
     """
     )
+
+    conn.commit()
