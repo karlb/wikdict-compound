@@ -176,7 +176,7 @@ def split_compound_interal(
             partial_solution, parts=partial_solution.parts + [new_part]
         )
 
-        new_node_name = f"{context.queries}-{new_part.written_rep}"
+        new_node_name = f"{context.queries}-{new_part.written_rep}-{new_part.match}"
         context.graph_str += f'\t"{node_name}" -> "{new_node_name}"\n'
         context.graph_str += f'\t"{new_node_name}" [label="{new_part.written_rep}\\n{new_part.match}\\n{new_part.score:.2f}\\n{new_partial_solution.score:.2f}"]\n'
 
