@@ -42,7 +42,7 @@ Since some words have multiple valid splittings and the Wikidata entries are not
 <!-- [[[cog
 import cog
 import subprocess
-for lang in 'de en es fi fr it nl pl sv'.split():
+for lang in 'de en es fi fr it nl pl sv da'.split():
     output = subprocess.check_output(
         f'./split_word.py {lang} | tail -1',
         shell=True,
