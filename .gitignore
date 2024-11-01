@@ -1,5 +1,6 @@
 /wikdict
 /compound_dbs
+/comparison_output
 
 .venv
 __pycache__/
