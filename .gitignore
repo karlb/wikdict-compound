@@ -12,3 +12,5 @@ venv
 .DS_Store
 dist
 build
+graph.dot
+tests/wikidata/wikidata_??.tsv
