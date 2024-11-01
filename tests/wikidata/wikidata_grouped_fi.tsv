@@ -1,4 +1,7 @@
+aamukahvi	aamu	kahvi
 aamupäivä	aamu	päivä
+aapeluskirja	aapelus	kirja
+alkupäivä	alku	päivä
 asiakirja	asia	kirja
 avioliitto	avio	liitto
 eduskunta	edus	kunta
@@ -9,10 +12,10 @@ eläintarha	eläin	tarha
 etunimi	etu	nimi
 heinäkuu	heinä	kuu
 helmikuu	helmi	kuu
-henkilöstö	henkilö	stö
+henkilöstö	henkilö
 huhtikuu	huhta	kuu
 huuliharppu	huuli	harppu
-ilmasto	ilma	sto
+ilmasto	ilma	stO
 iltapäivä	ilta	päivä
 jauheliha	jauhe	liha
 joulukuu	joulu	kuu
@@ -21,25 +24,37 @@ kansanedustaja	kansa	edustaja
 kaupunginosa	osa	kaupunki
 kesäkuu	kesä	kuu
 kiertokulku	kierto	kulku
-kirjasto	kirja	sto
+kilometri	kilo	metri
+kirjasto	kirja	stO
 kuukausi	kuu	kausi
+käynti	käydä	nti
 käyntikortti	käynti	kortti
-lastentarha	tarha	lapsi
-lehdistö	lehti	stö
+lastentarha	lapsi	tarha
+lehdistö	lehti
+leipälapio	leipä	lapio
+liikenne	liike	nne
 lokakuu	loka	kuu
+läheisyyskoreografi	läheisyys	koreografi
 maailma	maa	ilma
 maaliskuu	kuu
 marraskuu	marras	kuu
-miehistö	mies	stö
-neuloosi	neuloa	neuroosi
+miehistö	mies
+naamataulu	naama	taulu
+neuloosi	neuroosi	neuloa
 neulootikko	neurootikko	neuloa
+ohjelmoida	ohjelma	oida
+ohjelmointi	ohjelmoida	nti
 palokunta	palo	kunta
-putipuhdas	puti	puhdas
+putipuhdas	puhdas
 puutarha	puu	tarha
 rautalanka	rauta	lanka
 sanakirja	sana	kirja
-suihinotto	suu	otto
+silitysrauta	silitys	rauta
+suihinotto	otto	suu
 sukunimi	suku	nimi
+suojatie	suoja	tie
+suru-uutinen	suru	uutinen
+suuntavaisto	suunta	vaisto
 syyskuu	kuu
 sähköposti	sähkö	posti
 tammikuu	tammi	kuu
@@ -53,19 +68,20 @@ tietosuoja	tieto	suoja
 tietoturva	tieto	turva
 tietotyö	tieto	työ
 tietoverkko	tieto	verkko
-toimisto	toimi	sto
-toukokuu	kuu
-typötyhjä	typö	tyhjä
+toimisto	toimi	stO
+toukokuu	touko	kuu
+typötyhjä	tyhjä
 täpötäysi	täpö	täysi
-upouusi	upo	uusi
+upouusi	uusi
 vaalipiiri	vaali	piiri
+verryttelypuku	verryttely	puku
 viikonpäivä	viikko	päivä
 voileipä	voi	leipä
 vuodenaika	aika	vuosi
 vuorokausi	vuoro	kausi
 vuosikymmen	vuosi
-vuosisata	vuosi
-vuosituhat	vuosi
+vuosisata	vuosi	sata
+vuosituhat	vuosi	tuhat
 väkijoukko	väki	joukko
 ydinvoima	ydin	voima
 äidinkieli	kieli	äiti

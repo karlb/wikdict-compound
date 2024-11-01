@@ -16,17 +16,17 @@ bialuchny	biały	uchny
 bialuteńki	bialutki	eńki
 bialutki	biały	utki
 białość	biały	ość
-biedaczek	-ka	biedak
+biedaczek	biedak	-ka
 biedniutki	biedny	utki
 bieluchny	-uchny	biały
 bieluteńki	bielutki	eńki
-bielutki	-utki	biały
-bieluśki	-uśki	biały
+bielutki	biały	-utki
+bieluśki	biały	-uśki
 bizmutowy	bizmut	owy
 borek	bór	ek
 brzoskwinka	brzoskwinia	ka
 błahość	błahy	ość
-calusieńki	caluśki	-eńki
+calusieńki	-eńki	caluśki
 caluteńki	calutki	eńki
 calutki	cały	utki
 caluśki	cały	uśki
@@ -36,9 +36,9 @@ chrzanik	chrzan	ik
 chrząszczyk	chrząszcz	yk
 cierpliwość	cierpliwy	ość
 cyraneczka	cyranka	eczka
-czerwcowy	-owy	czerwiec
+czerwcowy	czerwiec	-owy
 czwartkowy	czwartek	owy
-cząstka	-ka	część
+cząstka	część	-ka
 dinarowy	dinar	owy
 dolarowy	dolar	owy
 domeczek	domek	eczek
@@ -78,10 +78,10 @@ jaskółeczka	jaskółka	eczka
 jedwabik	jedwab	ik
 kalafiorek	kalafior	ek
 kalafiorowy	kalafior	owy
-kalarepka	-ka	kalarepa
+kalarepka	kalarepa	-ka
 kalendarzowy	kalendarz	owy
 kalendarzyk	kalendarz	yk
-kapustka	-ka	kapusta
+kapustka	kapusta	-ka
 karpik	karp	ik
 kobiecość	kobiecy	ość
 kobietka	kobieta	ka
@@ -93,8 +93,8 @@ kraik	kraj	ik
 krezusowy	krezus	owy
 krokodyli	krokodyl	i
 krokodylowy	krokodyl	owy
-krzemyk	krzemień	-yk
-kurewka	-ka	kurwa
+krzemyk	-yk	krzemień
+kurewka	kurwa	-ka
 kwadransik	kwadrans	ik
 kwietniowy	kwiecień	-owy
 laseczek	lasek	eczek
@@ -105,7 +105,7 @@ listopadowy	listopad	owy
 lutowy	luty	owy
 majowy	maj	owy
 marchewka	marchew	ka
-marcowy	marzec	-owy
+marcowy	-owy	marzec
 marniutki	marny	utki
 miejskość	miejski	ość
 minutka	minuta	ka
@@ -116,7 +116,7 @@ młodziuteńki	młodziutki	eńki
 młodziutki	młody	utki
 nektarynka	nektaryna	ka
 neonik	neon	ik
-niedźwiadek	-ek	niedźwiedź
+niedźwiadek	niedźwiedź	-ek
 niedźwiedzi	niedźwiedź	i
 nowiuchny	nowy	uchny
 nowiusieńki	nowiuśki	-eńki
@@ -140,7 +140,7 @@ paździerzowy	paździerz	owy
 pełniuteńki	pełniutki	eńki
 pełniutki	pełny	utki
 pełność	pełny	ość
-piątkowy	piątek	-owy	piątka
+piątkowy	piątek	piątka	-owy
 polonowy	polon	owy
 polskość	polski	ość
 pomarańczka	pomarańcza	ka
@@ -154,7 +154,7 @@ prawnik	prawo	nik
 pszczółka	pszczoła	-ka
 radonowy	radon	owy
 rodzinka	rodzina	ka
-ropuszka	-ka	ropucha
+ropuszka	ropucha	-ka
 roztropność	roztropny	ość
 rozumność	rozumny	ość
 roślinka	roślina	ka
@@ -181,9 +181,10 @@ szlafroczek	szlafrok	ek
 szlafrokowy	szlafrok	owy
 sąsiadka	sąsiad	ka
 słoniowy	słoń	owy
+słonisko	słoń
 słowiczek	słowik	iczek
 słownikowy	słownik	owy
-tantalowy	Tantal	-owy	tantal
+tantalowy	Tantal	tantal	-owy
 topinamburowy	topinambur	owy
 torowy	tor	owy
 truskaweczka	truskawka	eczka
@@ -197,7 +198,7 @@ wierszowy	wiersz	owy
 wierszyk	wiersz	yk
 wiosenka	wiosna	ka
 wolframowy	wolfram	owy
-wrześniowy	-owy	wrzesień
+wrześniowy	wrzesień	-owy
 wróbelek	wróbel	ek
 wróbliczka	wróblica	ka
 wspaniałość	wspaniały	ość

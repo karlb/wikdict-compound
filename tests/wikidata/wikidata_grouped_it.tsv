@@ -7,13 +7,38 @@ al	a	il
 alla	a	la
 alle	a	le
 allo	a	lo
+anti-	anti
+antiacido	anti	acido
+antiacne	anti	acne
+anticarro	anti	carro
+anticristo	anti
+antidroga	anti	droga
+antietà	anti	età
+antiforfora	anti	forfora
+antifumo	anti	fumo
+antifurto	anti	furto
+antigas	anti	gas
+antigelo	anti	gelo
+antigravità	anti	gravità
+antinebbia	anti	nebbia
+antioscillazione	anti	oscillazione
+antipasto	anti	pasto
+antipolitica	anti	politica
+antisala	anti	sala
+antismog	anti	smog
+antistress	anti	stress
+antitarlo	anti	tarlo
+antivigilia	anti	vigilia
+antivirus	anti	virus
 arcobaleno	arco	baleno
+aromaterapia	aroma	terapia
 autobomba	auto	bomba
 automobilismo	automobile	ismo
 autoparco	auto	parco
 autoricambio	auto	ricambio
 autorimessa	auto	rimessa
 autosilo	auto	silo
+autosvezzamento	auto	svezzamento
 bagagliaio	bagaglio	aio
 banchetto	banco	etto
 barbabietola	barba	bietola
@@ -26,8 +51,9 @@ bozzetto	bozzo	etto
 brevemente	breve	mente
 calandrella	calandra	ello
 camerino	camera	ino
-capodoglio	olio	di	capo
+capodoglio	di	capo	olio
 cappelleria	cappello	eria
+carbonio-14	quattordici	carbonio
 carrello	carro	ello
 carretto	carro	etto
 cartella	carta	ello
@@ -49,12 +75,14 @@ dalle	da	le
 dallo	da	lo
 degli	di	gli
 dei	di	i
-del	il	di
+del	di	il
 della	di	la
 delle	di	le
 dello	di	lo
 disaccordo	dis	accordo
 drogheria	droga	eria
+eco-elettrodomestico	eco	elettrodomestico
+ecoarchitettura	eco	architettura
 energicamente	energico
 energico	energia	ico
 energivoro	energia	voro
@@ -70,8 +98,11 @@ ginepraio	ginepro	aio
 graffetta	graffa	etto
 grottesco	grotta	esco
 imbarcare	in	barca
-impaccare	pacco	in
+impaccare	in	pacco
+impersistente	im	persistente
+impossibile	im	possibile
 lampadario	lampada	ario
+lavorabile	lavorare
 linguina	lingua	ino
 macchinetta	macchina	etto
 maestranza	maestro	anza
@@ -80,11 +111,35 @@ maglione	maglia	one
 manovellismo	manovella	ismo
 masgalano	mas	galante
 materassino	materasso	ino
+maximoto	motocicletta	maxi-
 mazzafrusto	mazza	frusta
 minigonna	mini	gonna
+motobarca	moto	barca
+motocarrozzetta	moto	carrozza
+motocicletta	moto	ciclo
+motociclismo	moto	ciclismo
+motociclo	moto	ciclo
+motocoltivatore	moto	coltivatore
+motoelica	moto	elica
+motofurgone	moto	furgone
+motogeneratore	moto
+motolivellatrice	moto-	generatore
+motomezzo	moto	mezzo
+motonave	moto	nave
+motoneurone	moto	neurone
+motopeschereccio	moto	peschereccio
+motopropulsore	moto	propulsore
+motoreattore	moto	reattore
+motoscafo	moto	scafo
+motovedetta	moto	vedetta
+motoveicolo	moto	veicolo
+motoveleggiatore	moto	veleggiatore
+motovelivolo	moto	velivolo
+motovettura	moto	vettura
+motozappa	moto	zappa
 negli	in	gli
-nei	i	in
-nel	il	in
+nei	in	i
+nel	in	il
 nella	in	la
 nelle	in	le
 nello	in	lo
@@ -95,10 +150,12 @@ orologeria	orologio	eria
 paglietta	paglia	etto
 pancetta	pancia	etto
 panciotto	pancia	otto
+parapiglia	parare	pigliare
 piastrella	piastra	ello
 piumino	piuma	ino
 pollame	pollo	ame
 popolaccio	popolo	accio
+portacenere	portare	cenere
 raganella	ragano	ello
 ravanello	rafano	-ello
 renaio	rena	aio
@@ -106,7 +163,7 @@ retrogusto	retro	gusto
 risotto	riso	otto
 rosaio	rosa	aio
 roveto	rovo	eto
-saponetta	sapone	-etto
+saponetta	-etto	sapone
 sardella	sarda	ello
 scaletta	scala	etto
 segheria	sega	eria
@@ -127,7 +184,21 @@ sulla	su	la
 sulle	su	le
 sullo	su	lo
 suoneria	suono	eria
+super-io	super	io
+superalcolico	super	alcolico
+superclasse	super	classe
+supercondensatore	super	condensatore
+supercoppa	super	coppa
+supercriminale	super	criminale
+superfluidità	super	fluidità
+supergruppo	super	gruppo
+supermercato	super	mercato
+superpartes	super	pars
+superplasticità	super	plasticità
+superpotenza	super	potenza
+supersimmetria	super	simmetria
 tamburello	tamburo	ello
+tartufolo	tartufo	olo
 tavoletta	tavola	etto
 tavolino	tavolo	ino
 tavolone	tavolo	one
@@ -135,4 +206,6 @@ timoneria	timone	eria
 topino	topo	ino
 trampoliere	trampolo	iere
 tubetto	tubo	etto
+utopia	τόπος	οὖ
 uvetta	uva	etto
+videoconferenza	video	conferenza

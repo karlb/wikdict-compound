@@ -12,7 +12,7 @@ AI-chatbot	AI	chatbot
 AI-hype	AI	hype
 AI-kapløb	AI	kapløb
 AI-rådgiver	AI	rådgiver
-AI-skabt	AI	skabt	-
+AI-skabt	-	skabt	AI
 AI-system	AI	system
 Adriaterhavet	hav
 Aftenshowet	aften	show
@@ -86,7 +86,7 @@ EM-værtskab	EM	værtskab
 EP-valg	valg
 EU-aftale	EU	aftale
 EU-ambassadør	EU	ambassadør
-EU-analytiker	EU	analytiker	-
+EU-analytiker	-	EU	analytiker
 EU-borger	EU	borger
 EU-holdning	EU	holdning
 EU-jura	EU	jura
@@ -186,7 +186,7 @@ Hovedstadsmetropol	hovedstad	s
 Humlebæk	humle
 Husum	-um
 Hviderusland	hvid	e	Rusland
-IT-afdeling	afdeling	IT	-
+IT-afdeling	afdeling	-	IT
 IT-baseret	IT
 IT-branche	IT	branche
 IT-chef	IT	chef
@@ -201,7 +201,7 @@ IT-nyhed	IT	nyhed
 IT-platform	IT	platform
 IT-projekt	IT	projekt
 IT-samfund	IT	samfund
-IT-selskab	IT	selskab	-
+IT-selskab	-	IT	selskab
 IT-sikkerhed	IT	sikkerhed
 IT-system	IT	system
 IT-uddannet	IT	uddannet
@@ -218,7 +218,7 @@ Jyderup	-rup
 Jyllands-Posten	Jylland	s	post
 Jørgensen	Jørgen	sen
 Karlsen	Karl	sen
-Karlsvognen	-s-	vogn
+Karlsvognen	vogn	-s-
 Karup	rup
 Klampenborgvej	Klampenborg	vej
 Kornum	-um
@@ -297,7 +297,7 @@ OL-hest	OL	hest
 OL-hold	OL	hold
 OL-kvartfinale	OL	kvartfinale
 OL-løb	OL	løb
-OL-medalje	OL	medalje	-
+OL-medalje	medalje	OL	-
 OL-medaljevinder	OL	medaljevinder
 OL-overraskelse	OL	overraskelse
 OL-præstation	OL	præstation
@@ -388,7 +388,7 @@ Sydslesvig	syd	Slesvig
 Sydøstasien	sydøst	Asien
 Syvstjernen	syv	stjerne
 Sønderjylland	Jylland
-Søndervangshallen	-s-	hal
+Søndervangshallen	hal	-s-
 Sørensen	Søren	sen
 T-kryds	t	kryds
 T-rør	t	rør
@@ -397,7 +397,7 @@ TV-hold	tv	hold
 TV-julekalender	tv	julekalender
 TV-overvåge	tv	overvåge
 TV-overvågning	tv	overvågning
-TV-producer	producer	-	tv
+TV-producer	-	tv	producer
 TV-profil	tv	profil
 TV-program	tv	program
 TV-quiz	tv	quiz
@@ -443,13 +443,13 @@ Vurderingsstyrelsen	vurdering	s	styrelse
 Værløse	-løse
 WC-børste	WC	børste
 WC-kumme	WC	kumme
-WC-papir	-	papir	WC
+WC-papir	WC	papir	-
 WC-rens	WC
 Wikidata	wiki	data
 Y-kromosom	y	kromosom
 Yoldiahavet	hav
 a-mol	a	mol
-a-våben	våben	-
+a-våben	-	våben
 aabenraaer	Aabenraa	er
 aalborgenser	Aalborg	enser
 aalborgsk	Aalborg	sk
@@ -465,7 +465,7 @@ abonnementsafgift	abonnement	s	afgift
 abonnementsbetingelse	abonnement	s	betingelse
 abonnementskoncert	abonnement	s	koncert
 abonnementskort	abonnement	s	kort
-abonnementstype	abonnent	type	-s-
+abonnementstype	type	abonnent	-s-
 abortere	abort	ere
 abortmyte	abort	myte
 abrikosfarvet	abrikos	farvet
@@ -677,7 +677,7 @@ aflaste	af	laste
 aflastning	aflaste	ning
 aflede	af
 afledning	aflede	ning
-afledningsendelse	endelse	-e-	afledning
+afledningsendelse	afledning	-e-	endelse
 aflejre	af
 aflejring	aflejre	ing
 aflevere	af	levere
@@ -696,7 +696,7 @@ aflåse	af	låse
 aflægge	af	lægge
 aflære	af	lære
 aflæse	af	læse
-aflæsning	aflæsse	aflæse	-ning
+aflæsning	-ning	aflæse	aflæsse
 aflæsse	af	læsse
 afløbsledning	afløb	s	ledning
 afløbsmodel	afløb	s	model
@@ -860,7 +860,7 @@ aftrapning	aftrappe	ning
 aftrappe	af
 aftryk	af
 aftrækker	af	trække	er
-aftræksemhætte	-s-	emhætte
+aftræksemhætte	emhætte	-s-
 aftvinge	af	tvinge
 afvande	af	vande
 afvanding	afvande	ning
@@ -977,7 +977,7 @@ alkoholvane	alkohol	vane
 alkometertest	alkometer	test
 allerallervigtigst	aller	allervigtigst
 allerbagest	aller	bagest
-allerbedst	god	aller-
+allerbedst	aller-	god
 allerbilligst	aller	billig
 allerdejligst	aller	dejlig
 allerdybest	aller	dyb
@@ -993,14 +993,14 @@ allergifremkaldende	allergi
 allergisk	allergi	sk
 allergiteste	allergi	teste
 allergivenlig	allergi	venlig
-allerhelst	gerne	aller-
+allerhelst	aller-	gerne
 allerhelvedes	aller	helvede
 allerhårdest	aller	hård
 allerhøjest	aller	høj
 allerhøjst	aller	højst
 allerinderst	aller	indre
 allerkærest	aller	kær
-allerlængst	lang	aller-
+allerlængst	aller-	lang
 allermest	megen	aller-
 allermindst	aller-	lille
 allernederst	aller	nedre
@@ -1020,7 +1020,7 @@ allerunderdanigst	aller
 allervigtigst	aller	vigtig
 allerværst	aller	værre
 alleryderst	aller	ydre
-alleryngst	ung	aller-
+alleryngst	aller-	ung
 allerældst	gammel	aller-
 allerøstligst	aller	østlig
 allerøverst	aller	øvre
@@ -1076,7 +1076,7 @@ ammoniumnitrat	ammonium	nitrat
 ammunitionsproduktion	ammunition	s	produktion
 ammunitionsrydning	ammunition	s	rydning
 ammunitionsrydningstjeneste	ammunitionsrydning	s	tjeneste
-amning	-ning	amme
+amning	amme	-ning
 amperemeter	ampere	meter
 analfabetisk	analfabet	isk
 analfabetisme	analfabet	isme
@@ -1294,7 +1294,7 @@ arbejdsbelysning	arbejde	s	belysning
 arbejdsbord	arbejde	s	bord
 arbejdsbukser	arbejde	s	bukser
 arbejdsdag	arbejde	s	dag
-arbejdsdygtig	-e-	arbejde	-dygtig
+arbejdsdygtig	-e-	-dygtig	arbejde
 arbejdsfolk	arbejde	s	folk
 arbejdsformidling	arbejde	s	formidling
 arbejdsgiver	arbejde	s
@@ -1390,7 +1390,7 @@ armbånd	arm	bånd
 armbåndsur	armbånd	s	ur
 armbøjning	arm	bøjning
 armhule	arm	hule
-armkræfter	arm	kraft
+armkræfter	kraft	arm
 armslængde	arm	s	længde
 arrigskab	arrig	skab
 arsenikholdig	arsenik	holdig
@@ -1400,7 +1400,7 @@ artsscore	art	s	score
 arveanlæg	arve	anlæg
 arvefølge	arve
 arvelig	arve	lig
-arvemasse	masse	-e-
+arvemasse	-e-	masse
 arveonkel	arve	onkel
 arveord	arve	ord
 arvesynd	arve	synd
@@ -1687,9 +1687,9 @@ bedragerisag	bedrageri	sag
 bedragerisigtet	bedrageri
 bedragerisk	bedrageri	sk
 bedring	bedre	ing
-bedstefar	god	far
-bedsteforælder	god	-e-	forælder
-bedstemor	god	mor
+bedstefar	far	god
+bedsteforælder	-e-	god	forælder
+bedstemor	mor	god
 bedyre	be
 bedømme	be	dømme
 bedømmelse	bedømme	else
@@ -1821,7 +1821,7 @@ belure	be	lure
 belyse	be	lyse
 belysning	belyse	ning
 belægge	be	lægge
-belægningsgrad	-s-	grad
+belægningsgrad	grad	-s-
 belære	be	lære
 belæsse	be	læsse
 belønne	be	lønne
@@ -2122,7 +2122,7 @@ bindevævssygdom	bindevæv	s	sygdom
 biobrændsel	bio	brændsel
 biodiversitet	bio	diversitet
 biodiversitetskort	biodiversitet	s	kort
-biodiversitetstab	kort	biodiversitet	-s-
+biodiversitetstab	kort	-s-	biodiversitet
 bioenergi	bio	energi
 biofilmdannelse	dannelse
 biogas	bio	gas
@@ -2151,7 +2151,7 @@ bispekåbe	bisp	e	kåbe
 bispevielse	bisp	e	vielse
 bissekræmmer	kræmmer
 bistade	bi
-bistandslov	-s-	lov
+bistandslov	lov	-s-
 bistå	bi	stå
 bisværm	bi	sværm
 bisætte	bi	sætte
@@ -2476,7 +2476,7 @@ briefe	brief	e
 brilleetui	briller	etui
 brilleslange	briller	slange
 broderisme	-isme	bror
-broderskab	bror	-skab
+broderskab	-skab	bror
 brofast	bro	fast
 brokollaps	bro	kollaps
 brolinje	bro	linje
@@ -2549,7 +2549,7 @@ brystkræftundersøgelse	brystkræft	undersøgelse
 brystpumpe	bryst	pumpe
 brystundersøgelse	bryst	undersøgelse
 brystvorte	bryst
-bræddegulv	bræt	gulv
+bræddegulv	gulv	bræt
 brændbar	brænde	bar
 brændekløver	brænde	kløve	er
 brændekomfur	brænde	komfur
@@ -2727,35 +2727,35 @@ bøjning	bøje	ning
 bølgelængde	bølge	længde
 bøllehat	hat
 bølleoptøjer	optøjer
-børnebog	bog	-e-	barn
-børnecykel	cykel	-e-	barn
+børnebog	-e-	bog	barn
+børnecykel	-e-	barn	cykel
 børnefamilie	-e-	familie	barn
 børnehave	have	barn
 børnehavebarn	børnehave	barn
 børnehaveklasse	børnehave	klasse
 børnehaveområde	børnehave	område
-børnehospital	hospital	-e-	barn
+børnehospital	-e-	hospital	barn
 børneinstitution	-e-	institution	barn
-børnekikkert	-e-	barn	kikkert
+børnekikkert	-e-	kikkert	barn
 børnekultur	-e-	barn	kultur
-børnekulturel	kulturel	-e-	barn
-børnemadras	madras	-e-	barn
+børnekulturel	-e-	kulturel	barn
+børnemadras	-e-	madras	barn
 børnepasning	-e-	barn
-børnepenge	penge	-e-	barn
-børneperspektiv	-e-	barn	perspektiv
-børneporno	barn	porno
-børnepornografi	-e-	barn	pornografi
+børnepenge	-e-	penge	barn
+børneperspektiv	perspektiv	-e-	barn
+børneporno	porno	barn
+børnepornografi	-e-	pornografi	barn
 børnesagkyndig	-e-	barn
-børnesauna	-e-	sauna	barn
-børneseng	-e-	barn	seng
-børnesexdukke	-e-	barn	sexdukke
-børnesikre	-e-	sikre	barn
-børneskuespiller	skuespiller	-e-	barn
-børnestørrelse	-e-	størrelse	barn
-børnetøj	tøj	-e-	barn
+børnesauna	sauna	-e-	barn
+børneseng	seng	-e-	barn
+børnesexdukke	-e-	sexdukke	barn
+børnesikre	sikre	-e-	barn
+børneskuespiller	-e-	skuespiller	barn
+børnestørrelse	størrelse	-e-	barn
+børnetøj	-e-	tøj	barn
 børneværelse	værelse	barn
-børnezoo	-e-	barn	zoo
-børneægteskab	-e-	barn	ægteskab
+børnezoo	-e-	zoo	barn
+børneægteskab	ægteskab	-e-	barn
 børsbaron	børs	baron
 børsnotere	børs	notere
 bøsselesbisk	bøsse	lesbisk
@@ -2773,7 +2773,7 @@ cancergrill	cancer	grill
 cancerogen	cancer	gen
 cancerregister	cancer	register
 cand.mag.	cand.
-cand.mag.-uddannelse	uddannelse	-	cand.mag.
+cand.mag.-uddannelse	cand.mag.	uddannelse	-
 cannabisturisme	cannabis	turisme
 cantaloupmelon	melon
 cellebiologi	celle	biologi
@@ -3100,7 +3100,7 @@ dematerialisere	de	materialisere
 dematerialisering	dematerialisere	ing
 dematerialiseringsteknologi	dematerialisering	s	teknologi
 demensramt	demens	ramt
-demenssygdom	demens	sygdom	-s-
+demenssygdom	sygdom	-s-	demens
 demineralisere	de	mineralisere
 demograf	demo	graf
 demografi	demo	grafi
@@ -3340,7 +3340,7 @@ dumstædighed	dumstædig	hed
 dunjakke	dun	jakke
 dunvest	dun	vest
 dusinvis	dusin	vis
-dvs.	det	sige	ville
+dvs.	sige	det	ville
 dvælen	dvæle	en
 dværgblåfugl	dværg	blåfugl
 dværgbusk	dværg	busk
@@ -3469,7 +3469,7 @@ efterforskningsenhed	efterforskning	s	enhed
 efterforskningskendelse	efterforskning	s	kendelse
 efterforskningsleder	efterforskning	s	leder
 efterfølge	efter	følge
-eftergivenhedspolitik	-s-	politik
+eftergivenhedspolitik	politik	-s-
 eftergøre	efter	gøre
 efterisolere	efter	isolere
 efterisolering	efter	isolering
@@ -3839,7 +3839,7 @@ euforisk	eufori	sk
 eurokrat	-krat
 europamester	Europa	mester
 europamesterskab	Europa	mesterskab
-europaparlamentsvalg	-s-	valg
+europaparlamentsvalg	valg	-s-
 europæer	Europa	er
 europæisk	Europa	isk
 evakuering	evakuere	ing
@@ -3861,8 +3861,8 @@ fabriksteam	fabrik	s	team
 fabuleren	fabulere	en
 facebookgruppe	Facebook	gruppe
 fadbamse	fad	bamse
-faderpotentiale	potentiale	far
-faderskab	-skab	far
+faderpotentiale	far	potentiale
+faderskab	far	-skab
 fagbegreb	fag	begreb
 fagdidaktik	fag	didaktik
 fagfolk	fag	folk
@@ -4141,7 +4141,7 @@ firtifem	firti	fem
 fisefornem	fise	fornem
 fiskefabriksarbejder	fiskefabrik	s	arbejder
 fiskefrikadelle	fisk	e	frikadelle
-fiskegarn	garn	-e-	fiske
+fiskegarn	fiske	-e-	garn
 fiskekniv	fisk	e	kniv
 fiskekutter	fiske	kutter
 fiskekvote	fiske	kvote
@@ -4157,7 +4157,7 @@ fitnessblogger	fitness	blogger
 fitnesssko	fitness	sko
 fjendsk	fjende	sk
 fjerbold	fjer	bold
-fjerdebedst	god	fjerde
+fjerdebedst	fjerde	god
 fjerdedel	fjerde	del
 fjerdehyppigst	fjerde	hyppig
 fjerdesidst	fjerde	sidst
@@ -4203,7 +4203,7 @@ flannelsbukser	bukser
 flaskeautomat	flaske	automat
 flaskedreng	flaske	dreng
 flaskegrøn	flaske	grøn
-flerbørnsfamilie	flere	familie	barn	-s-
+flerbørnsfamilie	familie	flere	-s-	barn
 flerdoble	flere	doble
 flerfamiliehus	flere	familie	hus
 flerfarvet	farvet
@@ -4280,7 +4280,7 @@ fløjmøtrik	møtrik
 fløjtetudse	fløjte	tudse
 fodbold	fod	bold
 fodbold-EM	fodbold	EM
-fodbold-VM	fodbold	VM	-
+fodbold-VM	VM	-	fodbold
 fodboldbane	fodbold	bane
 fodboldbølle	fodbold
 fodbolddommer	fodbold	dommer
@@ -4491,7 +4491,7 @@ forføre	for	føre
 forgaffel	gaffel
 forgiftning	forgifte	ning
 forglemmelse	forglemme	else
-forglemmigej	ej	forglemme	mig
+forglemmigej	mig	ej	forglemme
 forgrene	for
 forgrening	forgrene	ing
 forgude	for	gud	e
@@ -4539,7 +4539,7 @@ forklaringsproblem	forklaring	s	problem
 forklarlig	forklare	lig
 forklæde	for	klæde
 forklædning	forklæde	ning
-forkoge	koge	for-	for
+forkoge	for	for-	koge
 forkorte	for
 forkortelse	forkorte	else
 forkortelsesliste	forkortelse	s	liste
@@ -5118,8 +5118,8 @@ fyrstedømme	fyrste	-n-	-dømme
 fyrstinde	fyrste	inde
 fyrtårn	fyr	tårn
 fysioterapeut	fysio	terapeut
-fåborgenser	-enser	Faaborg
-fædreland	land	far
+fåborgenser	Faaborg	-enser
+fædreland	far	land
 fædrelandskærlighed	fædreland	s	kærlighed
 fægtning	fægte	ning
 fældning	fælde	ning
@@ -5510,7 +5510,7 @@ gerningsindhold	gerning	s	indhold
 gerningskvinde	gerning	s	kvinde
 gerningsmand	gerning	s	mand
 gerningsord	gerning	s	ord
-gerningsperson	gerning	mand	-s-
+gerningsperson	mand	gerning	-s-
 gerningssted	gerning	s	sted
 gerningstidspunkt	gerning	s	tidspunkt
 gerningstidsrum	gerning	s	tidsrum
@@ -5714,7 +5714,7 @@ grønlandsministerie	Grønland	s	ministerie
 grønlandssæl	Grønland	s	sæl
 grønlig	grøn	lig
 grønliggul	grønlig	gul
-grønlænder	Grønland	-er
+grønlænder	-er	Grønland
 grønlændervending	grønlænder
 grøntsag	grøn	sag
 guddom	gud	dom
@@ -5722,7 +5722,7 @@ guddommelig	guddom	e	lig
 guddommeliggøre	guddommelig	gøre
 gudinde	gud	inde
 gudskabt	gud	skabt
-gudstjeneste	-e-	gud	tjeneste
+gudstjeneste	tjeneste	-e-	gud
 guerillaaktion	guerilla	aktion
 guerillaangreb	guerilla	angreb
 guerillabevægelse	guerilla	bevægelse
@@ -5798,7 +5798,7 @@ gældstynget	gæld	s
 gældsætte	gæld	sætte
 gællemaskine	gælle	maskine
 gællesæson	gælle	sæson
-gælning	gælle	-e-	-ning
+gælning	-e-	gælle	-ning
 gæstedirigent	gæste	dirigent
 gæsteoptræden	gæst	e	optræden
 gæsteseng	gæst	e	seng
@@ -5838,10 +5838,10 @@ halvdel	halv	del
 halvfast	halv	fast
 halvfems	halv
 halvfemsende	halvfems	ende
-halvfemsindstyve	halv	tyve	-s-	femte
+halvfemsindstyve	tyve	halv	-s-	femte
 halvfemsindstyvende	halvfemsindstyve
 halvfjerdsende	halvfjerds
-halvfjerdsindstyve	halv	fjerde	tyve	-s-
+halvfjerdsindstyve	tyve	fjerde	halv	-s-
 halvfjerdsindstyvende	halvfjerdsindstyve
 halvfuld	halv	fuld
 halvgardere	halv	gardere
@@ -5858,7 +5858,7 @@ halvtone	halv	tone
 halvtonetrin	halvtone	trin
 halvtreds	halv
 halvtredsende	halvtreds	ende
-halvtredsindstyve	halv	tredje	tyve	-s-
+halvtredsindstyve	tyve	tredje	halv	-s-
 halvtredsindstyvende	halvtredsindstyve	ende
 halvtrist	halv	trist
 halvvejs	halv	vej
@@ -6213,7 +6213,7 @@ holdbarhed	holdbar	hed
 holdbarhedsdato	holdbarhed	s	dato
 holdbarhedsforværring	holdbarhed	s	forværring
 holdbarhedsmærkning	holdbarhed	s	mærkning
-holdeplads	holde	plads	-e-
+holdeplads	plads	-e-	holde
 holder	holde	er
 holdingvirksomhed	holding	virksomhed
 holdning	holde	ning
@@ -6370,7 +6370,7 @@ hunlus	hun	lus
 hurraråb	hurra	råb
 hurtigbespænding	hurtig	bespænding
 hurtigbus	hurtig	bus
-hurtigkneppersko	sko	kneppe	-er	hurtig
+hurtigkneppersko	-er	kneppe	hurtig	sko
 hurtigprogram	hurtig	program
 hurtigttørrende	hurtigt	tørre
 husbrand	hus	brand
@@ -6386,7 +6386,7 @@ husjomfru	hus	jomfru
 huskat	hus	kat
 huskeregel	huske	regel
 husleje	hus	leje
-husmodersorg	husmor	sorg
+husmodersorg	sorg	husmor
 husmor	hus	mor
 husmur	hus	mur
 husmus	hus	mus
@@ -6612,7 +6612,7 @@ højdemæssig	højde	mæssig
 højdepunkt	højde	punkt
 højderyg	højde	ryg
 højdespring	højde	spring
-højesteret	ret	høj
+højesteret	høj	ret
 højesteretspræsident	højesteret	s	præsident
 højesteretsreform	højesteret	s	reform
 højhastighed	høj	hastighed
@@ -6698,7 +6698,7 @@ idriftsætning	idriftsætte	ning
 idriftsætte	i	drift	sætte
 idriftsættelse	idriftsætte	else
 idrætsfællesskab	idræt	s	fællesskab
-idéfasehøring	idefase	høring
+idéfasehøring	høring	idefase
 idémæssig	idé	mæssig
 idéoplæg	idé	oplæg
 idérig	idé	rig
@@ -6858,7 +6858,7 @@ indkøbskurv	indkøb	s	kurv
 indkøbsoplevelse	indkøb	s	oplevelse
 indkøbspose	indkøb	s	pose
 indkøbsvogn	indkøb	s	vogn
-indkøringsvanskeligheder	vanskelighed	-s-
+indkøringsvanskeligheder	-s-	vanskelighed
 indkørsel	ind	kørsel
 indlade	ind	lade
 indlede	ind	lede
@@ -6902,7 +6902,7 @@ indrykke	ind	rykke
 indrømme	ind
 indsamle	ind	samle
 indsamling	indsamle	ing
-indsatsemhætte	-s-	emhætte
+indsatsemhætte	emhætte	-s-
 indsatsleder	indsats	leder
 indscanne	ind	scanne
 indse	ind	se
@@ -7086,7 +7086,7 @@ intersubjektiv	inter	subjektiv
 interviewprogram	interview	program
 interviewteknik	interview	teknik
 interviewundersøgelse	interview	undersøgelse
-intetsigende	ingen	sige
+intetsigende	sige	ingen
 intimmassøse	intim	massøse
 intolerance	in	tolerance
 intolerant	in	tolerant
@@ -7101,7 +7101,7 @@ involvering	involvere	ing
 irakisk	Irak	isk
 iraner	Iran	er
 iransk	Iran	sk
-irettesætte	sætte	i
+irettesætte	i	sætte
 irettesættelse	irettesætte	else
 irgrøn	grøn
 irrationel	ir	rationel
@@ -7266,7 +7266,7 @@ julemåned	jul	e	måned
 julemærkehjem	julemærke	hjem
 julesalat	jul	e	salat
 juleshopping	jul	e	shopping
-julesne	sne	jul	-s-
+julesne	jul	sne	-s-
 julestemning	jul	e	stemning
 juletid	jul	e	tid
 juletræ	jul	e	træ
@@ -7825,7 +7825,7 @@ konvertering	konvertere	ing
 koordinering	koordinere	ing
 kopfuld	kop	fuld
 kopiering	kopiere	ing
-koppevaccine	kopper	-e-	vaccine
+koppevaccine	vaccine	-e-	kopper
 koralrød	rød
 koranafbrænder	koran	afbrænder
 koranafbrænding	koran	afbrænding
@@ -8118,7 +8118,7 @@ kystlandskab	kyst	landskab
 kystmorfologi	kyst	morfologi
 kystnær	kyst	nær
 kystområde	kyst	område
-kæbeben	ben	købe
+kæbeben	købe	ben
 kæbebensbrud	kæbeben	s	brud
 kæbehule	kæbe	hule
 kæbehulebetændelse	kæbehule	betændelse
@@ -8143,7 +8143,7 @@ kælderetage	kælder	etage
 kælderrum	kælder	rum
 kælderskakt	kælder	skakt
 kældervindue	kælder	vindue
-kæledyr	kæle	dyr	-e-
+kæledyr	-e-	dyr	kæle
 kæleri	kæle	eri
 kællingeagtig	kælling	e	agtig
 kællingeknude	kælling	e	knude
@@ -8568,7 +8568,7 @@ lobbyist	-ist
 lodret	lod	ret
 loftemhætte	loft	emhætte
 loftsmaling	loft	s	maling
-loftstige	stige	loft	-s-
+loftstige	stige	-s-	loft
 logopæd	-pæd-
 lokalbedøve	lokal	bedøve
 lokalisering	lokalisere	ing
@@ -8607,7 +8607,7 @@ lovfæste	lov	fæste
 lovgive	lov	give
 lovgiver	lovgive	er
 lovgivning	lovgive	ning
-lovgivningsidentifikator	lovgivning	identikator	-s-
+lovgivningsidentifikator	identikator	-s-	lovgivning
 lovgivningsmagt	lovgivning	s	magt
 lovgivningsmæssig	lovgivning	s	mæssig
 lovlig	lov	lig
@@ -8806,7 +8806,7 @@ læskedrik	læske	drik
 læskedrikautomat	læskedrik	automat
 læskedrikproducent	læskedrik	producent
 læskærm	læ	skærm
-læsning	læse	-ning	læsse
+læsning	-ning	læsse	læse
 læspen	læspe	en
 læsøbo	Læsø	bo
 løbecykel	løbe	cykel
@@ -9199,7 +9199,7 @@ miljøfremmed	miljø	fremmed
 miljøgode	miljø	gode
 miljøhensyn	miljø	hensyn
 miljøkonsekvens	miljø	konsekvens
-miljøkonsekvensproces	miljøkonsekvens	-s-	proces
+miljøkonsekvensproces	proces	-s-	miljøkonsekvens
 miljøkonsekvensrapport	miljøkonsekvens	rapport
 miljøkonsekvensvurdering	miljøkonsekvens	vurdering
 miljøkorrektion	miljø	korrektion
@@ -9265,7 +9265,7 @@ mindeceremoni	ceremoni
 mindesmærke	minde	s	mærke
 mindetavle	minde	tavle
 mindeudstilling	minde	udstilling
-mindretal	tal	lille
+mindretal	lille	tal
 mindretalsaktionær	mindretal	s	aktionær
 mindretalsgruppe	mindretal	s	gruppe
 mindretalsleder	mindretal	s	leder
@@ -9274,7 +9274,7 @@ mindretalsrettighed	mindretal	s	rettighed
 mindretalsstyre	mindretal	s	styre
 mindretalsudtalelse	mindretal	s	udtalelse
 mindreårig	-årig	lille
-mindsteløn	løn	lille
+mindsteløn	lille	løn
 minehund	mine	hund
 mineralholdig	mineral	holdig
 mineralisere	mineral	isere
@@ -9384,7 +9384,7 @@ modelberegning	model	beregning
 modellering	modellere	ing
 modelleringsresultat	modellering	s	resultat
 modelnavn	model	navn
-modermælk	mælk	mor
+modermælk	mor	mælk
 modermælkserstatning	modermælk	s	erstatning
 modermærke	mor	mærke
 modermærkekræft	modermærke	kræft
@@ -9670,17 +9670,17 @@ nabosideflade	nabo	sideflade
 naboskab	nabo	skab
 nakkebørste	nakke	børste
 nakkeost	nakke	ost
-nakskovit	Nakskov	-(n)it
+nakskovit	-(n)it	Nakskov
 namibier	Namibia	er
 namibisk	Namibia	sk
-nankingsbukser	bukser	-s-
+nankingsbukser	-s-	bukser
 nanogram	nano	gram
 nanometer	nano	meter
 nanosekund	nano	sekund
 nanoteknologi	nano	teknologi
 nanoteknologisk	nanoteknologi	sk
 napoleonshat	hat	-s-
-napoleonskage	kage	-s-
+napoleonskage	-s-	kage
 narkobande	narko	bande
 narkobesiddelse	narko	besiddelse
 narkobilist	narko	bilist
@@ -9932,7 +9932,7 @@ neuropsykolog	neuro	psykolog
 neutralisere	neutral	isere
 neutralitet	neutral	itet
 neutralitetsknap	neutralitet	s	knap
-newyorker	New York	-er
+newyorker	-er	New York
 nibebo	Nibe	bo
 nidstirre	stirre
 niende	ni	ende
@@ -10076,18 +10076,18 @@ nærzone	nær	zone
 næsebjørn	næse	bjørn
 næsedråber	næse	dråbe
 næsehorn	næse	horn
-næstbedst	god	næst
+næstbedst	næst	god
 næstbilligst	næst	billig
 næstekærlig	næst	kærlig
 næstformand	næst	formand
-næstmest	næst	megen
+næstmest	megen	næst
 næstmindst	næst	lille
 næstsidst	næst	sidst
 næststærkest	næst	stærk
 næststørst	næst	stor
 næstvigtigst	vigtig
 næstyderst	næst	ydre
-næstældst	næst	gammel
+næstældst	gammel	næst
 næstøverst	næst	øvre
 nævefuld	næve	fuld
 nævner	nævne	er
@@ -10363,7 +10363,7 @@ opfindsom	opfinde	som
 opfindsomhed	opfindsom	hed
 opfordre	op	fordre
 opfordring	opfordre	ing
-opfostre	forstre	op
+opfostre	op	forstre
 opfriske	op	friske
 opfylde	op	fylde
 opfyldelse	opfylde	else
@@ -10461,7 +10461,7 @@ opreklamere	op	reklamere
 opremse	op
 oprense	op	rense
 oprensning	oprense	ning
-opretholde	holde	op
+opretholde	op	holde
 opretholdelse	opretholde	else
 oprette	op	rette
 oprettelse	oprette	else
@@ -10479,7 +10479,7 @@ opsamling	opsamle	ing
 opsamlingsboks	opsamling	s	boks
 opsende	op	sende
 opsigelse	opsige	else
-opsigtsvækkende	-s-	vække
+opsigtsvækkende	vække	-s-
 opskalere	op	skalere
 opskrift	op
 opskræmme	op	skræmme
@@ -10496,7 +10496,7 @@ opspore	op	spore
 opsporing	opspore	ing
 opspørge	op	spørge
 opstarte	op	starte
-opstartsvanskelighed	vanskelighed	-s-
+opstartsvanskelighed	-s-	vanskelighed
 opstemme	op	stemme
 opstige	op	stige
 opstigen	opstige	en
@@ -10583,7 +10583,7 @@ organist	organ	ist
 orientering	orientere	ing
 orkesterdirigent	orkester	dirigent
 orkestermusiker	orkester	musiker
-orlogsrød	rød	-s-
+orlogsrød	-s-	rød
 ortodoks	orto	doks
 orwellsk	-sk
 oslosk	Oslo	sk
@@ -11266,7 +11266,7 @@ professionsbachelor	profession	s	bachelor
 professionsbacheloruddannelse	professionsbachelor	uddannelse
 professionsetik	profession	s	etik
 professionsidentitet	profession	s	identitet
-professionsidentitetsproces	professionsidentitet	-s-	identitet
+professionsidentitetsproces	identitet	-s-	professionsidentitet
 professionsuddannelse	profession	s	uddannelse
 professionsudvikling	profession	s	udvikling
 professortiltrædelse	professor	tiltrædelse
@@ -11314,7 +11314,7 @@ proviantering	proviantere	ing
 provinsby	provins	by
 præcisere	præcis	ere
 præcisering	præcisere	ing
-præcisionsundersøgelse	undersøgelse	-s-
+præcisionsundersøgelse	-s-	undersøgelse
 prædefinere	definere
 præfabrikere	fabrikere
 præfiksafledning	præfiks	afledning
@@ -11444,7 +11444,7 @@ påtrænge	på	trænge
 påtvinge	på	tvinge
 påtænke	på	tænke
 påvirke	på	virke
-påvirkelig	-lig	påvirke	-e-
+påvirkelig	-e-	påvirke	-lig
 påvirkelsesgrad	grad
 påvirkning	påvirke	ning
 påvirkningsangreb	påvirkning	s	angreb
@@ -11694,7 +11694,7 @@ reorganisere	re	organisere
 reparering	reparere	ing
 repositionere	re	positionere
 reproducere	re	producere
-reproduktionsforstyrrelse	forstyrrelse	-s-
+reproduktionsforstyrrelse	-s-	forstyrrelse
 repræsentant	-ant	repræsentere
 repræsentantskab	repræsentant	skab
 repræsentationssammenkomst	repræsentation	s	sammenkomst
@@ -12069,7 +12069,7 @@ saftig	saft	ig
 saftiggrøn	saftig	grøn
 saglig	sag	lig
 sagsbehandling	sag	s	behandling
-sagsbehandlingsskridt	sagsbehandling	-e-	skridt
+sagsbehandlingsskridt	skridt	sagsbehandling	-e-
 sagsbehandlingstid	sagsbehandling	s	tid
 sagsomkostninger	sag	s	omkostning
 sagsøge	sag	søge
@@ -12095,10 +12095,10 @@ saltvand	salt	vand
 saltvandsfisk	saltvand	s	fisk
 saltvandsindsprøjtning	saltvand	s	indsprøjtning
 samarbejde	sam	arbejde
-samarbejdspartner	samarbejde	partner	-s-
-samarbejdssituation	samarbejde	situation	-s-
-samarbejdsvant	samarbejde	vant	-s-
-samarbejdsvillig	samarbejde	-s-	villig
+samarbejdspartner	partner	-s-	samarbejde
+samarbejdssituation	situation	-s-	samarbejde
+samarbejdsvant	vant	-s-	samarbejde
+samarbejdsvillig	villig	-s-	samarbejde
 sambeskatte	sam	beskatte
 samfund	sam	fund
 samfundsfag	samfund	s	fag
@@ -12323,7 +12323,7 @@ semesterstart	semester	start
 semiautomatisk	semi	automatisk
 semifinale	semi	finale
 semikolon	semi	kolon
-sendebud	sende	-e-	bud
+sendebud	-e-	sende	bud
 sendeplan	sende	plan
 sendeudstyr	sende	udstyr
 sengeafsnit	seng	e	afsnit
@@ -12699,7 +12699,7 @@ skyggevirkning	skygge	virkning
 skyhed	sky	hed
 skyklap	sky	klap
 skyldig	skyld	ig
-skyldspørgsmål	spørgsmål	skyld	-s-
+skyldspørgsmål	skyld	-s-	spørgsmål
 skyllekant	skylle	kant
 skyllerør	skylle	rør
 skyskraber	sky
@@ -12829,26 +12829,26 @@ smykkeskrin	smykke	skrin
 smykkesten	smykke	sten
 småbiotop	biotop	lille
 småborde	bord	lille
-småbække	bæk	lille
+småbække	lille	bæk
 småbørnsmesse	småbørn	s	messe
-smådel	del	lille
+smådel	lille	del
 småerotisk	erotisk	lille
 småfejl	fejl	lille
 småfiduser	fidus	lille
-småflagermus	flagermus	lille
-småfryse	fryse	lille
+småflagermus	lille	flagermus
+småfryse	lille	fryse
 småjob	job	lille
-småkage	kage	lille
-småkoge	koge	lille
-småle	le	lille
+småkage	lille	kage
+småkoge	lille	koge
+småle	lille	le
 smånervøs	nervøs	lille
 småpenge	penge	lille
 småpervers	pervers	lille
-småsimre	simre	lille
+småsimre	lille	simre
 småskibe	skib	lille
 småskænde	lille
 småsludre	sludre	lille
-småspise	spise	lille
+småspise	lille	spise
 småstumper	lille
 småstykker	stykke	lille
 småsvindle	svindle	lille
@@ -13079,7 +13079,7 @@ spirituspåvirket	spiritus	påvirket
 spisebord	spise	bord
 spisebordsstol	spisebord	s	stol
 spiseforstyrrelse	spise	forstyrrelse
-spiselig	-lig	spise	-e-
+spiselig	-e-	spise	-lig
 spiseske	spise	ske
 spisested	spise	sted
 spisestue	spise	stue
@@ -13145,7 +13145,7 @@ sprogundervisning	sprog	undervisning
 sprogvanskelighed	sprog	vanskelighed
 sprængfarlig	sprænge	farlig
 sprængning	sprænge	ning
-sprængsstofekspert	sprængstof	ekspert
+sprængsstofekspert	ekspert	sprængstof
 sprøjteanlæg	sprøjte	anlæg
 sprøjtemale	sprøjte	male
 sprøjtemiddelresistens	sprøjtemiddel	resistens
@@ -13460,7 +13460,7 @@ ståpik	stå	pik
 stærkstrømsluftledning	luftledning	-s-
 stævning	stævne	ing
 støberi	støbe	eri
-stødtrop	tropper	stød
+stødtrop	stød	tropper
 støjafskærmning	støj	afskærmning
 støjbelaste	støj	belaste
 støjbelastet	støj
@@ -13607,7 +13607,7 @@ svineproducent	svin	e	producent
 svineri	svine	eri
 svineslagteri	svin	e	slagteri
 svinesteg	svin	e	steg
-svinesti	svin	sti	-s-
+svinesti	svin	-s-	sti
 svingbane	sving	bane
 svingning	svinge	ning
 svingom	svinge	om
@@ -13829,7 +13829,7 @@ tagspån	tag
 tagsten	tag	sten
 tagvand	tag	vand
 taiwaner	Taiwan	er
-taiwaneser	-enser	Taiwan
+taiwaneser	Taiwan	-enser
 taiwanesisk	Taiwan
 taknemmelighed	taknemmelig	hed
 taksonomi	-nomi
@@ -13873,7 +13873,7 @@ tankeforstyrrelse	tanke	forstyrrelse
 tankeindsættelse	tanke	indsættelse
 tankelæsning	tanke	læsning
 tankepåføring	tanke	påføring
-tankepåvirkningsoplevelse	-s-	oplevelse
+tankepåvirkningsoplevelse	oplevelse	-s-
 tankning	tanke	ning
 tankstation	station
 tapetafdamper	tapet	afdampe	er
@@ -13902,7 +13902,7 @@ taxatur	taxa	tur
 taxie	-e
 teaterchef	teater	chef
 teatertæppe	teater	tæppe
-tech-gigant	gigant	tech	-
+tech-gigant	tech	gigant	-
 techmilliardær	milliardær
 technomusik	techno	musik
 technopop	techno	pop
@@ -14047,7 +14047,7 @@ thaitakeaway	thai	takeaway
 thaitrusse	thai	trusse
 thybo	Thy	bo
 tidevand	vand
-tidkrævende	tid	kræve	-s-
+tidkrævende	tid	-s-	kræve
 tidlig	tid	lig
 tidløs	tid	løs
 tidsadverbium	tid	s	adverbium
@@ -14131,7 +14131,7 @@ tilgængeliggøre	tilgængelig	gøre
 tilgængelighed	tilgængelig	hed
 tilgængelighedserklæring	tilgængelighed	s	erklæring
 tilhviske	til	hviske
-tilintetgøre	gøre	ingen	til
+tilintetgøre	ingen	til	gøre
 tiljuble	til	juble
 tilkalde	til	kalde
 tilkalke	til	kalke
@@ -14181,7 +14181,7 @@ tilplastre	til
 tilpligte	til
 tilrane	til	rane
 tilrette	til	rette
-tilrettelægge	lægge	til
+tilrettelægge	til	lægge
 tilrettelæggelse	tilrettelægge	else
 tilsagn	til
 tilsammen	til	sammen
@@ -14212,8 +14212,8 @@ tilsnige	til	snige
 tilsnigelse	tilsnige	else
 tilspidse	til	spidse
 tilstandvurdering	vurdering	tilstand	-s-
-tilstedeværelse	-else	til	være
-tilstedeværende	til	være
+tilstedeværelse	være	-else	til
+tilstedeværende	være	til
 tilstoppe	til	stoppe
 tilstræbe	til	stræbe
 tilstrækkelig	til	strække	lig
@@ -14277,7 +14277,7 @@ tjæreholdig	tjære	holdig
 tjæresandsregion	region	-s-
 to-tre	to	tre
 tobaksafgift	tobak	s	afgift
-tobaksafhængighed	-e-	afhængighed	tobak
+tobaksafhængighed	-e-	tobak	afhængighed
 tobaksglød	tobak	s
 tobaksrygning	tobak	s	rygning
 tobakssmugleri	tobak	s	smugleri
@@ -14447,9 +14447,9 @@ trappestige	trappe	stige
 trappesækkevogn	trappe	sækkevogn
 tre-i-ener	tre	i	ener
 trebladet	tre
-trecifret	tre	ciffer
+trecifret	ciffer	tre
 tredivte	tredive	te
-tredjebedst	god	tredje
+tredjebedst	tredje	god
 tredjedag	tredje	dag
 tredjedel	tredje	del
 tredjeland	tredje	land
@@ -14469,7 +14469,7 @@ treogtredive	tre	og	tredive
 treogtyve	tre	og	tyve
 treogtyvende	treogtyve	ende
 trepartsaftale	aftale	-s-
-tresindstyve	tre	tyve
+tresindstyve	tyve	tre
 tresindstyvende	tresindstyve	ende
 tresproget	tre
 tressende	tres	ende
@@ -14504,7 +14504,7 @@ trompetbukser	trompet	bukser
 tronbestigelse	trone	bestigelse
 tronskifte	trone	skifte
 tropeø	trope	ø
-troppetransport	transport	-e-	tropper
+troppetransport	-e-	tropper	transport
 trosbekendelse	tro	s	bekendelse
 troskab	tro	skab
 trossamfund	tro	s	samfund
@@ -14515,7 +14515,7 @@ troværdighedsproblem	troværdighed	s	problem
 truen	true	en
 trussel	true	sel
 trusselbillede	trussel	billede
-trusselniveau	trussel	-s-	niveau
+trusselniveau	niveau	-s-	trussel
 trusselsbillede	trussel	s	billede
 trusselsbrev	trussel	s	brev
 tryghed	tryg	hed
@@ -14890,7 +14890,7 @@ udenom	om
 udenomsareal	udenom	s	areal
 udenomsægteskabelig	udenom	s	ægteskabelig
 udenpå	uden	på
-udenrigsminister	minister	-s-
+udenrigsminister	-s-	minister
 udenrigsministerie	ministerie
 udenrigsministerkollega	udenrigsminister	kollega
 udenrigsordfører	ordfører	-s-
@@ -15042,7 +15042,7 @@ udryddelsestruet	udryddelse
 udrykning	udrykke	ning
 udrykningskøretøj	udrykning	s	køretøj
 udråbe	ud	råbe
-udråbsord	ord	-s-
+udråbsord	-s-	ord
 udsagnsled	udsagn	s	led
 udsagnsord	udsagn	s	ord
 udsalg	ud	salg
@@ -15124,7 +15124,7 @@ udtrykke	ud
 udtryksmættet	udtryk	s	mættet
 udtryksvalens	udtryk	s	valens
 udtræden	udtræde	en
-udtræksemhætte	-s-	emhætte
+udtræksemhætte	emhætte	-s-
 udtræksseng	seng	-s-
 udtænke	ud	tænke
 udtømme	ud	tømme
@@ -15284,7 +15284,7 @@ ukrudtsbrænder	ukrudt	s	brænder
 ukrudtsharve	ukrudt	s	harve
 ukrudtsplante	ukrudt	s	plante
 ukultiveret	u
-ukvemsord	ord	-s-
+ukvemsord	-s-	ord
 ukvindelig	u	kvindelig
 ukærlig	u	kærlig
 uldgarn	uld	garn
@@ -15631,7 +15631,7 @@ utænkelig	u	tænkelig
 utæt	u	tæt
 utæthed	utæt	hed
 utøj	u	tøj
-uudannet	u-	uddannet
+uudannet	uddannet	u-
 uudtømmelig	u
 uvaccineret	u	vaccineret
 uvasket	u
@@ -15843,7 +15843,7 @@ vaskeanlæg	vaske	anlæg
 vaskebjørn	vaske	bjørn
 vaskekapacitet	vaske	kapacitet
 vaskekone	vaske	kone
-vaskekumme	kumme	-e-	vaske
+vaskekumme	-e-	vaske	kumme
 vaskekælder	vaske	kælder
 vaskemaskine	vaske	maskine
 vaskeprogram	vaske	program
@@ -16368,7 +16368,7 @@ værnepligtig	værne	pligtig
 værnepligtsforløb	forløb	-s-
 værtinde	vært	inde
 værtshus	vært	s	hus
-væsentlig	-lig	væsen	-nt-
+væsentlig	væsen	-lig	-nt-
 væsentlighed	væsentlig	hed
 væsentlighedsvurdering	væsentlighed	s	vurdering
 væskeansamling	væske	ansamling
@@ -16490,7 +16490,7 @@ zooteknisk	zoo	teknisk
 Østafrika	øst	Afrika
 Østasien	øst	Asien
 Østdanmark	øst	Danmark
-Østergaard	østre	gård
+Østergaard	gård	østre
 Østergade	gade
 Østeuropa	øst	Europa
 Østjylland	øst	Jylland
@@ -16537,11 +16537,11 @@ zooteknisk	zoo	teknisk
 åndsvidenskabelig	åndsvidenskab	e	lig
 ånær	å	nær
 åreforkalke	forkalke
-åremålsansætte	ansætte	-s-
+åremålsansætte	-s-	ansætte
 årevis	år	e	vis
 årgang	år
 århundrede	år	hundred
-århusianer	-ianer	Aarhus
+århusianer	Aarhus	-ianer
 årlig	år	lig
 årpenge	år	penge
 årring	år	ring
@@ -16602,7 +16602,7 @@ zooteknisk	zoo	teknisk
 ægteskabssvindler	ægteskab	s	svindler
 ægteskabstilbud	ægteskab	s	tilbud
 ægtevielse	vielse
-ægyptologi	-logi	-o-	Egypten
+ægyptologi	-o-	Egypten	-logi
 ældning	ælde	ning
 ældreomsorg	omsorg
 ældrereform	gammel	reform
