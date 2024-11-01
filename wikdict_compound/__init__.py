@@ -7,6 +7,7 @@ from functools import cached_property
 
 from .make_db import make_db
 
+# for external users wanting to know which languages work mostly well
 supported_langs = "de en fi nl sv".split()
 query_count = 0
 
