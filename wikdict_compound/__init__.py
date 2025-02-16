@@ -223,7 +223,7 @@ def split_compound(
     compound = compound.lower()
     filename = str(Path(db_path) / f"{lang}-compound.sqlite3")
     try:
-        conn = sqlite3.connect(f"file:{filename}?mode=rw", uri=True)
+        conn = sqlite3.connect(f"file:{filename}?mode=ro", uri=True)
     except sqlite3.OperationalError:
         raise FileNotFoundError(filename)
 
