@@ -13,20 +13,36 @@ lang = sys.argv[1]
 query = (
     """
 SELECT
-  # ?lexeme
-  ?lexemeLabel
+  #?compound            # the compound lexeme
   ?compoundLabel
+  #?component           # one of its parts
+  ?componentLabel
+  #?ordinal             # series-ordinal, may be missing
 WHERE {
-  ?lexeme dct:language [wdt:P218 '"""
+  # limit to single language
+  ?compound dct:language [ wdt:P218 '"""
     + lang
-    + """'] .
-  ?lexeme wdt:P5238 ?compound .
-  ?lexeme wikibase:lemma ?lexemeLabel .
+    + """' ] .
+
+  # labels
+  ?component wikibase:lemma ?componentLabel .
   ?compound wikibase:lemma ?compoundLabel .
+
   # multi-word lexemes are not useful for testing compound splitting
-  FILTER (!contains(?lexemeLabel, ' '))
-}    
-ORDER BY ?lexemeLabel
+  FILTER( !CONTAINS( ?compoundLabel , " " ) )
+
+  # get ordinals for sorting components
+  ?compound p:P5238 ?st .
+  ?st ps:P5238 ?component .
+  OPTIONAL { ?st pq:P1545 ?ordinal }          # explicit order if present
+
+  # cast ordinal to integer for better sorting
+  BIND( COALESCE( xsd:integer(?ordinal) , 0 ) AS ?ordNum )   # safe cast
+}
+ORDER BY
+  ?compoundLabel           # group by compound
+  ?ordNum                  # sort by P1545 value
+  STR(?component)          # fallback: lexeme ID string to ensure deterministic results
 """
 )
 
@@ -72,7 +88,7 @@ def find_part(compound, parts, lang):
         (compound, ((p, p[:-2]) for p in parts)),
         (compound, ((p, p[1:]) for p in parts)),
     ]:
-        for (orig_p, p) in try_parts:
+        for orig_p, p in try_parts:
             p = normalize(p, lang)
             if not p:
                 continue
