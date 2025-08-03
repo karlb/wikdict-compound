@@ -89,9 +89,16 @@ def make_db(
         ;
 
         CREATE {temp_table} terms AS
-        SELECT *, null AS rule FROM terms_from_forms
-        UNION ALL
-        SELECT *, null AS rule FROM terms_from_entries
+        SELECT *
+        FROM (
+            SELECT *, null AS rule FROM terms_from_forms
+            UNION ALL
+            SELECT *, null AS rule FROM terms_from_entries
+        )
+        WHERE
+            -- Pronouns and articles are rarely a useful part and generate many
+            -- false positives due to being short and important
+            part_of_speech NOT IN ('personalPronoun', 'pronoun', 'article')
         ;
     """
     )

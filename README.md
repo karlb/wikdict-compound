@@ -52,14 +52,14 @@ for lang in 'de en es fi fr it nl pl sv da'.split():
 ]]] -->
 * de: 84.3%-98.1% success, tested over 6181 cases
 * en: 74.6%-98.0% success, tested over 17204 cases
-* es: 34.2%-84.2% success, tested over 2729 cases
+* es: 34.2%-83.8% success, tested over 2729 cases
 * fi: 77.5%-95.5% success, tested over 89 cases
-* fr: 17.7%-61.6% success, tested over 705 cases
-* it: 42.2%-77.5% success, tested over 204 cases
+* fr: 17.7%-61.4% success, tested over 705 cases
+* it: 42.2%-75.5% success, tested over 204 cases
 * nl: 56.7%-96.7% success, tested over 30 cases
-* pl: 31.1%-92.3% success, tested over 222 cases
+* pl: 31.1%-87.4% success, tested over 222 cases
 * sv: 79.9%-98.1% success, tested over 10498 cases
-* da: 48.7%-74.3% success, tested over 19315 cases
+* da: 48.7%-74.0% success, tested over 19315 cases
 <!-- [[[end]]] -->
 
 ## Development
