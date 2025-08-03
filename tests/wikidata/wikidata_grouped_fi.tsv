@@ -1,7 +1,9 @@
 aamukahvi	aamu	kahvi
 aamupäivä	aamu	päivä
 aapeluskirja	aapelus	kirja
+aikataulu	aika	taulu
 alkupäivä	alku	päivä
+ammattitutkinto	ammatti	tutkinto
 asiakirja	asia	kirja
 avioliitto	avio	liitto
 eduskunta	edus	kunta
@@ -16,13 +18,17 @@ henkilöstö	henkilö
 huhtikuu	huhta	kuu
 huuliharppu	huuli	harppu
 ilmasto	ilma	stO
+ilmatiede	ilma	tiede
 iltapäivä	ilta	päivä
 jauheliha	jauhe	liha
 joulukuu	joulu	kuu
 jääkausi	jää	kausi
 kansanedustaja	kansa	edustaja
-kaupunginosa	osa	kaupunki
+kaupunginosa	kaupunki	osa
 kesäkuu	kesä	kuu
+kielitaito	kieli	taito
+kierteinen	kieriä	teinen
+kierteishäntäkarhu	häntä	kierteinen	karhu
 kiertokulku	kierto	kulku
 kilometri	kilo	metri
 kirjasto	kirja	stO
@@ -30,7 +36,7 @@ kuukausi	kuu	kausi
 käynti	käydä	nti
 käyntikortti	käynti	kortti
 lastentarha	lapsi	tarha
-lehdistö	lehti
+lehdistö	-stO	lehti
 leipälapio	leipä	lapio
 liikenne	liike	nne
 lokakuu	loka	kuu
@@ -40,17 +46,18 @@ maaliskuu	kuu
 marraskuu	marras	kuu
 miehistö	mies
 naamataulu	naama	taulu
-neuloosi	neuroosi	neuloa
+neuloosi	neuloa	neuroosi
 neulootikko	neurootikko	neuloa
 ohjelmoida	ohjelma	oida
 ohjelmointi	ohjelmoida	nti
 palokunta	palo	kunta
 putipuhdas	puhdas
 puutarha	puu	tarha
+rapakivi	rapa	kivi
 rautalanka	rauta	lanka
 sanakirja	sana	kirja
 silitysrauta	silitys	rauta
-suihinotto	otto	suu
+suihinotto	suu	otto
 sukunimi	suku	nimi
 suojatie	suoja	tie
 suru-uutinen	suru	uutinen
@@ -71,9 +78,11 @@ tietoverkko	tieto	verkko
 toimisto	toimi	stO
 toukokuu	touko	kuu
 typötyhjä	tyhjä
+työpaikka	työ	paikka
 täpötäysi	täpö	täysi
 upouusi	uusi
 vaalipiiri	vaali	piiri
+valiokunta	valio	kunta
 verryttelypuku	verryttely	puku
 viikonpäivä	viikko	päivä
 voileipä	voi	leipä
@@ -84,4 +93,5 @@ vuosisata	vuosi	sata
 vuosituhat	vuosi	tuhat
 väkijoukko	väki	joukko
 ydinvoima	ydin	voima
+yhteistyö	yhteinen	työ
 äidinkieli	kieli	äiti

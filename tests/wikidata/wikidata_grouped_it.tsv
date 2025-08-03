@@ -1,13 +1,12 @@
 Teletrasporto	tele	trasporto
 acciaieria	acciaio	eria
+aerodinamica	aero	dinamica
+aerosol	aero	sol
 affarismo	affare	ismo
-agli	a	gli
-ai	a	i
+ai	a
 al	a	il
-alla	a	la
-alle	a	le
-allo	a	lo
-anti-	anti
+allo	a	il
+altoparlante	alto	parlante
 antiacido	anti	acido
 antiacne	anti	acne
 anticarro	anti	carro
@@ -43,6 +42,7 @@ bagagliaio	bagaglio	aio
 banchetto	banco	etto
 barbabietola	barba	bietola
 barretta	barra	etto
+bassone	basso	one
 bastione	bastia	one
 bestiame	bestia	ame
 bigliettino	biglietto	ino
@@ -51,9 +51,12 @@ bozzetto	bozzo	etto
 brevemente	breve	mente
 calandrella	calandra	ello
 camerino	camera	ino
-capodoglio	di	capo	olio
+camiciola	camicia	olo
+candidatura	candidare	tura
+capodoglio	capo	di	olio
 cappelleria	cappello	eria
 carbonio-14	quattordici	carbonio
+caricatura	caricare	tura
 carrello	carro	ello
 carretto	carro	etto
 cartella	carta	ello
@@ -67,18 +70,18 @@ cinturino	cintura	ino
 collezionismo	collezione	ismo
 corderia	corda	eria
 cornicione	cornice	one
-dagli	da	gli
-dai	da	i
+dagli	da
+dai	da
 dal	da	il
-dalla	da	la
-dalle	da	le
-dallo	da	lo
-degli	di	gli
-dei	di	i
+dalla	da
+dalle	da
+dallo	da
+degli	di
+dei	di
 del	di	il
-della	di	la
-delle	di	le
-dello	di	lo
+della	di
+delle	di
+dello	di
 disaccordo	dis	accordo
 drogheria	droga	eria
 eco-elettrodomestico	eco	elettrodomestico
@@ -95,6 +98,7 @@ gabbione	gabbia	one
 gamberetto	gambero	etto
 gattopardo	gatto	pardo
 ginepraio	ginepro	aio
+goletta	gola	etto
 graffetta	graffa	etto
 grottesco	grotta	esco
 imbarcare	in	barca
@@ -103,6 +107,7 @@ impersistente	im	persistente
 impossibile	im	possibile
 lampadario	lampada	ario
 lavorabile	lavorare
+libretto	libro	etto
 linguina	lingua	ino
 macchinetta	macchina	etto
 maestranza	maestro	anza
@@ -111,9 +116,12 @@ maglione	maglia	one
 manovellismo	manovella	ismo
 masgalano	mas	galante
 materassino	materasso	ino
-maximoto	motocicletta	maxi-
+maximoto	maxi-	motocicletta
 mazzafrusto	mazza	frusta
+megaFLOPS	mega	FLOPS
+metanarrazione	meta	narrazione
 minigonna	mini	gonna
+mosaicismo	mosaico	ismo
 motobarca	moto	barca
 motocarrozzetta	moto	carrozza
 motocicletta	moto	ciclo
@@ -137,15 +145,16 @@ motoveleggiatore	moto	veleggiatore
 motovelivolo	moto	velivolo
 motovettura	moto	vettura
 motozappa	moto	zappa
-negli	in	gli
-nei	in	i
+negli	in
+nei	in
 nel	in	il
-nella	in	la
-nelle	in	le
-nello	in	lo
+nella	in
+nelle	in
+nello	in
 nerofumo	nero	fumo
 notiziario	notizia	ario
 nuvoletta	nuvola	etto
+operetta	opera	etto
 orologeria	orologio	eria
 paglietta	paglia	etto
 pancetta	pancia	etto
@@ -156,14 +165,18 @@ piumino	piuma	ino
 pollame	pollo	ame
 popolaccio	popolo	accio
 portacenere	portare	cenere
+portafoglio	porta	foglio
+portasaponetta	porta	saponetta
 raganella	ragano	ello
-ravanello	rafano	-ello
+ravanello	-ello	rafano
 renaio	rena	aio
 retrogusto	retro	gusto
+riprodurre	ri	produrre
 risotto	riso	otto
+rocchetta	rocca	-etto
 rosaio	rosa	aio
 roveto	rovo	eto
-saponetta	-etto	sapone
+saponetta	sapone	-etto
 sardella	sarda	ello
 scaletta	scala	etto
 segheria	sega	eria
@@ -177,12 +190,14 @@ sottogruppo	sotto	gruppo
 sottotitolo	sotto	titolo
 sottovaso	sotto	vaso
 sovradosaggio	sovra	dosaggio
-sugli	su	gli
-sui	su	i
+spaghetto	spago	etto
+sprezzatura	sprezzare	tura
+sugli	su
+sui	su
 sul	su	il
-sulla	su	la
-sulle	su	le
-sullo	su	lo
+sulla	su
+sulle	su
+sullo	su
 suoneria	suono	eria
 super-io	super	io
 superalcolico	super	alcolico
@@ -205,6 +220,10 @@ tavolone	tavolo	one
 timoneria	timone	eria
 topino	topo	ino
 trampoliere	trampolo	iere
+trattore	trarre	-ore
+trattoria	trattore	ia
+travatura	trave	tura
+trentatré	trenta	tre
 tubetto	tubo	etto
 utopia	τόπος	οὖ
 uvetta	uva	etto

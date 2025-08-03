@@ -2,12 +2,12 @@ Antigua-et-Barbuda	Antigua	et	Barbuda
 Bosnie-et-Herzégovine	Bosnie	et	Herzégovine
 Guinée-Bissau	Guinée	Bissau
 Haute-Volta	haut	Volta
-Nouvelle-Guinée	Guinée	nouveau
+Nouvelle-Guinée	nouveau	Guinée
 Papouasie-Nouvelle-Guinée	Papouasie	Nouvelle-Guinée
 Parisien	Paris	ien
 Port-Louis	port	Louis
 Saint-Kitts-et-Nevis	Nevis
-Saint-Vincent-et-les-Grenadines	Grenadines	Saint-Vincent	et
+Saint-Vincent-et-les-Grenadines	Saint-Vincent	Grenadines	et
 Timor-Leste	Timor
 Toulousain	Toulouse	ain
 Trifluvien	tri	fluvius	ien
@@ -21,7 +21,7 @@ abominablement	-ment
 abondamment	-ment
 absolument	absolu	ment
 absorbeur	absorber	eur
-absorbeur-neutralisateur	-eur	absorbeur	neutraliser
+absorbeur-neutralisateur	-eur	neutraliser	absorbeur
 abusivement	-ment
 abécédairement	abécédaire	ment
 acteur	acte	eur
@@ -39,6 +39,7 @@ alternativement	-ment
 ambassadeur	ambassade	eur
 ambassadrice	ambassade	rice
 ambigument	-ment
+amoureusement	amoureux	ment
 amphigouriquement	-ment
 amplement	ample	ment
 ampèremètre	ampère	mètre
@@ -70,7 +71,7 @@ astucieusement	-ment
 atomiquement	atomique	ment
 atrocement	atroce	ment
 attentivement	-ment
-au	le	à
+au	à	le
 auquel	lequel	à
 authentiquement	authentique	ment
 auto-focaliser	auto	focaliser
@@ -84,16 +85,20 @@ avant-poste	avant	poste
 avant-veille	avant	veille
 aveuglément	-ment
 bai-brun	bai	brun
-baragouin	bara	gwin
+baragouin	gwin	gwenn	bara
 basculement	basculer	ment
 basculer	bas	cul
 bcp	b	c	p
 belle-maman	maman	beau
+bicyclette	bicycle	ette
 bidépartementalisation	bi	départementalisation
 billiardième	billiard	ième
 bleu-vert	bleu	vert
+bonjour	bon	jour
 bonnement	bon	ment
+bonsoir	bon	soir
 bouche-trou	boucher	trou
+brigadier	brigade	ier
 brièvement	-ment
 brumaire	-aire
 brusquement	brusque	ment
@@ -214,18 +219,20 @@ drastiquement	-ment
 dudit	de	ledit
 duquel	lequel	de
 durablement	durable	ment
+décalitre	déca	litre
 décemment	décent	ment
 décidément	-ment
 décimètre	déci	mètre
 décompter	dé	compter
 dédaigneusement	-ment
 définitivement	-ment
-dégoûter	dé-	gouter	goûter
+dégoûter	gouter	dé-	goûter
 délibérément	-ment
 délicatement	délicat	ment
 démocratiquement	démocratique	ment
 dérober	dé	rober
 dûment	ment
+eau-de-vie	eau	de	vie
 effectivement	effectif	ment
 efficacement	-ment
 elliptiquement	-ment
@@ -240,7 +247,7 @@ exceptionnellement	exceptionnel	ment
 excessivement	excessif	ment
 exclusivement	exclusif	ment
 explicitement	explicite	ment
-expressément	exprès	-ment
+expressément	-ment	exprès
 extra-scolaire	extra	scolaire
 extrajudiciaire	extra	judiciaire
 extrêmement	extrême	ment
@@ -281,7 +288,9 @@ gratte-ciel	gratter	ciel
 gratuitement	-ment
 gravement	grave	ment
 gravitairement	-ment
-grossièrement	-ment	grossier
+gros-grain	gros	grain
+grossièrement	grossier	-ment
+gynécologue-obstétricien	gynécologue	obstétricien
 généralement	-ment
 généreusement	généreux	ment
 génétiquement	génétique	ment
@@ -306,9 +315,11 @@ huitante-six	huitante	six
 huitante-trois	huitante	trois
 huitième	huit	ième
 huitièmement	huitième	ment
+hydrogéologue	hydro	géologue
 hyperbatiquement	-ment
 hyperlien	hyper	lien
 hyperprésidentialisation	hyper	présidentialisation
+hypertrucage	hyper	trucage
 idéalement	-ment
 illégalement	illégal	ment
 immédiatement	-ment
@@ -366,7 +377,9 @@ ironiquement	-ment
 irrégulièrement	-ment	irrégulier
 irrémédiablement	-ment
 judicieusement	judicieux	ment
+jurassique	Jura	ique
 justement	juste	ment
+juxtaposer	juxta	poser
 kilogramme	kilo	gramme
 kilomètre	kilo	mètre
 largement	-ment
@@ -389,6 +402,7 @@ manifestement	-ment
 marginalement	-ment
 maréchal-ferrant	maréchal
 masseur	masser	eur
+masseur-kinésithérapeute	kinésithérapeute
 masseuse-kinésithérapeute	masseuse	kinésithérapeute
 merveilleusement	ment
 messidor	-idor
@@ -400,13 +414,14 @@ microvoltmètre	micro	voltmètre
 milliampèremètre	milli	ampèremètre
 millimètre	milli	mètre
 millivoltmètre	milli	voltmètre
-mollement	-ment	mou
+mollement	mou	-ment
 moralement	-ment
 moteur-fusée	moteur	fusée
 multi-usage	multi	usage
 multipolaire	multi	polaire
 mètre-étalon	mètre	étalon
 mécaniquement	mécanique	ment
+médecin-biologiste	médecin	biologiste
 médicalement	-ment
 mégamètre	méga	mètre
 n-ième	ième
@@ -452,7 +467,7 @@ nonantièmement	nonantième	ment
 nonchalamment	-ment
 normalement	-ment
 notamment	-ment
-nouvellement	-ment	nouveau
+nouvellement	nouveau	-ment
 nullement	-ment
 nument	nu	ment
 numériquement	numérique	ment
@@ -474,16 +489,17 @@ parascolaire	para	scolaire
 pardonnable	pardon	able
 parfaitement	parfait
 particulièrement	-ment
-partiellement	-ment
+partiellement	partiel	ment
 passablement	-ment
 peloton	pelote	on
 perpétuellement	perpétuel	ment
 personnellement	-ment
-petawatt	péta-	watt
+petawatt	watt	péta-
 petit-enfant	petit	enfant
 petit-fils	petit	fils
 petite-fille	petit	fille
-peut-être	être	pouvoir
+peut-être	pouvoir	être
+pharmacien-biologiste	pharmacien	biologiste
 physiquement	-ment
 plafond	plat	fond
 pleinement	-ment
@@ -520,7 +536,7 @@ précédemment	-ment
 préscolaire	pré	scolaire
 prêt-à-porter	prêt	à	porter
 psychologiquement	-ment
-publiquement	-ment	public
+publiquement	public	-ment
 purement	pur
 pénalement	-ment
 périodiquement	périodique	ment
@@ -561,63 +577,63 @@ quatorzièmement	quatorzième	ment
 quatre-vingt	quatre	vingt
 quatre-vingt-cinq	quatre-vingt	cinq
 quatre-vingt-cinquième	quatre-vingt-cinq	ième
-quatre-vingt-cinquièmement	quatre-vingt-cinquième
+quatre-vingt-cinquièmement	quatre-vingt-cinquième	ment
 quatre-vingt-deux	quatre-vingt	deux
 quatre-vingt-deuxième	quatre-vingt-deux	ième
-quatre-vingt-deuxièmement	quatre-vingt-deuxième
+quatre-vingt-deuxièmement	quatre-vingt-deuxième	ment
 quatre-vingt-dix	quatre-vingt	dix
 quatre-vingt-dix-huit	quatre-vingt	dix-huit
 quatre-vingt-dix-huitième	quatre-vingt-dix-huit	ième
-quatre-vingt-dix-huitièmement	quatre-vingt-dix-huitième
+quatre-vingt-dix-huitièmement	quatre-vingt-dix-huitième	ment
 quatre-vingt-dix-neuf	quatre-vingt	dix-neuf
 quatre-vingt-dix-neuvième	quatre-vingt-dix-neuf	ième
-quatre-vingt-dix-neuvièmement	quatre-vingt-dix-neuvième
+quatre-vingt-dix-neuvièmement	quatre-vingt-dix-neuvième	ment
 quatre-vingt-dix-sept	quatre-vingt	dix-sept
 quatre-vingt-dix-septième	quatre-vingt-dix-sept	ième
-quatre-vingt-dix-septièmement	quatre-vingt-dix-septième
+quatre-vingt-dix-septièmement	quatre-vingt-dix-septième	ment
 quatre-vingt-dixième	quatre-vingt-dix	ième
-quatre-vingt-dixièmement	quatre-vingt-dixième
+quatre-vingt-dixièmement	quatre-vingt-dixième	ment
 quatre-vingt-douze	quatre-vingt	douze
 quatre-vingt-douzième	quatre-vingt-douze	ième
-quatre-vingt-douzièmement	quatre-vingt-douzième
+quatre-vingt-douzièmement	quatre-vingt-douzième	ment
 quatre-vingt-huit	quatre-vingt	huit
 quatre-vingt-huitième	quatre-vingt-huit	ième
-quatre-vingt-huitièmement	quatre-vingt-huitième
+quatre-vingt-huitièmement	quatre-vingt-huitième	ment
 quatre-vingt-neuf	quatre-vingt	neuf
 quatre-vingt-neuvième	quatre-vingt-neuf	ième
-quatre-vingt-neuvièmement	quatre-vingt-neuvième
+quatre-vingt-neuvièmement	quatre-vingt-neuvième	ment
 quatre-vingt-onze	quatre-vingt	onze
 quatre-vingt-onzième	quatre-vingt-onze	ième
-quatre-vingt-onzièmement	quatre-vingt-onzième
+quatre-vingt-onzièmement	quatre-vingt-onzième	ment
 quatre-vingt-quatorze	quatre-vingt	quatorze
 quatre-vingt-quatorzième	quatre-vingt-quatorze	ième
-quatre-vingt-quatorzièmement	quatre-vingt-quatorzième
+quatre-vingt-quatorzièmement	quatre-vingt-quatorzième	ment
 quatre-vingt-quatre	quatre-vingt	quatre
 quatre-vingt-quatrième	quatre-vingt-quatre	ième
-quatre-vingt-quatrièmement	quatre-vingt-quatrième
+quatre-vingt-quatrièmement	quatre-vingt-quatrième	ment
 quatre-vingt-quinze	quatre-vingt	quinze
 quatre-vingt-quinzième	quatre-vingt-quinze	ième
-quatre-vingt-quinzièmement	quatre-vingt-quinzième
+quatre-vingt-quinzièmement	quatre-vingt-quinzième	ment
 quatre-vingt-seize	quatre-vingt	seize
 quatre-vingt-seizième	quatre-vingt-seize	ième
-quatre-vingt-seizièmement	quatre-vingt-seizième
+quatre-vingt-seizièmement	quatre-vingt-seizième	ment
 quatre-vingt-sept	quatre-vingt	sept
 quatre-vingt-septième	quatre-vingt-sept	ième
-quatre-vingt-septièmement	quatre-vingt-septième
+quatre-vingt-septièmement	quatre-vingt-septième	ment
 quatre-vingt-six	quatre-vingt	six
 quatre-vingt-sixième	quatre-vingt-six	ième
-quatre-vingt-sixièmement	quatre-vingt-sixième
+quatre-vingt-sixièmement	quatre-vingt-sixième	ment
 quatre-vingt-treize	quatre-vingt	treize
 quatre-vingt-treizième	quatre-vingt-treize	ième
-quatre-vingt-treizièmement	quatre-vingt-treizième
+quatre-vingt-treizièmement	quatre-vingt-treizième	ment
 quatre-vingt-trois	quatre-vingt	trois
 quatre-vingt-troisième	quatre-vingt-trois	ième
-quatre-vingt-troisièmement	quatre-vingt-troisième
+quatre-vingt-troisièmement	quatre-vingt-troisième	ment
 quatre-vingt-un	quatre-vingt	un
 quatre-vingt-unième	quatre-vingt-un	ième
-quatre-vingt-unièmement	quatre-vingt-unième
+quatre-vingt-unièmement	quatre-vingt-unième	ment
 quatre-vingtième	quatre-vingt	ième
-quatre-vingtièmement	quatre-vingtième
+quatre-vingtièmement	quatre-vingtième	ment
 quatrième	quatre	ième
 quatrièmement	quatrième	ment
 quinzième	quinze	ième
@@ -630,7 +646,7 @@ rationnellement	-ment
 rattacher	re	attacher
 reblochonnade	reblochon	ade
 recommencer	re	commencer
-reconnaitre	connaitre	connaître	re-
+reconnaitre	connaître	re-	connaitre
 recouvrir	re	couvrir
 relativement	-ment
 religieusement	religieux	ment
@@ -638,11 +654,11 @@ repartir	re	partir
 reprendre	re	prendre
 respectivement	-ment
 respectueusement	-ment
-ressortir	ressort	sortir	-ir	re-
+ressortir	ressort	-ir	sortir	re-
 retourner	re	tourner
 rigoureusement	-ment
 rouge-vert	rouge	vert
-règlementairement	règlementaire	-ment	réglementaire
+règlementairement	-ment	règlementaire	réglementaire
 récemment	-ment
 réciproquement	réciproque	ment
 récréation	re	création
@@ -702,6 +718,8 @@ sixièmement	sixième	ment
 sobrement	-ment
 sociablement	-ment
 socialement	-ment
+socialisme	social	isme
+socialiste	social	iste
 socio-démographique	socio	démographique
 socio-économique	socio	économique
 sociétairement	-ment
@@ -770,7 +788,7 @@ surtaxe	sur	taxe
 surtourisme	sur	tourisme
 systématiquement	systématique	ment
 sèche-cheveux	cheveu	sécher
-sèchement	-ment	sec
+sèchement	sec	-ment
 sélectivement	-ment
 séparément	-ment
 sérieusement	-ment
@@ -880,14 +898,16 @@ vraiment	vrai	ment
 vraisemblable	vrai	semblable
 vraisemblablement	vraisemblable	ment
 véritablement	véritable
+wagon-lit	wagon	lit
 yottamètre	yotta	mètre
 zettamètre	zetta	mètre
 zéroième	zéro	ième
-à	a	`
-â	a	ˆ
+à	`	a
+â	ˆ	a
+æ	e	a
 ç	c	¸
-è	e	`
-é	e	΄
+è	`	e
+é	´	e
 économiquement	économique	ment
 également	-ment
 éminemment	-ment
@@ -899,19 +919,18 @@ zéroième	zéro	ième
 étroitement	étroit	ment
 éventuellement	éventuel	ment
 évidemment	évident	ment
-ê	e	ˆ
-ë	¨	e
-î	i	ˆ
-ï	¨	i
-ô	o	ˆ
-ö	¨	o
-ù	u	`
-û	u	ˆ
+ê	ˆ	e
+ë	e	¨
+î	ˆ	i
+ï	i	¨
+ô	ˆ	o
+ö	o	¨
+ù	`	u
+û	ˆ	u
 ü	¨	u
 ÿ	y	¨
 œ	e	o
 ţ	t	¸
-ᷔ	a	e
 antihoraire	anti	horaire
 chauvesouris	chauve	souris
 contrattaque	contre	attaque

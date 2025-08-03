@@ -50,16 +50,16 @@ for lang in 'de en es fi fr it nl pl sv da'.split():
     )
     cog.out('* ' +output)
 ]]] -->
-* de: 84.2%-98.0% success, tested over 5177 cases
-* en: 76.8%-98.8% success, tested over 17286 cases
-* es: 34.6%-84.3% success, tested over 2613 cases
-* fi: 79.5%-96.2% success, tested over 78 cases
-* fr: 17.7%-60.7% success, tested over 666 cases
-* it: 41.5%-81.0% success, tested over 205 cases
-* nl: 64.3%-100.0% success, tested over 14 cases
-* pl: 31.4%-92.7% success, tested over 220 cases
-* sv: 78.6%-97.9% success, tested over 8834 cases
-* da: 49.3%-75.1% success, tested over 15290 cases
+* de: 84.3%-98.1% success, tested over 6181 cases
+* en: 74.6%-98.0% success, tested over 17204 cases
+* es: 34.2%-84.2% success, tested over 2729 cases
+* fi: 77.5%-95.5% success, tested over 89 cases
+* fr: 17.7%-61.6% success, tested over 705 cases
+* it: 42.2%-77.5% success, tested over 204 cases
+* nl: 56.7%-96.7% success, tested over 30 cases
+* pl: 31.1%-92.3% success, tested over 222 cases
+* sv: 79.9%-98.1% success, tested over 10498 cases
+* da: 48.7%-74.3% success, tested over 19315 cases
 <!-- [[[end]]] -->
 
 ## Development

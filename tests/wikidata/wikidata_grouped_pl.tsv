@@ -16,9 +16,9 @@ bialuchny	biały	uchny
 bialuteńki	bialutki	eńki
 bialutki	biały	utki
 białość	biały	ość
-biedaczek	biedak	-ka
+biedaczek	-ka	biedak
 biedniutki	biedny	utki
-bieluchny	-uchny	biały
+bieluchny	biały	-uchny
 bieluteńki	bielutki	eńki
 bielutki	biały	-utki
 bieluśki	biały	-uśki
@@ -38,13 +38,13 @@ cierpliwość	cierpliwy	ość
 cyraneczka	cyranka	eczka
 czerwcowy	czerwiec	-owy
 czwartkowy	czwartek	owy
-cząstka	część	-ka
+cząstka	-ka	część
 dinarowy	dinar	owy
 dolarowy	dolar	owy
 domeczek	domek	eczek
 domek	dom	ek
 drogowy	droga	owy
-droździk	drozd	-ik
+droździk	-ik	drozd
 drzwiowy	drzwi	owy
 dziecięcość	dziecięcy	ość
 dzionek	dzień	ek
@@ -78,7 +78,7 @@ jaskółeczka	jaskółka	eczka
 jedwabik	jedwab	ik
 kalafiorek	kalafior	ek
 kalafiorowy	kalafior	owy
-kalarepka	kalarepa	-ka
+kalarepka	-ka	kalarepa
 kalendarzowy	kalendarz	owy
 kalendarzyk	kalendarz	yk
 kapustka	kapusta	-ka
@@ -93,7 +93,7 @@ kraik	kraj	ik
 krezusowy	krezus	owy
 krokodyli	krokodyl	i
 krokodylowy	krokodyl	owy
-krzemyk	-yk	krzemień
+krzemyk	krzemień	-yk
 kurewka	kurwa	-ka
 kwadransik	kwadrans	ik
 kwietniowy	kwiecień	-owy
@@ -105,7 +105,7 @@ listopadowy	listopad	owy
 lutowy	luty	owy
 majowy	maj	owy
 marchewka	marchew	ka
-marcowy	-owy	marzec
+marcowy	marzec	-owy
 marniutki	marny	utki
 miejskość	miejski	ość
 minutka	minuta	ka
@@ -119,7 +119,7 @@ neonik	neon	ik
 niedźwiadek	niedźwiedź	-ek
 niedźwiedzi	niedźwiedź	i
 nowiuchny	nowy	uchny
-nowiusieńki	nowiuśki	-eńki
+nowiusieńki	-eńki	nowiuśki
 nowiuteńki	nowiutki	eńki
 nowiutki	nowy	utki
 nowiuśki	nowy	uśki
@@ -140,7 +140,7 @@ paździerzowy	paździerz	owy
 pełniuteńki	pełniutki	eńki
 pełniutki	pełny	utki
 pełność	pełny	ość
-piątkowy	piątek	piątka	-owy
+piątkowy	piątka	piątek	-owy
 polonowy	polon	owy
 polskość	polski	ość
 pomarańczka	pomarańcza	ka
@@ -151,6 +151,8 @@ powszechność	powszechny	ość
 poziomeczka	poziomka	eczka
 prawniczka	prawnik	ka
 prawnik	prawo	nik
+przedszkolanka	przedszkole	anka
+przedszkole	przed	szkoła	e
 pszczółka	pszczoła	-ka
 radonowy	radon	owy
 rodzinka	rodzina	ka
@@ -162,7 +164,7 @@ rtęciowy	rtęć	owy
 rubelek	rubel	ek
 rzeczownikowy	rzeczownik	owy
 sadek	sad	ek
-samochodzik	samochód	-ik
+samochodzik	-ik	samochód
 sandaczowy	sandacz	owy
 sekundka	sekunda	ka
 sierpniowy	sierpień	-owy
@@ -184,7 +186,7 @@ słoniowy	słoń	owy
 słonisko	słoń
 słowiczek	słowik	iczek
 słownikowy	słownik	owy
-tantalowy	Tantal	tantal	-owy
+tantalowy	tantal	Tantal	-owy
 topinamburowy	topinambur	owy
 torowy	tor	owy
 truskaweczka	truskawka	eczka
