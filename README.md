@@ -58,7 +58,7 @@ for lang in 'de en es fi fr it nl pl sv da'.split():
 * it: 42.2%-75.5% success, tested over 204 cases
 * nl: 56.7%-96.7% success, tested over 30 cases
 * pl: 31.1%-87.4% success, tested over 222 cases
-* sv: 79.9%-98.1% success, tested over 10498 cases
+* sv: 80.0%-98.2% success, tested over 10498 cases
 * da: 48.7%-74.0% success, tested over 19315 cases
 <!-- [[[end]]] -->
 

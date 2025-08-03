@@ -150,6 +150,11 @@ def make_db(
             where="pos = 'verb' AND mood = 'Infinitive' AND voice = 'ActiveVoice'",
             from_table="form_with_entry",
         )
+        remove_end(
+            "e",
+            where="part_of_speech = 'noun'",
+            from_table="terms_from_entries",
+        )
 
     conn.executescript(
         f"""
